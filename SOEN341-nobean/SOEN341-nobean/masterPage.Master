@@ -1,0 +1,48 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="masterPage.Master.cs" Inherits="SOEN341_nobean.Site2" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+</head>
+
+<body runat="server">
+    <asp:ContentPlaceHolder ID="Stylesheets" runat="server">
+        <link rel="stylesheet" href="master.css" type="text/css" />
+    </asp:ContentPlaceHolder>
+    <div id="wrapper">
+        <div>
+          <div class="rectangle">
+               <div id="header">Easy Schedular</div> 
+              <link href="http://fonts.googleapis.com/css?family=Oleo+Script" rel="stylesheet" type="text/css"/>
+          </div>
+        </div>
+        <div id="navigation">
+            <ul id="navbar">
+                <li id="home"><a href="Home.aspx">Home</a></li>
+                <li><a href="Schedule.aspx">Schedule</a></li>
+                <li><a href="#account">My Account</a>
+                    <ul>
+                        <li><a href="Preferences.aspx">Preferences</a></li>
+                        <li id="record"><a href="Record.aspx">Record</a></li>                       
+                    </ul>
+                </li>
+                <li id="log"><a href="login.aspx">Log out</a></li>
+            </ul>
+                        <p style="width: 710px"></p>
+         </div>
+        <div id="content">
+            <form id="form1" runat="server">
+                <div>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </form>
+        </div>
+        <div id="footer">Copyright © noBean</div>
+    </div>
+</body>
+
+</html>

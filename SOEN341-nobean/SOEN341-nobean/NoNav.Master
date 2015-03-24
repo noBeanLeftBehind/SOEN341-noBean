@@ -1,0 +1,41 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="NoNav.master.cs" Inherits="SOEN341_nobean.NoNav" %>
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+</head>
+
+<body runat="server">
+    <asp:ContentPlaceHolder ID="Stylesheets" runat="server">
+        <link rel="stylesheet" href="master.css" type="text/css" />
+    </asp:ContentPlaceHolder>
+    <div id="wrapper">
+        <div>
+          <div class="rectangle">
+               <div id="header">Easy Schedular</div> 
+              <link href="http://fonts.googleapis.com/css?family=Oleo+Script" rel="stylesheet" type="text/css"/>
+          </div>
+        </div>
+        <div id="navigation">
+            <ul id="navbar">
+               
+            </ul>
+                        <p style="width: 710px"></p>
+         </div>
+        <div id="content">
+            <form id="form1" runat="server">
+                <div>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </form>
+        </div>
+        <div id="footer">Copyright © noBean</div>
+    </div>
+</body>
+
+</html>

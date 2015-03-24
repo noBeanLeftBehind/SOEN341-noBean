@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOEN341-nobean", "SOEN341-nobean\SOEN341-nobean.csproj", "{CA75CA78-0CBE-4484-876C-04AF23DCD79F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{4EE10CB1-F998-466D-86AD-6DA74679CE50}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{00F4C0E8-5C71-498B-9FB2-DBF0F3619292}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\AzureWebsitePublishModule.psm1 = PublishScripts\AzureWebsitePublishModule.psm1
+		PublishScripts\Publish-WebApplicationWebsite.ps1 = PublishScripts\Publish-WebApplicationWebsite.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configurations", "{3735A585-F223-4CDE-9412-67B46E703011}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Configurations\SOEN341-nobean-WAWS-dev.json = PublishScripts\Configurations\SOEN341-nobean-WAWS-dev.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CA75CA78-0CBE-4484-876C-04AF23DCD79F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA75CA78-0CBE-4484-876C-04AF23DCD79F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA75CA78-0CBE-4484-876C-04AF23DCD79F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA75CA78-0CBE-4484-876C-04AF23DCD79F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3735A585-F223-4CDE-9412-67B46E703011} = {00F4C0E8-5C71-498B-9FB2-DBF0F3619292}
+	EndGlobalSection
+EndGlobal
