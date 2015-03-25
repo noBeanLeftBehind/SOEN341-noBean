@@ -22,6 +22,7 @@ namespace SOEN341_nobean
     /// </summary>
     public partial class Login : System.Web.UI.Page
     {
+        DBHandler db = new DBHandler();
         protected void Page_Load(object sender, EventArgs e)
         {
             SqlConnection tempConnection = new SqlConnection();
@@ -33,7 +34,7 @@ namespace SOEN341_nobean
                 if(Global.myConnection != null && Global.myConnection.State == ConnectionState.Closed)
                        Global.myConnection.Open();
 
-                TextBox3.Text = TextBox3.Text + "Test User to login \nNetName: test123\nPass: 123test\n";
+                TextBox3.Text = TextBox3.Text + "Test User to login \nNetName: testnetname\nPass: 123test\n";
             }
             catch (Exception exp)
             {
@@ -47,35 +48,22 @@ namespace SOEN341_nobean
         protected void Button1_Click(object sender, EventArgs e)
         {
 
-            try
-            {
-                //this will be in DBHandler class so you'll only use getUser(& netName&) and it will return and object of User 
-                SqlDataReader myReader = null;
-                SqlCommand myCommand = new SqlCommand(
-                    "SELECT Password FROM [dbo].[User] WHERE netName = @netName;", Global.myConnection);
-                SqlParameter myParam = new SqlParameter("@netName", SqlDbType.VarChar, 11);
-                myParam.Value = TextBox1.Text;
-                myCommand.Parameters.Add(myParam);
-                myReader = myCommand.ExecuteReader();
-                while (myReader.Read())
-                {
+           Global.MainUser = db.getUser(TextBox1.Text.ToString());
 
-                    string tempPass = myReader["Password"].ToString();
+        
+                   
 
-                    if (TextBox2.Text == tempPass)
-                    {
-                       
-                        Server.Transfer("Home.aspx");
-                    }
-                    else
-                        TextBox3.Text = TextBox3.Text + "\nPasswords doesn't match!! \n";
-                }
-            }
-            catch (Exception exp)
-            {
-                TextBox3.Text = TextBox3.Text + exp.ToString() + "\n";
-                Console.WriteLine(exp.ToString());
-            }
+                   if (TextBox2.Text == Global.MainUser.getPassword())
+                   {
+
+                       Server.Transfer("Home.aspx");
+                   }
+                   else
+                       ClientScript.RegisterStartupScript(this.GetType(), "myalert", " Passwords doesn't match!", true);
+                       //TextBox3.Text = TextBox3.Text + "\n! \n";
+                   
+           // String myStringVariable = "hi";
+          
 
         }
 

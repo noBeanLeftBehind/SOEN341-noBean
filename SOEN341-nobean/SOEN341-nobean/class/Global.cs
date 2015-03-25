@@ -20,7 +20,7 @@ namespace SOEN341_nobean.Class
         /// 
 
         static SqlConnection _myConnection;
-
+        static public User MainUser;
         Global()
         {
             _myConnection = new SqlConnection();

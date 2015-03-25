@@ -15,7 +15,8 @@ namespace SOEN341_nobean.Class
         protected List <Section> sections = new List<Section>();
         Record studentRecord = new Record();
 
-        Course(String name, String code, String description, int credits){
+        public Course(String name, String code, String description, int credits)
+        {
             this.courseName = name;
             this.code = code;
             this.description = description;

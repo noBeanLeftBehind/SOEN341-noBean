@@ -8,6 +8,7 @@ namespace SOEN341_nobean
 {
     public class User
     {
+        protected int UserID;
         protected int StudentID;
         //Schedule currentSchedule = new Schedule();
         //Record StudentRecord = new Record();
@@ -15,17 +16,30 @@ namespace SOEN341_nobean
         protected String lastName;
         protected String netName;
         protected String password;
+        protected String email;
         protected Boolean isAdmin;
-
-        User(int studID, String first, String last, String net, String pass, Boolean isAdmin){
+        public User() { }
+        public User(int UserID, int studID, String first, String last, String net, String pass,String email, Boolean isAdmin)
+        {
+            this.UserID = UserID;
             this.StudentID = studID;
             this.firstName = first;
             this.lastName = last;
             this.netName = net;
             this.password = pass;
+            this.email = email;
             this.isAdmin = isAdmin;
      }
 
+        public int getUserID()
+        {
+            return UserID;
+        }
+
+        public void setUserID(int userid)
+        {
+            this.UserID = userid;
+        }
         public int getStudentID(){
             return StudentID;
         }
@@ -68,6 +82,24 @@ namespace SOEN341_nobean
             this.password = pass;
         }
 
+        public String getemail()
+        {
+            return email;
+        }
+
+        public void setEmail(String email)
+        {
+            this.email = email;
+        }
+
+        public Boolean getisAdmin()
+        {
+            return isAdmin;
+        }
+        public void setisAdmin(Boolean isadmin)
+        {
+            this.isAdmin = isadmin;
+        }
 
     }
 }
