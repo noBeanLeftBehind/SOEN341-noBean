@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Text.RegularExpressions;
 
 namespace SOEN341_nobean
 {
@@ -16,7 +17,17 @@ namespace SOEN341_nobean
 
         private void SubmitIDButton_Click(object sender, EventArgs e)
         {
-            studentIDTextBox.Text = "got it";
+            String studentID = studentIDTextBox.Text;
+            Regex ID_regex = new Regex(@"(\d{8})\b");
+            Match match = ID_regex.Match(studentID);
+            error_IDStudent.Style["color"] = "red";
+            if (match.Success)
+            {
+                error_IDStudent.Style["color"] = "black";
+                error_IDStudent.Text = "Searching for ID...";
+            }
+            else
+                error_IDStudent.Text = "ERROR: Enter a 8 digit Student ID";
         }
     }
 }
