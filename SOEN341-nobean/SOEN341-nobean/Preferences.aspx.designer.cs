@@ -10,15 +10,15 @@
 namespace SOEN341_nobean {
     
     
-    public partial class WebForm3 {
+    public partial class Preferences {
         
         /// <summary>
-        /// DivCoursesBasicSci control.
+        /// TableCoursesBasicSci control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivCoursesBasicSci;
+        protected global::System.Web.UI.WebControls.Table TableCoursesBasicSci;
     }
 }

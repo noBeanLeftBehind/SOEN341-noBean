@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterPage.Master" AutoEventWireup="true" CodeBehind="Preferences.aspx.cs" Inherits="SOEN341_nobean.WebForm3" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterPage.Master" AutoEventWireup="true" CodeBehind="Preferences.aspx.cs" Inherits="SOEN341_nobean.Preferences" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="master.css" type="text/css" />
 </asp:Content>
@@ -7,8 +7,8 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <header>Preferences</header>
 
-    <div runat="server" id="DivCoursesBasicSci">
-        page load not working
-    </div>
+    <asp:Table runat="server" id="TableCoursesBasicSci">
+       
+    </asp:Table>
 
 </asp:Content>
