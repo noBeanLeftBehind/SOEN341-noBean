@@ -10,7 +10,8 @@ namespace SOEN341_nobean.Class
         protected String courseName;
         protected int credits;
         protected String code;
-        protected String description; 
+        protected String description;
+        protected int priority;
         protected List<Course> preRequisites = new List<Course>();
         protected List <Section> sections = new List<Section>();
         Record studentRecord = new Record();
@@ -22,7 +23,7 @@ namespace SOEN341_nobean.Class
             this.description = description;
             this.credits = credits;
         }
-
+        public Course(){}
         protected void addpreRequisites(Course pre)
         {
             preRequisites.Add(pre);
@@ -72,7 +73,14 @@ namespace SOEN341_nobean.Class
         {
             this.description = descp;
         }
-
+        public void setPriority(int priority)
+        {
+            this.priority = priority
+        }
+        public int getPriority()
+        {
+            return priority;
+        }
         public Boolean equals(Course cours)
         {
             return (this.courseName == cours.courseName && this.code == cours.code && this.description == cours.description && this.credits == cours.credits);
