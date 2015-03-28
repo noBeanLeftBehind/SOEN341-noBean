@@ -13,15 +13,6 @@ namespace SOEN341_nobean {
     public partial class adminHome {
         
         /// <summary>
-        /// error_IDStudent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label error_IDStudent;
-        
-        /// <summary>
         /// studentIDTextBox control.
         /// </summary>
         /// <remarks>
@@ -40,12 +31,21 @@ namespace SOEN341_nobean {
         protected global::System.Web.UI.WebControls.Button SubmitIDButton;
         
         /// <summary>
-        /// hiddenID control.
+        /// error_IDStudent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hiddenID;
+        protected global::System.Web.UI.WebControls.Label error_IDStudent;
+        
+        /// <summary>
+        /// LabelStudentFound control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelStudentFound;
     }
 }
