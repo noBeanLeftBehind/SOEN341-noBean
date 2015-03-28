@@ -16,7 +16,7 @@ namespace SOEN341_nobean
             // below code checks if user already exists or not.
             if (IsPostBack)
             {
-                Global.myConnection.Open();
+                //Global.myConnection.Open();
                 string checkuser = "select count(*) from User where netName='" + TextBoxNetN.Text + "'";
                 SqlCommand com = new SqlCommand(checkuser, Global.myConnection);
 
@@ -35,7 +35,7 @@ namespace SOEN341_nobean
         {
             try
             {
-                Global.myConnection.Open();
+                //Global.myConnection.Open();
                 string insertQuery = "insert into User (FirstName,LastName,Password,netName,email,SchoolID,isAdmin) values (@FirstName,@LastName,@Password,@netName,@email,@SchooldID,@isAdmin)";
                 SqlCommand com = new SqlCommand(insertQuery, Global.myConnection);
                 com.Parameters.AddWithValue("@FirstName", TextBoxFN.Text);
