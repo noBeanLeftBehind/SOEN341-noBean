@@ -75,7 +75,7 @@ namespace SOEN341_nobean.Class
         }
         public void setPriority(int priority)
         {
-            this.priority = priority
+            this.priority = priority;
         }
         public int getPriority()
         {
