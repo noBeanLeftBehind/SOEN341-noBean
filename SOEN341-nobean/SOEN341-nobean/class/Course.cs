@@ -15,7 +15,8 @@ namespace SOEN341_nobean.Class
         protected String description;
         protected int priority;
         protected List<Course> preRequisites = new List<Course>();
-        protected List <Section> sections = new List<Section>();
+        protected List <Section> tutorial = new List<Section>();
+        protected List<Section> lab = new List<Section>();
         Record studentRecord = new Record();
 
         public Course(String name, String code, String description, int credits)
