@@ -18,7 +18,7 @@ namespace SOEN341_nobean
 
         private void displayCoursePrefBasicSci()
         {
-            SOEN341_nobean.Class.Global globalDB = new SOEN341_nobean.Class.Global();
+           // SOEN341_nobean.Class.Global globalDB = new SOEN341_nobean.Class.Global();
             SOEN341_nobean.Class.Course[] basicSciCourses = new  SOEN341_nobean.Class.Course[2];//globalDB.coursesBasicSci;//*** basic sciences classes array of courses
 
             //Dynamically create table
