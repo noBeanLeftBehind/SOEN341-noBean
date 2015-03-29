@@ -5,13 +5,19 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SOEN341_nobean.Class;
+using System.Data;
 
 namespace SOEN341_nobean
 {
     public partial class Schedule : System.Web.UI.Page
     {
+        DataTable dt;
         protected void Page_Load(object sender, EventArgs e)
         {
+            DayPilotCalendar1.DataSource = makeTestDB();
+            configureCalendar();
+            if (!IsPostBack)
+                DataBind();
             try
             {
                 //5 hardcoded courses
@@ -35,6 +41,39 @@ namespace SOEN341_nobean
                 Console.WriteLine(ex.ToString());
             }
         }
+
+        private DataTable makeTestDB()
+        {
+            dt = new DataTable();
+            dt.Columns.Add("start", typeof(DateTime));
+            dt.Columns.Add("end", typeof(DateTime));
+            dt.Columns.Add("name", typeof(string));
+            dt.Columns.Add("id", typeof(string));
+
+            DataRow dr;
+
+            dr = dt.NewRow();
+            dr["id"] = 0;
+            dr["start"] = Convert.ToDateTime("8:45").AddDays(1);
+            dr["end"] = Convert.ToDateTime("10:00").AddDays(1);
+            dr["name"] = "ENGR391 - Lecture";
+            dt.Rows.Add(dr);
+
+            // ...
+
+            return dt;
+        }
+
+        private void configureCalendar()
+        {
+            DayPilotCalendar1.HeaderDateFormat = "dddd";
+            DayPilotCalendar1.DataStartField = "start";
+            DayPilotCalendar1.DataEndField = "end";
+            DayPilotCalendar1.DataTextField = "name";
+            DayPilotCalendar1.DataIdField = "id";
+            DayPilotCalendar1.Days = 7;
+        }
+
         /*
          * If DayPilot does not work, one may generate the schedule with asp:Table and generating TableRows programmatically
          * 
