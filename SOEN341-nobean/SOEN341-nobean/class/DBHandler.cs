@@ -90,33 +90,8 @@ namespace SOEN341_nobean.Class
 
             return preferenceCourses;
         }
+
         public Course getCourse(String CourseID)
-        {
-            var page = HttpContext.Current.CurrentHandler as Page;
-            Course course = new Course();
-            try
-            {
-                SqlDataReader myReader = null;
-                SqlCommand myCommand = new SqlCommand(
-                    "SELECT * FROM [dbo].[Course] WHERE CourseID = @CourseID;", Global.myConnection);
-                SqlParameter myParam = new SqlParameter("@CourseID", SqlDbType.VarChar, 11);
-                myParam.Value = CourseID;
-                myCommand.Parameters.Add(myParam);
-                myReader = myCommand.ExecuteReader();
-                course.setCode(myReader["Number"].ToString());
-                course.setCourseName(myReader["Name"].ToString());
-                course.setPriority(Convert.ToInt32(myReader["Priority"].ToString()));
-
-            }
-            catch (Exception exp)
-            {
-                page.ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + exp.ToString() + "');", true);
-            }
-
-            return course;
-        }
-
-        public Course getCourceV2(String CourseID)
         {
             var page = HttpContext.Current.CurrentHandler as Page;
             Course course = new Course();
@@ -137,6 +112,16 @@ namespace SOEN341_nobean.Class
                 course.setCode(myReader["Number"].ToString());
                 course.setCourseName(myReader["Name"].ToString());
                 course.setPriority(Convert.ToInt32(myReader["Priority"].ToString()));
+                //set course type
+                if (Convert.ToBoolean(myReader["isCore"].ToString()))
+                    course.setAsCore();
+                else if (Convert.ToBoolean(myReader["isScience"].ToString()))
+                    course.setAsScience();
+                else if (Convert.ToBoolean(myReader["isGeneral"].ToString()))
+                    course.setAsGeneral();
+                else if (Convert.ToBoolean(myReader["isTechnical"].ToString()))
+                    course.setAsTechnical();
+                else { }
                 SqlCommand getLec = new SqlCommand(
                     "SELECT * FROM [dbo].[Lecture] WHERE CourseID = @CourseID", Global.myConnection
                     );
