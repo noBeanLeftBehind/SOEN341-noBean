@@ -34,7 +34,7 @@ namespace SOEN341_nobean
                 if(Global.myConnection != null && Global.myConnection.State == ConnectionState.Closed)
                        Global.myConnection.Open();
 
-                TextBox3.Text = TextBox3.Text + "Test User to login \nNetName: testnetname\nPass: 123test\n";
+                TextBox3.Text = "Test User to login \nNetName: testnetname\nPass: 123test\n";
             }
             catch (Exception exp)
             {
@@ -59,7 +59,7 @@ namespace SOEN341_nobean
                        Server.Transfer("Home.aspx");
                    }
                    else
-                       ClientScript.RegisterStartupScript(this.GetType(), "myalert", " Passwords doesn't match!", true);
+                       Page.ClientScript.RegisterStartupScript(GetType(), "myalert", "alert('Invalid Login Credentials!');", true);
                        //TextBox3.Text = TextBox3.Text + "\n! \n";
                    
            // String myStringVariable = "hi";
