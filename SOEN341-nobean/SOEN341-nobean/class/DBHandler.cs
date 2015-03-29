@@ -61,10 +61,13 @@ namespace SOEN341_nobean.Class
             return tempUser;
         }
 
-        public List<Course> getPreferences(string netname)
+        public List<List<Course>> getPreferences(string netname)
         {
             var page = HttpContext.Current.CurrentHandler as Page;
-            List<Course> preferenceCourses = new List<Course>();
+            //create lists of elective courses by type
+            List<Course> scienceCourses = new List<Course>();
+            List<Course> generalCourses = new List<Course>();
+            List<Course> technicalCourses = new List<Course>();
             try
             {
                 SqlDataReader myReader = null;
@@ -76,19 +79,40 @@ namespace SOEN341_nobean.Class
                 myReader = myCommand.ExecuteReader();
                 String courseID;
                 Course tempCourse;
+                //get all courses for a user from the preference DB and sort them
                 while (myReader.Read())
                 {
+                    //get course by id
                     courseID = myReader["CourseID"].ToString();
                     tempCourse = getCourse(courseID);
-                    preferenceCourses.Add(tempCourse);
+                    //place course in right course type list
+                    if (tempCourse.isScienceCourse())
+                    {
+                        scienceCourses.Add(tempCourse);
+                    }
+                    else if (tempCourse.isGeneralCourse())
+                    {
+                        generalCourses.Add(tempCourse);
+                    }
+                    else if (tempCourse.isTechnicalCourse())
+                    {
+                        technicalCourses.Add(tempCourse);
+                    }
+                    else { }
                 }
             }
             catch (Exception exp)
             {
                 page.ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + exp.ToString() + "');", true);
             }
+            //place all electives list in a list
+            List<List<Course>> preferences = new List<List<Course>>();
+            preferences.Add(scienceCourses);
+            preferences.Add(generalCourses);
+            preferences.Add(technicalCourses);
+            
 
-            return preferenceCourses;
+            return preferences;
         }
 
         public Course getCourse(String CourseID)
