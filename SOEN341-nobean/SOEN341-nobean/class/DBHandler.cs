@@ -115,5 +115,86 @@ namespace SOEN341_nobean.Class
 
             return course;
         }
+
+        public Course getCourceV2(String CourseID)
+        {
+            var page = HttpContext.Current.CurrentHandler as Page;
+            Course course = new Course();
+            Section tempLec = new Section();
+            try
+            {
+                SqlDataReader myReader = null;
+                SqlDataReader lecReder = null;
+                SqlDataReader tutReader = null;
+                SqlDataReader labReader = null;
+                SqlCommand myCommand = new SqlCommand(
+                    "SELECT * FROM [dbo].[Course] WHERE CourseID = @CourseID;", Global.myConnection
+                    );
+                SqlParameter myParam = new SqlParameter("@CourseID", SqlDbType.VarChar, 11);
+                myParam.Value = CourseID;
+                myCommand.Parameters.Add(myParam);
+                myReader = myCommand.ExecuteReader();
+                course.setCode(myReader["Number"].ToString());
+                course.setCourseName(myReader["Name"].ToString());
+                course.setPriority(Convert.ToInt32(myReader["Priority"].ToString()));
+                SqlCommand getLec = new SqlCommand(
+                    "SELECT * FROM [dbo].[Lecture] WHERE CourseID = @CourseID", Global.myConnection
+                    );
+                getLec.Parameters.Add(myParam);
+                lecReder = getLec.ExecuteReader();
+                while(lecReder.HasRows)
+                {
+                    //populating lecture section object as there maybe more than one section of lectures
+                    tempLec.setSemester((int)lecReder["Semester"]);
+                    tempLec.setSectionName(lecReder["Section"].ToString());
+                    tempLec.setDay(lecReder["onDay"].ToString());
+                    tempLec.setTime(lecReder["StartTime"].ToString(), lecReder["EndTime"].ToString());
+                    tempLec.setId(lecReder["LecID"].ToString());
+
+                    //populating tut for that particular lecture
+                    Section tut = new Section();
+                    SqlCommand getTut = new SqlCommand(
+                        "SELECT * from [dbo].[Tutorial] WHERE LecID = @LecID", Global.myConnection
+                        );
+                    SqlParameter tutParam = new SqlParameter("@LecID", SqlDbType.VarChar, 11);
+                    tutParam.Value = tempLec.getID();
+                    getTut.Parameters.Add(tutParam);
+                    tutReader = getTut.ExecuteReader();
+                    while (tutReader.HasRows)
+                    {
+                        tut.setSemester((int)tutReader["Semester"]);
+                        tut.setDay(tutReader["onDay"].ToString());
+                        tut.setSectionName(tutReader["Section"].ToString());
+                        tut.setTime(tutReader["StartTime"].ToString(), tutReader["EndTime"].ToString());
+                    }
+                    tempLec.addTut(tut);
+                    //do something similar for the lab sections
+                    Section lab = new Section();
+                    SqlCommand getLab = new SqlCommand(
+                        "SELECT * from [dbo].[Lab] WHERE LecID = @LecID", Global.myConnection
+                        );
+                    SqlParameter LabParam = new SqlParameter("@LecID", SqlDbType.VarChar, 11);
+                    LabParam.Value = tempLec.getID();
+                    getLab.Parameters.Add(LabParam);
+                    labReader = getLab.ExecuteReader();
+                    while (labReader.HasRows)
+                    {
+                        lab.setSemester((int)labReader["Semester"]);
+                        lab.setDay(labReader["onDay"].ToString());
+                        lab.setSectionName(labReader["Section"].ToString());
+                        lab.setTime(labReader["StartTime"].ToString(), labReader["EndTime"].ToString());
+                    }
+                    tempLec.addLab(lab);
+                }
+                course.addLecture(tempLec);
+
+            }
+            catch (Exception exp)
+            {
+                page.ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + exp.ToString() + "');", true);
+            }
+
+            return course;
+        }
     }
 }

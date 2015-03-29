@@ -15,8 +15,7 @@ namespace SOEN341_nobean.Class
         protected String description;
         protected int priority;
         protected List<Course> preRequisites = new List<Course>();
-        protected List <Section> tutorial = new List<Section>();
-        protected List<Section> lab = new List<Section>();
+        protected List<Section> lecture = new List<Section>();
         Record studentRecord = new Record();
 
         public Course(String name, String code, String description, int credits)
@@ -32,9 +31,9 @@ namespace SOEN341_nobean.Class
             preRequisites.Add(pre);
         }
 
-        protected void addSections(Section sec)
+        public void addLecture(Section sec)
         {
-            sections.Add(sec);
+            lecture.Add(sec);
         }
 
         public String getCourseName()

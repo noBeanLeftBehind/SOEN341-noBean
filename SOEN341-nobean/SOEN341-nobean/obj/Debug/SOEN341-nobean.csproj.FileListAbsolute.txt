@@ -26,3 +26,5 @@ c:\users\tawfiq\documents\visual studio 2013\Projects\SOEN341-nobean\SOEN341-nob
 c:\users\tawfiq\documents\visual studio 2013\Projects\SOEN341-nobean\SOEN341-nobean\obj\Debug\SOEN341-nobean.dll
 c:\users\tawfiq\documents\visual studio 2013\Projects\SOEN341-nobean\SOEN341-nobean\obj\Debug\SOEN341-nobean.pdb
 C:\Users\Tawfiq\Documents\Visual Studio 2013\Projects\SOEN341-nobean\SOEN341-nobean\obj\Debug\SOEN341-nobean.csprojResolveAssemblyReference.cache
+C:\Users\thomas\Source\Repos\SOEN341-noBean\SOEN341-nobean\SOEN341-nobean\obj\Debug\SOEN341-nobean.csprojResolveAssemblyReference.cache
+C:\Users\thomas\Source\Repos\SOEN341-noBean\SOEN341-nobean\SOEN341-nobean\obj\Debug\SOEN341-nobean.dll

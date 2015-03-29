@@ -87,6 +87,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="adminHome.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="master.css" />
     <Content Include="packages.config" />
@@ -110,8 +111,16 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="adminHome.aspx.cs">
+      <DependentUpon>adminHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="adminHome.aspx.designer.cs">
+      <DependentUpon>adminHome.aspx</DependentUpon>
+    </Compile>
     <Compile Include="class\Course.cs" />
     <Compile Include="class\CourseDirectory.cs" />
+    <Compile Include="class\DBHandler.cs" />
     <Compile Include="class\Global.cs" />
     <Compile Include="Hello.aspx.cs">
       <DependentUpon>Hello.aspx</DependentUpon>
