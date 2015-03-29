@@ -8,41 +8,37 @@ using System.Web.UI.WebControls;
 
 namespace SOEN341_nobean
 {
-    public partial class Preferences : System.Web.UI.Page
+    public partial class WebForm3 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            DivCoursesBasicSci.InnerHtml = "page load working!!!!!";
             displayCoursePrefBasicSci();
         }
 
         private void displayCoursePrefBasicSci()
         {
-            //SOEN341_nobean.Class.Global globalDB = new SOEN341_nobean.Class.Global();
+           // SOEN341_nobean.Class.Global globalDB = new SOEN341_nobean.Class.Global();
             SOEN341_nobean.Class.Course[] basicSciCourses = new  SOEN341_nobean.Class.Course[2];//globalDB.coursesBasicSci;//*** basic sciences classes array of courses
 
-            //test data
+            //Dynamically create table
+            HtmlTable table = new HtmlTable();
+            table.ID = "TableCoursesBasicSci";
+            DivCoursesBasicSci.Controls.Add(table);
+
             Boolean[] basicSciCoursesBinary = new Boolean[2];
-            basicSciCourses[0] = new SOEN341_nobean.Class.Course();
-            basicSciCourses[0].setCourseName("testcourse1");
-            basicSciCourses[1] = new SOEN341_nobean.Class.Course();
-            basicSciCourses[1].setCourseName("testcourse2");
+            basicSciCourses[0].setCourseName("testcoursename1");
+            basicSciCourses[1].setCourseName("testcoursename2");
             basicSciCoursesBinary[0] = true;
             basicSciCoursesBinary[1] = false;
-            //--
 
             for (int i = 0; i < basicSciCourses.Length; i++)
             {
-                TableRow row = new TableRow();
-                TableCell cellCourseName = new TableCell();
-                cellCourseName.Text = basicSciCourses[i].getCourseName();
-                TableCell cellCheckBox = new TableCell();
+                HtmlTableRow row = new HtmlTableRow();
+                HtmlTableCell cellCourseName = new HtmlTableCell(basicSciCourses[i].getCourseName());
+                HtmlTableCell cellCheckBox = new HtmlTableCell();
                 CheckBox checkbox = new CheckBox();
                 checkbox.ID = "basicSciCoursesBinary"+i;
-                //adding table elements to the table
-                cellCheckBox.Controls.Add(checkbox);
-                row.Cells.Add(cellCourseName);
-                row.Cells.Add(cellCheckBox);
-                TableCoursesBasicSci.Rows.Add(row);   
                 if(basicSciCoursesBinary[i]){
                     checkbox.Checked = true;
                 }
@@ -50,9 +46,9 @@ namespace SOEN341_nobean
                 {
                     checkbox.Checked = false;
                 }
-                
-                
-                  
+                row.Controls.Add(cellCourseName);
+                row.Controls.Add(cellCheckBox);
+                table.Controls.Add(row);     
             }
         }
     }
