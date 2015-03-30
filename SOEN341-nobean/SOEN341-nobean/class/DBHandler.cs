@@ -21,7 +21,7 @@ namespace SOEN341_nobean.Class
             //Global.myConnection.Open();
 
             var page = HttpContext.Current.CurrentHandler as Page;
-            User tempUser = new User();
+            User tempUser = null;
             try
             {
                 SqlDataReader myReader = null;
@@ -33,6 +33,7 @@ namespace SOEN341_nobean.Class
                 myReader = myCommand.ExecuteReader();
                 while (myReader.Read())
                 {
+                    tempUser = new User();
                     tempUser.setUserID(Convert.ToInt32(myReader["UserID"].ToString()));
                     tempUser.setfirstName(myReader["FirstName"].ToString());
                     tempUser.setlastName(myReader["LastName"].ToString());
@@ -48,6 +49,7 @@ namespace SOEN341_nobean.Class
 
                    
                 }
+                myReader.Close();
             }
             catch (Exception exp)
             {
@@ -65,7 +67,7 @@ namespace SOEN341_nobean.Class
             //Global.myConnection.Open();
 
             var page = HttpContext.Current.CurrentHandler as Page;
-            User tempUser = new User();
+            User tempUser = null;
             try
             {
                 SqlDataReader myReader = null;
@@ -77,6 +79,7 @@ namespace SOEN341_nobean.Class
                 myReader = myCommand.ExecuteReader();
                 while (myReader.Read())
                 {
+                    tempUser = new User();
                     tempUser.setUserID(Convert.ToInt32(myReader["UserID"].ToString()));
                     tempUser.setfirstName(myReader["FirstName"].ToString());
                     tempUser.setlastName(myReader["LastName"].ToString());
@@ -92,6 +95,7 @@ namespace SOEN341_nobean.Class
 
 
                 }
+                myReader.Close();
             }
             catch (Exception exp)
             {
@@ -144,6 +148,7 @@ namespace SOEN341_nobean.Class
                     }
                     else { }
                 }
+                myReader.Close();
             }
             catch (Exception exp)
             {
