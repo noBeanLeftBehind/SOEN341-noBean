@@ -60,6 +60,50 @@ namespace SOEN341_nobean.Class
 
             return tempUser;
         }
+        public User getUserByEmail(string email)
+        {
+            //Global.myConnection.Open();
+
+            var page = HttpContext.Current.CurrentHandler as Page;
+            User tempUser = new User();
+            try
+            {
+                SqlDataReader myReader = null;
+                SqlCommand myCommand = new SqlCommand(
+                    "SELECT * FROM [dbo].[User] WHERE email = @email;", Global.myConnection);
+                SqlParameter myParam = new SqlParameter("@email", SqlDbType.VarChar, 11);
+                myParam.Value = email;
+                myCommand.Parameters.Add(myParam);
+                myReader = myCommand.ExecuteReader();
+                while (myReader.Read())
+                {
+                    tempUser.setUserID(Convert.ToInt32(myReader["UserID"].ToString()));
+                    tempUser.setfirstName(myReader["FirstName"].ToString());
+                    tempUser.setlastName(myReader["LastName"].ToString());
+                    tempUser.setPassword(myReader["Password"].ToString());
+                    tempUser.setnetName(myReader["netName"].ToString());
+                    tempUser.setEmail(myReader["email"].ToString());
+                    tempUser.setStudentID(Convert.ToInt32(myReader["SchoolID"].ToString()));
+                    tempUser.setisAdmin(Convert.ToBoolean(myReader["isAdmin"].ToString()));
+                    //tempUser.setisAdmin(myReader["isAdmin"].ToString());
+                    //page.ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + myReader["isAdmin"].ToString() + "');", true);
+
+                    // tempUser.setisAdmin(myReader[""])
+
+
+                }
+            }
+            catch (Exception exp)
+            {
+                //TextBox3.Text = TextBox3.Text + exp.ToString() + "\n";
+
+                page.ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + exp.ToString() + "');", true);
+            }
+
+
+
+            return tempUser;
+        }
         public User getUserByID(string schoolID)
         {
             //Global.myConnection.Open();
