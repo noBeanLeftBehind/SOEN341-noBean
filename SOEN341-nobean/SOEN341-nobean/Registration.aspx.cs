@@ -40,6 +40,28 @@ namespace SOEN341_nobean
             {
                 //Global.myConnection.Open();
                // string insertQuery = "insert into User (FirstName,LastName,Password,netName,email,SchoolID,isAdmin) values (@FirstName,@LastName,@Password,@netName,@email,@SchooldID,@isAdmin)";
+                
+                User temp =db.getUser(TextBoxNetN.Text.ToString());
+                if(temp!=null)
+                {
+                    Page.ClientScript.RegisterClientScriptBlock(GetType(), "myalert", "alert('Error. Netname is already in use!');", true);
+                    return;
+                }
+                temp = db.getUserByEmail(TextBoxEmail.Text.ToString());
+                if (temp != null)
+                {
+                    Page.ClientScript.RegisterClientScriptBlock(GetType(), "myalert", "alert('Error. Email is already in use!');", true);
+                    return;
+                }
+                temp=db.getUserByID(TextBoxSchoolID.Text.ToString());
+                if(temp!=null)
+                {
+                    Page.ClientScript.RegisterClientScriptBlock(GetType(), "myalert", "alert('Error. School ID is already in use!');", true);
+                    return;
+                }
+               
+              
+
                 string insertQuery = "insert into [dbo].[User] (FirstName,LastName,Password,netName,email,SchoolID,isAdmin) values (@FirstName,@LastName,@Password,@netName,@email,@SchoolID,@isAdmin)";
                
                
