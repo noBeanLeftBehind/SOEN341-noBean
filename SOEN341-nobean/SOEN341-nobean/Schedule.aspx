@@ -28,7 +28,7 @@
             </asp:TableHeaderCell>
         </asp:TableHeaderRow>
     </asp:Table>-->
-    <DayPilot:DayPilotCalendar ID="DayPilotCalendar1" runat="server" Width="70%" style="text-align:center" />
+    <DayPilot:DayPilotCalendar ID="DayPilotCalendar1" runat="server" Width="70%" ViewType="WorkWeek" OnBeforeEventRender="DayPilotMonth1_BeforeEventRender" />
     <br />
 
 </asp:Content>

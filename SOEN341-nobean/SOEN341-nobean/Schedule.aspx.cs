@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using SOEN341_nobean.Class;
 using System.Data;
+using DayPilot.Web.Ui.Events.Calendar;
 
 namespace SOEN341_nobean
 {
@@ -14,8 +15,15 @@ namespace SOEN341_nobean
         DataTable dt;
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Select source, either online db or local
+            //Calendar may also be binded to an arraylist. May be simpler. 
+            // http://www.daypilot.org/demo/Lite/Calendar/BindingArrayList.aspx
             DayPilotCalendar1.DataSource = makeTestDB();
+            
+            //configure the look and feel of calendar
             configureCalendar();
+            
+            //Bind the data once everything is loaded.
             if (!IsPostBack)
                 DataBind();
             try
@@ -42,6 +50,12 @@ namespace SOEN341_nobean
             }
         }
 
+        /**
+         * I think we need to make events recursive so that after one week they don't disappear. But I dont know how yet.
+         * We can load values from the db here and create a local db to hold the data. Else we can connect directly with a db table, I think. 
+         * Creating multiple schedule could be done with multiple calendars or one calendar that we update with the date. 
+         * like fall2015 - sept/dec events winter2016 - jan/april events, ...
+         */
         private DataTable makeTestDB()
         {
             dt = new DataTable();
@@ -64,6 +78,9 @@ namespace SOEN341_nobean
             return dt;
         }
 
+        /**
+         * Configure your calendar here, you can apply css and names of columns for your events in calendar.
+         */
         private void configureCalendar()
         {
             DayPilotCalendar1.HeaderDateFormat = "dddd";
@@ -71,7 +88,7 @@ namespace SOEN341_nobean
             DayPilotCalendar1.DataEndField = "end";
             DayPilotCalendar1.DataTextField = "name";
             DayPilotCalendar1.DataIdField = "id";
-            DayPilotCalendar1.Days = 7;
+            //DayPilotCalendar1.CssClass = "";
         }
 
         /*
@@ -89,8 +106,8 @@ namespace SOEN341_nobean
                 TableCell monday = new TableCell();
                 TableCell tuesday = new TableCell();
                 TableCell wednesday = new TableCell();
-                TableCell Thursday = new TableCell();
-                TableCell Friday = new TableCell();
+                TableCell thursday = new TableCell();
+                TableCell friday = new TableCell();
                 time.Text = String.Format("{0:HH:mm}", dt);
                 
                 // I will enter manually courses in the schedule to see how it fits in it....
@@ -100,14 +117,25 @@ namespace SOEN341_nobean
                 //adding all the cells
                 row.Cells.Add(time);
                 row.Cells.Add(monday);
-                row.Cells.Add(time);
-                row.Cells.Add(time);
-                row.Cells.Add(time);
+                row.Cells.Add(tuesday);
+                row.Cells.Add(wednesday);
+                row.Cells.Add(thursday);
+                row.Cells.Add(friday);
                 //adding the row to the asp table
                 winter2016Schedule.Rows.Add(row);
                 //adding 15 minutes for the next row
                 dt = dt.AddMinutes(15);
             }
         }
+
+        /**
+         * You can customize CSS events here. All at once, or by their ID, name, etc. 
+         */
+        protected void DayPilotMonth1_BeforeEventRender(object sender, BeforeEventRenderEventArgs e)
+        {
+            //You can put event CSS here
+            e.ToolTip="ENGR391 - Lecture";
+            //e.CssClass = "";
+       }
     }
 }
