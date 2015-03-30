@@ -27,7 +27,7 @@ namespace SOEN341_nobean.Class
                 SqlDataReader myReader = null;
                 SqlCommand myCommand = new SqlCommand(
                     "SELECT * FROM [dbo].[User] WHERE netName = @netName;", Global.myConnection);
-                SqlParameter myParam = new SqlParameter("@netName", SqlDbType.VarChar, 11);
+                SqlParameter myParam = new SqlParameter("@netName", SqlDbType.VarChar);
                 myParam.Value = netname;
                 myCommand.Parameters.Add(myParam);
                 myReader = myCommand.ExecuteReader();
@@ -73,7 +73,7 @@ namespace SOEN341_nobean.Class
                 SqlDataReader myReader = null;
                 SqlCommand myCommand = new SqlCommand(
                     "SELECT * FROM [dbo].[User] WHERE email = @email;", Global.myConnection);
-                SqlParameter myParam = new SqlParameter("@email", SqlDbType.VarChar, 11);
+                SqlParameter myParam = new SqlParameter("@email", SqlDbType.VarChar);
                 myParam.Value = email;
                 myCommand.Parameters.Add(myParam);
                 myReader = myCommand.ExecuteReader();
@@ -119,7 +119,7 @@ namespace SOEN341_nobean.Class
                 SqlDataReader myReader = null;
                 SqlCommand myCommand = new SqlCommand(
                     "SELECT * FROM [dbo].[User] WHERE schoolID = @schoolID;", Global.myConnection);
-                SqlParameter myParam = new SqlParameter("@schoolID", SqlDbType.VarChar, 11);
+                SqlParameter myParam = new SqlParameter("@schoolID", SqlDbType.VarChar);
                 myParam.Value = schoolID;
                 myCommand.Parameters.Add(myParam);
                 myReader = myCommand.ExecuteReader();
@@ -167,7 +167,7 @@ namespace SOEN341_nobean.Class
                 SqlDataReader myReader = null;
                 SqlCommand myCommand = new SqlCommand(
                     "SELECT * FROM [dbo].[Preferences] WHERE netName = @netName;", Global.myConnection);
-                SqlParameter myParam = new SqlParameter("@netName", SqlDbType.VarChar, 11);
+                SqlParameter myParam = new SqlParameter("@netName", SqlDbType.VarChar);
                 myParam.Value = netname;
                 myCommand.Parameters.Add(myParam);
                 myReader = myCommand.ExecuteReader();
@@ -224,7 +224,7 @@ namespace SOEN341_nobean.Class
                 SqlCommand myCommand = new SqlCommand(
                     "SELECT * FROM [dbo].[Course] WHERE CourseID = @CourseID;", Global.myConnection
                     );
-                SqlParameter myParam = new SqlParameter("@CourseID", SqlDbType.VarChar, 11);
+                SqlParameter myParam = new SqlParameter("@CourseID", SqlDbType.VarChar);
                 myParam.Value = CourseID;
                 myCommand.Parameters.Add(myParam);
                 myReader = myCommand.ExecuteReader();
@@ -260,7 +260,7 @@ namespace SOEN341_nobean.Class
                     SqlCommand getTut = new SqlCommand(
                         "SELECT * from [dbo].[Tutorial] WHERE LecID = @LecID", Global.myConnection
                         );
-                    SqlParameter tutParam = new SqlParameter("@LecID", SqlDbType.VarChar, 11);
+                    SqlParameter tutParam = new SqlParameter("@LecID", SqlDbType.VarChar);
                     tutParam.Value = tempLec.getID();
                     getTut.Parameters.Add(tutParam);
                     tutReader = getTut.ExecuteReader();
@@ -277,7 +277,7 @@ namespace SOEN341_nobean.Class
                     SqlCommand getLab = new SqlCommand(
                         "SELECT * from [dbo].[Lab] WHERE LecID = @LecID", Global.myConnection
                         );
-                    SqlParameter LabParam = new SqlParameter("@LecID", SqlDbType.VarChar, 11);
+                    SqlParameter LabParam = new SqlParameter("@LecID", SqlDbType.VarChar);
                     LabParam.Value = tempLec.getID();
                     getLab.Parameters.Add(LabParam);
                     labReader = getLab.ExecuteReader();
