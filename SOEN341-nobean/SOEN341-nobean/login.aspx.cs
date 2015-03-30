@@ -56,7 +56,7 @@ namespace SOEN341_nobean
                    if (TextBox2.Text == Global.MainUser.getPassword())
                    {
 
-                       Server.Transfer("Home.aspx");
+                       Response.Redirect("Home.aspx");
                    }
                    else
                        Page.ClientScript.RegisterStartupScript(GetType(), "myalert", "alert('Invalid Login Credentials!');", true);
@@ -75,6 +75,11 @@ namespace SOEN341_nobean
         protected void TextBox2_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Registration.aspx");
         }
     }
 }
