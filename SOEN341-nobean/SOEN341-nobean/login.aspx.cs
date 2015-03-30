@@ -50,16 +50,20 @@ namespace SOEN341_nobean
 
            Global.MainUser = db.getUser(TextBox1.Text.ToString());
 
-        
-                   
 
-                   if (TextBox2.Text == Global.MainUser.getPassword())
-                   {
 
-                       Response.Redirect("Home.aspx");
-                   }
-                   else
-                       Page.ClientScript.RegisterStartupScript(GetType(), "myalert", "alert('Invalid Login Credentials!');", true);
+           if (Global.MainUser != null)
+           {
+               if (TextBox2.Text == Global.MainUser.getPassword())
+               {
+
+                   Response.Redirect("Home.aspx");
+               }
+               else
+                   Page.ClientScript.RegisterStartupScript(GetType(), "myalert", "alert('Invalid Login Credentials!');", true);
+           }
+           else
+               Page.ClientScript.RegisterStartupScript(GetType(), "myalert", "alert('Invalid Login Credentials!');", true);
                        //TextBox3.Text = TextBox3.Text + "\n! \n";
                    
            // String myStringVariable = "hi";
