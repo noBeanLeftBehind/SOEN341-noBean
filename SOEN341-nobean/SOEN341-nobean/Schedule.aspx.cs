@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using SOEN341_nobean.Class;
 using System.Data;
 using DayPilot.Web.Ui.Events.Calendar;
+using DayPilot.Web.Ui; 
 
 namespace SOEN341_nobean
 {
@@ -19,13 +20,16 @@ namespace SOEN341_nobean
             //Calendar may also be binded to an arraylist. May be simpler. 
             // http://www.daypilot.org/demo/Lite/Calendar/BindingArrayList.aspx
             DayPilotCalendar1.DataSource = makeTestDB();
-            
+            DayPilotCalendar2.DataSource = makeTestDB();
+
             //configure the look and feel of calendar
-            configureCalendar();
+            configureCalendar(DayPilotCalendar1);
+            configureCalendar(DayPilotCalendar2);
             
             //Bind the data once everything is loaded.
             if (!IsPostBack)
-                DataBind();
+                DayPilotCalendar1.DataBind();
+                DayPilotCalendar2.DataBind();
             try
             {
                 //5 hardcoded courses
@@ -65,7 +69,6 @@ namespace SOEN341_nobean
             dt.Columns.Add("id", typeof(string));
 
             DataRow dr;
-
             dr = dt.NewRow();
             dr["id"] = 0;
             dr["start"] = Convert.ToDateTime("8:45").AddDays(1);
@@ -73,6 +76,13 @@ namespace SOEN341_nobean
             dr["name"] = "ENGR391 - Lecture";
             dt.Rows.Add(dr);
 
+            DataRow ds;
+            ds = dt.NewRow();
+            ds["id"] = 0;
+            ds["start"] = Convert.ToDateTime("8:45").AddDays(3);
+            ds["end"] = Convert.ToDateTime("12:00").AddDays(3);
+            ds["name"] = "SOEN357 - Lecture";
+            dt.Rows.Add(ds);
             // ...
 
             return dt;
@@ -81,7 +91,7 @@ namespace SOEN341_nobean
         /**
          * Configure your calendar here, you can apply css and names of columns for your events in calendar.
          */
-        private void configureCalendar()
+        private void configureCalendar(DayPilotCalendar DayPilotCalendar1)
         {
             DayPilotCalendar1.HeaderDateFormat = "dddd";
             DayPilotCalendar1.DataStartField = "start";
