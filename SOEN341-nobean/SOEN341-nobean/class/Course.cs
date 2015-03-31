@@ -40,6 +40,10 @@ namespace SOEN341_nobean.Class
             lecture.Add(sec);
         }
 
+        public List<Section> getLectures()
+        {
+            return lecture;
+        }
         public String getCourseName()
         {
             return courseName;

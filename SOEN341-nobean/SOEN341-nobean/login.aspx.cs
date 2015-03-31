@@ -35,6 +35,7 @@ namespace SOEN341_nobean
                        Global.myConnection.Open();
 
                 TextBox3.Text = "Test User to login \nNetName: testnetname\nPass: 123test\n";
+               
             }
             catch (Exception exp)
             {
