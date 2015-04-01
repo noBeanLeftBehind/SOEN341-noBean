@@ -7,8 +7,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <header>Preferences</header>
 
-    <asp:Table runat="server" id="TableCoursesBasicSci">
-       
-    </asp:Table>
+    <asp:Table runat="server" ID="TableCoursesBasicSci"></asp:Table>
+    <asp:Label runat="server" ID="testGetPrefDB"></asp:Label>
 
 </asp:Content>

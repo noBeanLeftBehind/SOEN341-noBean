@@ -10,11 +10,42 @@ namespace SOEN341_nobean
 {
     public partial class Preferences : System.Web.UI.Page
     {
+        SOEN341_nobean.Class.DBHandler dbhandler = new SOEN341_nobean.Class.DBHandler();
+        //test netname
+        String netName = "4";//get from global????
         protected void Page_Load(object sender, EventArgs e)
         {
             displayCoursePrefBasicSci();
+            displayAllPreferences();
         }
 
+
+        private void displayAllPreferences()
+        {
+            String allPrefs = "";
+            List<List<SOEN341_nobean.Class.Course>> preferencesList = dbhandler.getPreferences(netName);
+            //display science
+            allPrefs += "Size of technical list: "+preferencesList[2].Count+" (should be 3)";
+            allPrefs += "Science Electives<br>";
+            int i;
+            for (i = 0; i < preferencesList[0].Count; i++)
+            {
+                allPrefs += preferencesList[0][i].getCourseName()+"<br>";
+            }
+            //display general
+            allPrefs += "<br><br>General Electives<br>";
+            for (i = 0; i < preferencesList[1].Count; i++)
+            {
+                allPrefs += preferencesList[1][i].getCourseName() + "<br>";
+            }
+            //display technical
+            allPrefs += "<br><br>Technical Electives<br>";
+            for (i = 0; i < preferencesList[2].Count; i++)
+            {
+                allPrefs += preferencesList[2][i].getCourseName() + "<br>";
+            }
+            testGetPrefDB.Text = allPrefs;
+        }
         private void displayCoursePrefBasicSci()
         {
             //SOEN341_nobean.Class.Global globalDB = new SOEN341_nobean.Class.Global();
