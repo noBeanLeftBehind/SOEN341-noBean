@@ -155,7 +155,7 @@ namespace SOEN341_nobean.Class
             return tempUser;
         }
 
-        public List<List<Course>> getPreferences(string netname)
+        public List<List<Course>> getPreferences(string UserID)
         {
             var page = HttpContext.Current.CurrentHandler as Page;
             //create lists of elective courses by type
@@ -166,9 +166,9 @@ namespace SOEN341_nobean.Class
             {
                 SqlDataReader myReader = null;
                 SqlCommand myCommand = new SqlCommand(
-                    "SELECT * FROM [dbo].[Preferences] WHERE netName = @netName;", Global.myConnection);
-                SqlParameter myParam = new SqlParameter("@netName", SqlDbType.VarChar);
-                myParam.Value = netname;
+                    "SELECT * FROM [dbo].[Preferences] WHERE UserID = @UserID;", Global.myConnection);
+                SqlParameter myParam = new SqlParameter("@UserID", SqlDbType.VarChar);
+                myParam.Value = UserID;
                 myCommand.Parameters.Add(myParam);
                 myReader = myCommand.ExecuteReader();
                 String courseID;
