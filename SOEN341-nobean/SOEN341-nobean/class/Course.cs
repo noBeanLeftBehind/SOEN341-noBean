@@ -9,9 +9,10 @@ namespace SOEN341_nobean.Class
 {
     public class Course
     {
+        protected String code;
+        protected String subject;
         protected String courseName;
         protected int credits;
-        protected String code;
         protected String description;
         protected int priority;
         protected List<Course> preRequisites = new List<Course>();
@@ -72,6 +73,14 @@ namespace SOEN341_nobean.Class
         public void setCode(String code)
         {
             this.code = code;
+        }
+        public String getSubject()
+        {
+            return subject;
+        }
+        public void setSubject(String subject)
+        {
+            this.subject = subject;
         }
 
         public String getDescription()
@@ -157,6 +166,7 @@ namespace SOEN341_nobean.Class
             this.isGeneral = false;
             this.isTechnical = true;
         }
+        
 
     }
 }
