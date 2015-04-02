@@ -13,21 +13,39 @@ namespace SOEN341_nobean {
     public partial class Preferences {
         
         /// <summary>
-        /// TableCoursesBasicSci control.
+        /// TableGeneral control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table TableCoursesBasicSci;
+        protected global::System.Web.UI.WebControls.Table TableGeneral;
         
         /// <summary>
-        /// testGetPrefDB control.
+        /// TableScience control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label testGetPrefDB;
+        protected global::System.Web.UI.WebControls.Table TableScience;
+        
+        /// <summary>
+        /// ChkLstTechnical control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList ChkLstTechnical;
+        
+        /// <summary>
+        /// testLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label testLabel;
     }
 }
