@@ -9,14 +9,19 @@ namespace SOEN341_nobean.Class
 {
     public class Course
     {
+        protected String code;
+        protected String subject;
         protected String courseName;
         protected int credits;
-        protected String code;
         protected String description;
         protected int priority;
         protected List<Course> preRequisites = new List<Course>();
         protected List<Section> lecture = new List<Section>();
         Record studentRecord = new Record();
+        private Boolean isCore = false;
+        private Boolean isScience = false;
+        private Boolean isGeneral = false;
+        private Boolean isTechnical = false;
 
         public Course(String name, String code, String description, int credits)
         {
@@ -36,6 +41,10 @@ namespace SOEN341_nobean.Class
             lecture.Add(sec);
         }
 
+        public List<Section> getLectures()
+        {
+            return lecture;
+        }
         public String getCourseName()
         {
             return courseName;
@@ -64,6 +73,14 @@ namespace SOEN341_nobean.Class
         public void setCode(String code)
         {
             this.code = code;
+        }
+        public String getSubject()
+        {
+            return subject;
+        }
+        public void setSubject(String subject)
+        {
+            this.subject = subject;
         }
 
         public String getDescription()
@@ -102,5 +119,54 @@ namespace SOEN341_nobean.Class
             }
             return true;
         }
+
+        //checks if course is of a specified type
+        public Boolean isCoreCourse()
+        {
+            return this.isCore;
+        }
+        public Boolean isScienceCourse()
+        {
+            return this.isScience;
+        }
+        public Boolean isGeneralCourse()
+        {
+            return this.isGeneral;
+        }
+        public Boolean isTechnicalCourse()
+        {
+            return this.isTechnical;
+        }
+        //sets course as a specific type
+        public void setAsCore()
+        {
+            this.isCore = true;
+            this.isScience = false;
+            this.isGeneral = false;
+            this.isTechnical = false;
+        }
+        public void setAsScience()
+        {
+            this.isCore = false;
+            this.isScience = true;
+            this.isGeneral = false;
+            this.isTechnical = false;
+        }
+        public void setAsGeneral()
+        {
+            this.isCore = false;
+            this.isScience = false;
+            this.isGeneral = true;
+            this.isTechnical = false;
+        }
+        public void setAsTechnical()
+        {
+            this.isCore = false;
+            this.isScience = false;
+            this.isGeneral = false;
+            this.isTechnical = true;
+        }
+        
+
     }
 }

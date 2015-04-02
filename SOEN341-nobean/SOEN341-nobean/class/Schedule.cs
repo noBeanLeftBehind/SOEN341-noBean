@@ -15,5 +15,30 @@ namespace SOEN341_nobean.Class
         {
             this.semesters = new List<List<Course>>();
         }
+
+        public int getCredits()
+        {
+            return this.credits;
+        }
+        public void setCredits(int credits)
+        {
+            this.credits = credits;
+        }
+
+        public List<List<Course>> getSemester()
+        {
+            return this.semesters;
+        }
+
+        public void setSemester(List<List<Course>> semesters)
+        {
+            this.semesters = semesters;
+        }
+
+        public void addASemester(List<Course> semester)
+        {
+            this.semesters.Add(semester);
+        }
+
     }
 }

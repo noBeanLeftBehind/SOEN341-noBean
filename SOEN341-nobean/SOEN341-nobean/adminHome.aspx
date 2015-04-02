@@ -12,9 +12,11 @@
     <div style="text-align:center;">
         <asp:TextBox Width="60px" runat="server" ID="studentIDTextBox"></asp:TextBox>
         <div style="display:inline; margin-left:30px">
-            <asp:Button Width="120px" runat="server" ID="SubmitIDButton" Text="Search Student" name="Submit"/>
+        <asp:Button Width="120px" runat="server" ID="SubmitIDButton" Text="Search Student"/>
         </div>
         <p><asp:Label runat="server" ID="error_IDStudent"></asp:Label></p>
+        <asp:HiddenField runat="server" ID="hiddenStudentID" />
         <asp:Label runat="server" ID="LabelStudentFound"></asp:Label>
+        <asp:Button runat="server" ID="connectStudent" Text="Connect" Visible="false"></asp:Button>
     </div>
 </asp:Content>

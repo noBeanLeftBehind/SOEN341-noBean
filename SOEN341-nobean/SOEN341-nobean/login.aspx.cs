@@ -34,7 +34,8 @@ namespace SOEN341_nobean
                 if(Global.myConnection != null && Global.myConnection.State == ConnectionState.Closed)
                        Global.myConnection.Open();
 
-                TextBox3.Text = TextBox3.Text + "Test User to login \nNetName: testnetname\nPass: 123test\n";
+                TextBox3.Text = "Test User to login \nNetName: testnetname\nPass: 123test\n";
+               
             }
             catch (Exception exp)
             {
@@ -50,16 +51,21 @@ namespace SOEN341_nobean
 
            Global.MainUser = db.getUser(TextBox1.Text.ToString());
 
-        
-                   
 
-                   if (TextBox2.Text == Global.MainUser.getPassword())
-                   {
 
-                       Server.Transfer("Home.aspx");
-                   }
-                   else
-                       ClientScript.RegisterStartupScript(this.GetType(), "myalert", " Passwords doesn't match!", true);
+           if (Global.MainUser != null)
+           {
+               if (TextBox2.Text == Global.MainUser.getPassword())
+               {
+                   if (Global.MainUser.getisAdmin())
+                       Response.Redirect("adminHome.aspx");
+                   Response.Redirect("Home.aspx");
+               }
+               else
+                   Page.ClientScript.RegisterStartupScript(GetType(), "myalert", "alert('Invalid Login Credentials!');", true);
+           }
+           else
+               Page.ClientScript.RegisterStartupScript(GetType(), "myalert", "alert('Invalid Login Credentials!');", true);
                        //TextBox3.Text = TextBox3.Text + "\n! \n";
                    
            // String myStringVariable = "hi";
@@ -67,9 +73,9 @@ namespace SOEN341_nobean
 
         }
 
-        protected void TextBox1_TextChanged(object sender, EventArgs e)
+        protected void TextBox1_TextChanged(object sender, EventArgs e) 
         {
-
+           
         }
 
         protected void TextBox2_TextChanged(object sender, EventArgs e)
@@ -79,8 +85,7 @@ namespace SOEN341_nobean
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            
-            Server.Transfer("Registration.aspx");
+            Response.Redirect("Registration.aspx");
         }
     }
 }
