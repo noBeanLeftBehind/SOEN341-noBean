@@ -15,21 +15,21 @@
     <div id="wrapper">
         <div>
           <div class="rectangle">
-               <div id="header">Easy Schedular</div> 
+               <div id="header">Master Schedular</div> 
               <link href="http://fonts.googleapis.com/css?family=Oleo+Script" rel="stylesheet" type="text/css"/>
           </div>
         </div>
         <div id="navigation">
             <ul id="navbar">
                 <li id="home"><a href="Home.aspx">Home</a></li>
-                <li><a href="Schedule.aspx">Schedule</a></li>
-                <li><a href="#account">My Account</a>
+                <li runat="server" id="scheduleNavID"><a href="Schedule.aspx">Schedule</a></li>
+                <li runat="server" id="accountNavID"><a href="#account">My Account</a>
                     <ul>
                         <li><a href="Preferences.aspx">Preferences</a></li>
                         <li id="record"><a href="Record.aspx">Record</a></li>                       
                     </ul>
                 </li>
-                <li id="log"><a href="login.aspx">Log out</a></li>
+                <li runat="server" id="log"><a href="?id=logout">Log out</a></li>
             </ul>
                         <p style="width: 710px"></p>
          </div>

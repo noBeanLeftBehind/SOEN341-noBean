@@ -7,13 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SOEN341_nobean
-{
-
-
-    public partial class Site2
-    {
-
+namespace SOEN341_nobean {
+    
+    
+    public partial class Site2 {
+        
         /// <summary>
         /// head control.
         /// </summary>
@@ -22,7 +20,7 @@ namespace SOEN341_nobean
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
-
+        
         /// <summary>
         /// Stylesheets control.
         /// </summary>
@@ -31,7 +29,34 @@ namespace SOEN341_nobean
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder Stylesheets;
-
+        
+        /// <summary>
+        /// scheduleNavID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl scheduleNavID;
+        
+        /// <summary>
+        /// accountNavID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl accountNavID;
+        
+        /// <summary>
+        /// log control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl log;
+        
         /// <summary>
         /// form1 control.
         /// </summary>
@@ -40,7 +65,7 @@ namespace SOEN341_nobean
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-
+        
         /// <summary>
         /// ContentPlaceHolder1 control.
         /// </summary>
