@@ -171,13 +171,18 @@ namespace SOEN341_nobean.Class
                 myParam.Value = UserID;
                 myCommand.Parameters.Add(myParam);
                 myReader = myCommand.ExecuteReader();
-                String courseID;
+                List<String> courseIDList = new List<String>();
                 Course tempCourse;
-                //get all courses for a user from the preference DB and sort them
+                //get all course IDs for a user from the preference DB
                 while (myReader.Read())
                 {
                     //get course by id
-                    courseID = myReader["CourseID"].ToString();
+                    courseIDList.Add(myReader["CourseID"].ToString());
+                   
+                }
+                myReader.Close(); 
+                //get the courses and sort them
+               foreach(String courseID in courseIDList){
                     tempCourse = getCourse(courseID);
                     //place course in right course type list
                     if (tempCourse.isScienceCourse())
@@ -193,8 +198,8 @@ namespace SOEN341_nobean.Class
                         technicalCourses.Add(tempCourse);
                     }
                     else { }
-                }
-                myReader.Close();
+               }
+                
             }
             catch (Exception exp)
             {
@@ -206,7 +211,6 @@ namespace SOEN341_nobean.Class
             preferences.Add(generalCourses);
             preferences.Add(technicalCourses);
             
-
             return preferences;
         }
 
@@ -231,6 +235,7 @@ namespace SOEN341_nobean.Class
                     course = new Course();
                     course.setCode(myReader["Number"].ToString());
                     course.setCourseName(myReader["Title"].ToString());
+                    course.setSubject(myReader["Name"].ToString());
                     course.setPriority(Convert.ToInt32(myReader["Priority"].ToString()));
                     //set course type
                    
