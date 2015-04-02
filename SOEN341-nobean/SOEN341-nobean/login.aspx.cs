@@ -57,7 +57,8 @@ namespace SOEN341_nobean
            {
                if (TextBox2.Text == Global.MainUser.getPassword())
                {
-
+                   if (Global.MainUser.getisAdmin())
+                       Response.Redirect("adminHome.aspx");
                    Response.Redirect("Home.aspx");
                }
                else
