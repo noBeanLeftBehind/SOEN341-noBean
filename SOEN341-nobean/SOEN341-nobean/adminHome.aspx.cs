@@ -12,11 +12,18 @@ namespace SOEN341_nobean
 {
     public partial class adminHome : System.Web.UI.Page
     {
-        User student;
-        DBHandler userHandler = new DBHandler();
+        private User student;
+        private DBHandler userHandler = new DBHandler();
         protected void Page_Load(object sender, EventArgs e)
         {
-            SubmitIDButton.Click += new EventHandler(this.SubmitIDButton_Click);
+                if (Global.myConnection == null || Global.myConnection.State == System.Data.ConnectionState.Closed || Global.MainUser == null)
+                    Response.Redirect("login.aspx");
+
+                if (Global.MainUser.getisAdmin() == false)
+                    Response.Redirect("home.aspx");
+
+                SubmitIDButton.Click += new EventHandler(this.SubmitIDButton_Click);
+                connectStudent.Click += new EventHandler(this.connectStudent_Click1);
         }
 
         private void SubmitIDButton_Click(object sender, EventArgs e)
@@ -31,42 +38,46 @@ namespace SOEN341_nobean
                 error_IDStudent.Style["color"] = "black";
                 error_IDStudent.Text = String.Format("Searching for {0}...", studentIDTextBox.Text);
 
-                SqlConnection tempConnection = new SqlConnection();
-                try
-                {
-                    //connecting to the db.
-                    tempConnection.ConnectionString = "Data Source=buax9l2psh.database.windows.net,1433;Initial Catalog=masterscheduler100_db;Persist Security Info=True;User ID=nobean;Password=Abc_12345";
-                    Global.myConnection = tempConnection;
-                    if (Global.myConnection != null && Global.myConnection.State == System.Data.ConnectionState.Closed)
-                        Global.myConnection.Open();
-
-
-                    student = userHandler.getUserByID(studentID);
-                    if (student.getfirstName() != null && student.getlastName() != null)
+                    try
                     {
-                        error_IDStudent.Text = "Student found: ";
-                        LabelStudentFound.Text = String.Format("<p>\r\n {0}, {1} </p><p>\r\n <a href='#'>Connect as {2}</a></p>", student.getlastName(), student.getfirstName(), student.getStudentID());
-                        studentIDTextBox.Text = "";
+                        student = userHandler.getUserByID(studentID);
+                        if (student.getfirstName() != null && student.getlastName() != null)
+                        {
+                            hiddenStudentID.Value = studentID;
+                            error_IDStudent.Text = "Student found: ";
+                            LabelStudentFound.Text = String.Format("<p>\r\n {0}, {1} </p>", student.getlastName(), student.getfirstName());
+                            studentIDTextBox.Text = "";
+                            connectStudent.Visible = true;
+                            connectStudent.Visible = true;
+                        }
+                        else
+                        {
+                            error_IDStudent.Style["color"] = "red";
+                            error_IDStudent.Text = String.Format("Student with ID {0} was not found", studentIDTextBox.Text);
+                        }
+                        
+                      
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        error_IDStudent.Style["color"] = "red";
-                        error_IDStudent.Text = String.Format("Student with ID {0} was not found", studentIDTextBox.Text);
+                        Response.Write("Error:" + ex.ToString());
+
                     }
-                    Global.myConnection.Close();
-                }
-                catch (Exception ex)
-                {
-                    Response.Write("Error:" + ex.ToString());
-
-                }
-
+                            
             }
             else
             {
                 error_IDStudent.Text = "ERROR: Enter a 8 digit Student ID";
                 LabelStudentFound.Text = "";
             }
+
         }
+
+        protected void connectStudent_Click1(object sender, EventArgs e)
+        {
+            Global.MainUser = userHandler.getUserByID(hiddenStudentID.Value);
+            Response.Redirect("home.aspx");
+        }
+
     }
 }
