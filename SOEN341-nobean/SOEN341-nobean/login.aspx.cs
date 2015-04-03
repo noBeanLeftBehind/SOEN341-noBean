@@ -57,6 +57,9 @@ namespace SOEN341_nobean
            {
                if (TextBox2.Text == Global.MainUser.getPassword())
                {
+                   CourseDirectory cd = new CourseDirectory();
+                   db.addAllCoursestoDirectory(cd);
+                   Global.CourseDirectory = cd;
                    if (Global.MainUser.getisAdmin())
                        Response.Redirect("adminHome.aspx");
                    Response.Redirect("Home.aspx");

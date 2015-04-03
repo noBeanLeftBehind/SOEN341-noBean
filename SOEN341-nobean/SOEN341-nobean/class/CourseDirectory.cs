@@ -12,24 +12,44 @@ namespace SOEN341_nobean.Class
         List<Course> electiveTechnical = new List<Course>();
         List<Course> electiveGeneral = new List<Course>();
 
-        protected void addallCourses(Course cours)
+        public void addallCourses(Course cours)
         {
             allCourses.Add(cours);
         }
 
-        protected void addelectiveScience(Course cours)
+        public void addelectiveScience(Course cours)
         {
             electiveScience.Add(cours);
         }
 
-        protected void addelectiveTechnical(Course cours)
+        public void addelectiveTechnical(Course cours)
         {
             electiveTechnical.Add(cours);
         }
 
-        protected void addelectiveGeneral(Course cours)
+        public void addelectiveGeneral(Course cours)
         {
             electiveGeneral.Add(cours);
+        }
+
+        public List<Course> getAllCourses()
+        {
+            return allCourses;
+        }
+
+        public List<Course> getElectiveTechnical()
+        {
+            return electiveTechnical;
+        }
+
+        public List<Course> getElectiveGeneral()
+        {
+            return electiveGeneral;
+        }
+
+        public List<Course> getElectiveScience()
+        {
+            return electiveScience;
         }
 
 

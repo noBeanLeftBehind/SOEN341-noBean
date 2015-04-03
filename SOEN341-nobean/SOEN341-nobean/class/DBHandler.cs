@@ -214,6 +214,41 @@ namespace SOEN341_nobean.Class
             return preferences;
         }
 
+        public void addAllCoursestoDirectory(CourseDirectory cd)
+        {
+            var page = HttpContext.Current.CurrentHandler as Page;
+            List<String> courseIds = new List<string>(0);
+            try
+            {
+                SqlDataReader myReader = null;
+                SqlCommand myCommand = new SqlCommand(
+                    "SELECT * FROM [dbo].[Course];", Global.myConnection
+                    );
+                myReader = myCommand.ExecuteReader();
+                while (myReader.Read())
+                {
+                    courseIds.Add(myReader["CourseID"].ToString());
+                }
+                myReader.Close();
+                foreach(String id in courseIds)
+                {
+                    Course temp = getCourse(id);
+                    if (temp.isGeneralCourse())
+                        cd.addelectiveGeneral(temp);
+                    else if (temp.isScienceCourse())
+                        cd.addelectiveScience(temp);
+                    else if (temp.isTechnicalCourse())
+                        cd.addelectiveTechnical(temp);
+                    else
+                        cd.addallCourses(temp);
+                }
+            }
+            catch (Exception exp)
+            {
+                page.ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + exp.ToString() + "');", true);
+            }
+        }
+
         public Course getCourse(String CourseID)
         {
             var page = HttpContext.Current.CurrentHandler as Page;
