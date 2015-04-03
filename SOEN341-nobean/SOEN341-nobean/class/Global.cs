@@ -32,6 +32,7 @@ namespace SOEN341_nobean.Class
             //close connection when global is destructed.. when all pages are closed hopefully ... this should be tested im not sure about it 
             if (_myConnection != null && _myConnection.State == ConnectionState.Open)
             {
+                Preferences.ReloadChanges = true;//reset
                 _myConnection.Close();
             }
         }
