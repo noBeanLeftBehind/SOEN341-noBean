@@ -172,6 +172,7 @@ namespace SOEN341_nobean.Class
                     //get course by id
                     courseIDList.Add(Convert.ToInt32(myReader["CourseID"].ToString()));
                 }
+                myReader.Close(); 
             }
             catch (Exception exp)
             {
@@ -179,65 +180,6 @@ namespace SOEN341_nobean.Class
             }
             return courseIDList;
         }
-        /*public List<List<Course>> getPreferences(string UserID)
-        {
-            var page = HttpContext.Current.CurrentHandler as Page;
-            //create lists of elective courses by type
-            List<Course> scienceCourses = new List<Course>();
-            List<Course> generalCourses = new List<Course>();
-            List<Course> technicalCourses = new List<Course>();
-            try
-            {
-                SqlDataReader myReader = null;
-                SqlCommand myCommand = new SqlCommand(
-                    "SELECT * FROM [dbo].[Preferences] WHERE UserID = @UserID;", Global.myConnection);
-                SqlParameter myParam = new SqlParameter("@UserID", SqlDbType.VarChar);
-                myParam.Value = UserID;
-                myCommand.Parameters.Add(myParam);
-                myReader = myCommand.ExecuteReader();
-                List<String> courseIDList = new List<String>();
-                Course tempCourse;
-                //get all course IDs for a user from the preference DB
-                while (myReader.Read())
-                {
-                    //get course by id
-                    courseIDList.Add(myReader["CourseID"].ToString());
-                   
-                }
-                myReader.Close(); 
-                //get the courses and sort them
-               foreach(String courseID in courseIDList){
-                    tempCourse = getCourse(courseID);
-                    //place course in right course type list
-                    if (tempCourse.isScienceCourse())
-                    {
-                        scienceCourses.Add(tempCourse);
-                    }
-                    else if (tempCourse.isGeneralCourse())
-                    {
-                        generalCourses.Add(tempCourse);
-                    }
-                    else if (tempCourse.isTechnicalCourse())
-                    {
-                        technicalCourses.Add(tempCourse);
-                    }
-                    else { }
-               }
-                
-            }
-            catch (Exception exp)
-            {
-                page.ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + exp.ToString() + "');", true);
-            }
-            //place all electives list in a list
-            List<List<Course>> preferences = new List<List<Course>>();
-            preferences.Add(scienceCourses);
-            preferences.Add(generalCourses);
-            preferences.Add(technicalCourses);
-            
-            return preferences;
-        }
-        */
         public void addAllCoursestoDirectory(CourseDirectory cd)
         {
             var page = HttpContext.Current.CurrentHandler as Page;
