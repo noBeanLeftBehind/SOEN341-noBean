@@ -12,16 +12,19 @@
 <div id="allprefs">
     <h3>General Electives</h3>
     <div>
+        <asp:CheckBoxList runat="server" ID="ChkLstGeneral"></asp:CheckBoxList>
         <asp:Table runat="server" ID="TableGeneral"></asp:Table>
-    </div>
-    <h3>Basic Science Electives</h3>    
-    <div>
-        <asp:Table runat="server" ID="TableScience"></asp:Table>
-    </div>
+    </div>    
     <h3>Technical Electives</h3>
     <div>
         <asp:CheckBoxList runat="server" ID="ChkLstTechnical"></asp:CheckBoxList>
     </div>
+    <h3>Basic Science Electives</h3>    
+    <div>
+        <asp:CheckBoxList runat="server" ID="ChkLstScience"></asp:CheckBoxList>
+        <asp:Table runat="server" ID="TableScience"></asp:Table>
+    </div>
+
 </div>
 
     <br /><br />Test Label:<br />
@@ -33,7 +36,8 @@
         $(function () {
             $("#allprefs").accordion({
                 active: false,
-                collapsible: true
+                collapsible: true,
+                heightStyle: "content"
             });
         });
     </script>

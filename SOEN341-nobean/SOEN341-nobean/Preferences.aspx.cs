@@ -5,48 +5,142 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using SOEN341_nobean.Class;
+using System.Data;
 
 namespace SOEN341_nobean
 {
     public partial class Preferences : System.Web.UI.Page
     {
-        SOEN341_nobean.Class.DBHandler dbhandler = new SOEN341_nobean.Class.DBHandler();
+        DBHandler DBHandler = new DBHandler();
+
         //to change------------------------------------------------
-        static Boolean ReloadChanges = true;//put in global.when logout, resets bool to true.
+        public static Boolean ReloadChanges = true;//put in global.when logout, resets bool to true.
+        //static Boolean FirstLoggin = true;//run displayCourses() when first login
         //test netname
-        String netName = "4";//get from global????
+        String netName = "4";//get from global 
         //---------------------------------------------------------
         protected void Page_Load(object sender, EventArgs e)
         {
-            //testLabel.Text = "ReloadChange: "+ReloadChanges;
-            if (ReloadChanges)
+            //SqlConnection tempConnection = new SqlConnection();
+            //tempConnection.ConnectionString = "Data Source=buax9l2psh.database.windows.net,1433;Initial Catalog=masterscheduler100_db;Persist Security Info=True;User ID=nobean;Password=Abc_12345";
+            //Global.myConnection = tempConnection;
+
+            if (Global.myConnection != null && Global.myConnection.State == ConnectionState.Open && Global.MainUser != null)
             {
-                displayAllPreferences();
+                //testLabel.Text = "ReloadChange: "+ReloadChanges;
+                if (ReloadChanges)
+                {
+                    displayCourses();
+                }
             }
                 
         }
         public void editPreferences(object sender, EventArgs e)
         {
             if (!ChkLstTechnical.Enabled)
+            {
+                ChkLstGeneral.Enabled = true;
                 ChkLstTechnical.Enabled = true;
+                ChkLstScience.Enabled = true;
+            }
             else
+            {
+                ChkLstGeneral.Enabled = false;
                 ChkLstTechnical.Enabled = false;
+                ChkLstScience.Enabled = false;
+            }
         }
         private void savePreferences()
         {
+            //validate minimum number of selected courses (javascript)
+
             //CheckedListBox.CheckedItemCollection
-            //get all checked items, find matching course and add them to DB
+            //get all checked items, for each item, check item.Value (courseId in DB). 
+            //if item.Selected = true, add to DB
             ReloadChanges = true;
         }
-        private void displayAllPreferences()
+        private void displayCourses()
+        {
+            ChkLstGeneral.Items.Clear();
+            ChkLstTechnical.Items.Clear();
+            ChkLstScience.Items.Clear();
+            List<int> preferenceCourseID = DBHandler.getPreferences(netName);
+            CourseDirectory CourseDirectory = Global.CourseDirectory;
+
+            List<Course> electiveGeneral = CourseDirectory.getElectiveGeneral();
+            List<Course> electiveTechnical = CourseDirectory.getElectiveTechnical();
+            List<Course> electiveScience = CourseDirectory.getElectiveScience();
+         
+            //generates checkboxlist for general
+            foreach (Course course in electiveGeneral)
+            {
+                String chkText = course.getSubject() + " " + course.getCode();
+                int courseID = course.getCourseID();
+                ListItem item = new ListItem(chkText);
+                //set value to courseID for save function
+                item.Value = courseID+"";
+
+                if (preferenceCourseID.IndexOf(courseID) != -1)//if courseId is in preferenceCourseID
+                {
+                    item.Selected = true;
+                }
+                else
+                {
+                    item.Selected = false;
+                }
+                ChkLstGeneral.Items.Add(item);
+            }
+            ChkLstGeneral.Enabled = false;
+            foreach (Course course in electiveTechnical)
+            {
+                String chkText = course.getSubject() + " " + course.getCode();
+                int courseID = course.getCourseID();
+                ListItem item = new ListItem(chkText);
+                //set value to courseID for save function
+                item.Value = courseID + "";
+
+                if (preferenceCourseID.IndexOf(courseID) != -1)//if courseId is in preferenceCourseID
+                {
+                    item.Selected = true;
+                }
+                else
+                {
+                    item.Selected = false;
+                }
+                ChkLstTechnical.Items.Add(item);
+            }
+            ChkLstTechnical.Enabled = false;
+            foreach (Course course in electiveScience)
+            {
+                String chkText = course.getSubject() + " " + course.getCode();
+                int courseID = course.getCourseID();
+                ListItem item = new ListItem(chkText);
+                //set value to courseID for save function
+                item.Value = courseID + "";
+
+                if (preferenceCourseID.IndexOf(courseID) != -1)//if courseId is in preferenceCourseID
+                {
+                    item.Selected = true;
+                }
+                else
+                {
+                    item.Selected = false;
+                }
+                ChkLstScience.Items.Add(item);
+            }
+            ChkLstScience.Enabled = false;
+            ReloadChanges = false;
+        }
+        /*private void displayAllPreferences()
         {
             
             //--------------------------------------------
-            /*Once list of all preferences is made
+            Once list of all preferences is made
              * Display list of all preferences
              * then compare each item with user preferences
              * if match, then selected=true
-             */
+             
             //get list of all preferences of user
             List<List<SOEN341_nobean.Class.Course>> preferencesList = dbhandler.getPreferences(netName);
             //populate tables with course name+code and checkbox
@@ -117,6 +211,6 @@ namespace SOEN341_nobean
             }
             ChkLstTechnical.Enabled=false;
             ReloadChanges = false;
-        }
+        }*/
     }
 }
