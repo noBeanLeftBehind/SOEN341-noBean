@@ -154,8 +154,32 @@ namespace SOEN341_nobean.Class
 
             return tempUser;
         }
-
-        public List<List<Course>> getPreferences(string UserID)
+        public List<int> getPreferences(string UserID)
+        {
+            var page = HttpContext.Current.CurrentHandler as Page;
+            List<int> courseIDList = new List<int>();
+            try
+            {
+                SqlDataReader myReader = null;
+                SqlCommand myCommand = new SqlCommand(
+                    "SELECT * FROM [dbo].[Preferences] WHERE UserID = @UserID;", Global.myConnection);
+                SqlParameter myParam = new SqlParameter("@UserID", SqlDbType.VarChar);
+                myParam.Value = UserID;
+                myCommand.Parameters.Add(myParam);
+                myReader = myCommand.ExecuteReader();
+                while (myReader.Read())
+                {
+                    //get course by id
+                    courseIDList.Add(Convert.ToInt32(myReader["CourseID"].ToString()));
+                }
+            }
+            catch (Exception exp)
+            {
+                page.ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + exp.ToString() + "');", true);
+            }
+            return courseIDList;
+        }
+        /*public List<List<Course>> getPreferences(string UserID)
         {
             var page = HttpContext.Current.CurrentHandler as Page;
             //create lists of elective courses by type
@@ -213,7 +237,7 @@ namespace SOEN341_nobean.Class
             
             return preferences;
         }
-
+        */
         public void addAllCoursestoDirectory(CourseDirectory cd)
         {
             var page = HttpContext.Current.CurrentHandler as Page;
