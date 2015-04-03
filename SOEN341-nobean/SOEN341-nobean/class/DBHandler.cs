@@ -352,5 +352,37 @@ namespace SOEN341_nobean.Class
             }
 
         }
+        public List<Course> getAllCourse()
+        {//could just iterate through getCourses 
+            var page = HttpContext.Current.CurrentHandler as Page;
+            List<Course> ret = new List<Course>();
+            //what we would do if we wanted to extend it but since this is a one time thing
+            /*int numberOfCourses = 0;
+            SqlDataReader myReader;
+            try
+            {
+                SqlCommand getCount = new SqlCommand(
+                 "SELECT COUNT(COURSEID) from dbo.Course", Global.myConnection
+                        );
+                myReader = getCount.ExecuteReader();
+                numberOfCourses = (int)myReader;
+                for (int i = 0; i < numberOfCourses; i++)
+                {
+                    ret.Add(getCourse(i.ToString()));
+                }
+
+            }
+            catch (Exception exp)
+            {
+                page.ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + exp.ToString() + "');", true);
+            }*/
+            //since we know how many courses are in the db and the course id increases by one
+            for (int i = 0; i < 15; i++)
+            {
+                ret.Add(getCourse(i.ToString()));
+            }
+
+            return ret;
+        }
     }
 }
