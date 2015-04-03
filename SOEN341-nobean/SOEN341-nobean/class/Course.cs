@@ -9,6 +9,7 @@ namespace SOEN341_nobean.Class
 {
     public class Course
     {
+        protected int courseID;
         protected String code;
         protected String subject;
         protected String courseName;
@@ -31,11 +32,18 @@ namespace SOEN341_nobean.Class
             this.credits = credits;
         }
         public Course(){}
+        public int getCourseID()
+        {
+            return courseID;
+        }
+        public void setCourseID(int courseID)
+        {
+            this.courseID = courseID;
+        }
         protected void addpreRequisites(Course pre)
         {
             preRequisites.Add(pre);
         }
-
         public void addLecture(Section sec)
         {
             lecture.Add(sec);

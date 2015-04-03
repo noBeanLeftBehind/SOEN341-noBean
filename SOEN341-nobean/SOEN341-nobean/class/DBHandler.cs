@@ -268,6 +268,7 @@ namespace SOEN341_nobean.Class
                 while (myReader.Read())
                 {
                     course = new Course();
+                    course.setCourseID(Convert.ToInt32(myReader["CourseID"].ToString()));
                     course.setCode(myReader["Number"].ToString());
                     course.setCourseName(myReader["Title"].ToString());
                     course.setSubject(myReader["Name"].ToString());
