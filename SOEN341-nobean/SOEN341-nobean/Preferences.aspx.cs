@@ -15,7 +15,7 @@ namespace SOEN341_nobean
         DBHandler DBHandler = new DBHandler();
 
         //to change------------------------------------------------
-        public static Boolean ReloadChanges = true;//put in global.when logout, resets bool to true.
+        //public static Boolean ReloadChanges = true;//put in global.when logout, resets bool to true.
         //static Boolean FirstLoggin = true;//run displayCourses() when first login
         //test netname
         String netName = "4";//get from global 
@@ -29,36 +29,35 @@ namespace SOEN341_nobean
             if (Global.myConnection != null && Global.myConnection.State == ConnectionState.Open && Global.MainUser != null)
             {
                 //testLabel.Text = "ReloadChange: "+ReloadChanges;
-                if (ReloadChanges)
-                {
                     displayCourses();
-                }
+
+            }
+            else
+            {
+                Response.Redirect("login.aspx");
             }
                 
         }
         public void editPreferences(object sender, EventArgs e)
         {
-            if (!ChkLstTechnical.Enabled)
-            {
-                ChkLstGeneral.Enabled = true;
-                ChkLstTechnical.Enabled = true;
-                ChkLstScience.Enabled = true;
-            }
-            else
-            {
-                ChkLstGeneral.Enabled = false;
-                ChkLstTechnical.Enabled = false;
-                ChkLstScience.Enabled = false;
-            }
+            ChkLstGeneral.Enabled = true;
+            ChkLstTechnical.Enabled = true;
+            ChkLstScience.Enabled = true;
+            editPreferencesBtn.Visible = false;
+            savePreferencesBtn.Visible = true;
         }
-        private void savePreferences()
+        public void savePreferences(object sender, EventArgs e)
         {
             //validate minimum number of selected courses (javascript)
 
             //CheckedListBox.CheckedItemCollection
             //get all checked items, for each item, check item.Value (courseId in DB). 
             //if item.Selected = true, add to DB
-            ReloadChanges = true;
+            ChkLstGeneral.Enabled = false;
+            ChkLstTechnical.Enabled = false;
+            ChkLstScience.Enabled = false;
+            editPreferencesBtn.Visible = true;
+            savePreferencesBtn.Visible = false;
         }
         private void displayCourses()
         {
@@ -130,7 +129,6 @@ namespace SOEN341_nobean
                 ChkLstScience.Items.Add(item);
             }
             ChkLstScience.Enabled = false;
-            ReloadChanges = false;
         }
         /*private void displayAllPreferences()
         {

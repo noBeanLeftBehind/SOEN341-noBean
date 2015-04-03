@@ -8,12 +8,12 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2>Preferences</h2>
-    <asp:Button runat="server" Text="Edit" OnClick="editPreferences" />
+    <asp:Button runat="server" Text="Edit" ID="editPreferencesBtn" OnClick="editPreferences" />
+    <asp:Button runat="server" Text="Save" ID="savePreferencesBtn" OnClick="savePreferences" Visible="false"/>
 <div id="allprefs">
     <h3>General Electives</h3>
     <div>
         <asp:CheckBoxList runat="server" ID="ChkLstGeneral"></asp:CheckBoxList>
-        <asp:Table runat="server" ID="TableGeneral"></asp:Table>
     </div>    
     <h3>Technical Electives</h3>
     <div>
@@ -22,7 +22,6 @@
     <h3>Basic Science Electives</h3>    
     <div>
         <asp:CheckBoxList runat="server" ID="ChkLstScience"></asp:CheckBoxList>
-        <asp:Table runat="server" ID="TableScience"></asp:Table>
     </div>
 
 </div>

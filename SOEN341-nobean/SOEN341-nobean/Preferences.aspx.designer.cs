@@ -13,6 +13,24 @@ namespace SOEN341_nobean {
     public partial class Preferences {
         
         /// <summary>
+        /// editPreferencesBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button editPreferencesBtn;
+        
+        /// <summary>
+        /// savePreferencesBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button savePreferencesBtn;
+        
+        /// <summary>
         /// ChkLstGeneral control.
         /// </summary>
         /// <remarks>
@@ -20,15 +38,6 @@ namespace SOEN341_nobean {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBoxList ChkLstGeneral;
-        
-        /// <summary>
-        /// TableGeneral control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table TableGeneral;
         
         /// <summary>
         /// ChkLstTechnical control.
@@ -47,15 +56,6 @@ namespace SOEN341_nobean {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBoxList ChkLstScience;
-        
-        /// <summary>
-        /// TableScience control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table TableScience;
         
         /// <summary>
         /// testLabel control.
