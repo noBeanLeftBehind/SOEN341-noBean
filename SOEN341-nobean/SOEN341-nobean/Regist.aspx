@@ -1,5 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/NoNav.Master" AutoEventWireup="true" CodeFile="Registration.aspx.cs" Inherits="SOEN341_nobean.Registration" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NoNav.Master" AutoEventWireup="true" CodeBehind="Regist.aspx.cs" Inherits="SOEN341_nobean.Regist" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
          <link rel="stylesheet" href="master.css" type="text/css" />
          <script  src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -8,7 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Stylesheets" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Label ID="Label1" runat="server" Text="First Name :"></asp:Label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <asp:Label ID="Label1" runat="server" Text="First Name :"></asp:Label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:TextBox ID="TextBoxFN" runat="server" OnTextChanged="TextBoxFN_TextChanged" Width="180px" MaxLength="50"></asp:TextBox>
                 
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="TextBoxFN" ErrorMessage="First Name is required" ForeColor="Red"></asp:RequiredFieldValidator>
@@ -65,4 +64,3 @@
                     <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Submit" Width="60px" />
                     <input id="Reset1" type="reset" value="reset" />
 </asp:Content>
-

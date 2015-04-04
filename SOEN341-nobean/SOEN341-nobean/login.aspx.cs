@@ -88,7 +88,7 @@ namespace SOEN341_nobean
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Registration.aspx");
+            Response.Redirect("Regist.aspx");
         }
     }
 }
