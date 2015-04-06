@@ -13,22 +13,22 @@ namespace SOEN341_nobean {
     public partial class Preferences {
         
         /// <summary>
-        /// editPreferencesBtn control.
+        /// editPreferencesBtnTop control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button editPreferencesBtn;
+        protected global::System.Web.UI.WebControls.Button editPreferencesBtnTop;
         
         /// <summary>
-        /// savePreferencesBtn control.
+        /// savePreferencesBtnTop control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button savePreferencesBtn;
+        protected global::System.Web.UI.WebControls.Button savePreferencesBtnTop;
         
         /// <summary>
         /// ChkLstGeneral control.
@@ -56,6 +56,24 @@ namespace SOEN341_nobean {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBoxList ChkLstScience;
+        
+        /// <summary>
+        /// editPreferencesBtnBottom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button editPreferencesBtnBottom;
+        
+        /// <summary>
+        /// savePreferencesBtnBottom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button savePreferencesBtnBottom;
         
         /// <summary>
         /// testLabel control.

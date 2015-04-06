@@ -43,12 +43,13 @@ namespace SOEN341_nobean
             ChkLstGeneral.Enabled = true;
             ChkLstTechnical.Enabled = true;
             ChkLstScience.Enabled = true;
-            editPreferencesBtn.Visible = false;
-            savePreferencesBtn.Visible = true;
+            editPreferencesBtnTop.Visible = false;
+            editPreferencesBtnBottom.Visible = false;
+            savePreferencesBtnTop.Visible = true;
+            savePreferencesBtnBottom.Visible = true;
         }
         public void savePreferences(object sender, EventArgs e)
         {
-            //validate minimum number of selected courses (javascript)
 
             //CheckedListBox.CheckedItemCollection
             //get all checked items, for each item, check item.Value (courseId in DB). 
@@ -56,8 +57,10 @@ namespace SOEN341_nobean
             ChkLstGeneral.Enabled = false;
             ChkLstTechnical.Enabled = false;
             ChkLstScience.Enabled = false;
-            editPreferencesBtn.Visible = true;
-            savePreferencesBtn.Visible = false;
+            editPreferencesBtnTop.Visible = true;
+            editPreferencesBtnBottom.Visible = true;
+            savePreferencesBtnTop.Visible = false;
+            savePreferencesBtnBottom.Visible = false;
         }
         private void displayCourses()
         {
@@ -74,7 +77,7 @@ namespace SOEN341_nobean
             //generates checkboxlist for general
             foreach (Course course in electiveGeneral)
             {
-                String chkText = course.getSubject() + " " + course.getCode();
+                String chkText = course.getSubject() + " " + course.getCode() + " - " + course.getCourseName();
                 int courseID = course.getCourseID();
                 ListItem item = new ListItem(chkText);
                 //set value to courseID for save function
@@ -93,7 +96,7 @@ namespace SOEN341_nobean
             ChkLstGeneral.Enabled = false;
             foreach (Course course in electiveTechnical)
             {
-                String chkText = course.getSubject() + " " + course.getCode();
+                String chkText = course.getSubject() + " " + course.getCode() + " - "+course.getCourseName();
                 int courseID = course.getCourseID();
                 ListItem item = new ListItem(chkText);
                 //set value to courseID for save function
@@ -112,7 +115,7 @@ namespace SOEN341_nobean
             ChkLstTechnical.Enabled = false;
             foreach (Course course in electiveScience)
             {
-                String chkText = course.getSubject() + " " + course.getCode();
+                String chkText = course.getSubject() + " " + course.getCode() + " - " + course.getCourseName();
                 int courseID = course.getCourseID();
                 ListItem item = new ListItem(chkText);
                 //set value to courseID for save function
