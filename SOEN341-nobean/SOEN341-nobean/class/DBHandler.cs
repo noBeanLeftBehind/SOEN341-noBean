@@ -384,5 +384,67 @@ namespace SOEN341_nobean.Class
 
             return ret;
         }
+
+        //alright an attempt at getting
+        //i have no clue what im doing
+
+        public void GetUserSchedules(string ID)
+        {
+            var page = HttpContext.Current.CurrentHandler as Page;
+            Schedule userSchedule = new Schedule();
+            try
+            {
+                SqlDataReader myReader = null;
+                SqlCommand myCommand = new SqlCommand(
+                    "SELECT * FROM [dbo].[SemesterSchedule] WHERE UserID = @UserID;", Global.myConnection
+                    );
+                SqlParameter myParam = new SqlParameter("@UserID", SqlDbType.VarChar);
+                myParam.Value = ID;
+                myCommand.Parameters.Add(myParam);
+                myReader = myCommand.ExecuteReader();
+                while (myReader.Read())
+                {
+                    semester tempSemester = new semester();
+                    tempSemester.setYear((int)myReader["year"]);
+                    tempSemester.setSection((int)myReader["section"]);
+                    tempSemester.setCourses(GetCourseSchedule(myReader["ScheduleID"].ToString()));
+                }
+            }
+            catch (Exception exp)
+            {
+                page.ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + exp.ToString() + "');", true);
+            }
+        }
+        public List<Course> GetCourseSchedule(String scheduleID)
+        {
+            var page = HttpContext.Current.CurrentHandler as Page;
+            List<Course> ret = new List<Course>();
+            try
+            {
+                SqlDataReader myReader = null;
+                SqlCommand myCommand = new SqlCommand(
+                    "SELECT * FROM [dbo].[CourseScheduleSchedule] WHERE UserID = @ScheduleID;", Global.myConnection
+                    );
+                SqlParameter myParam = new SqlParameter("@ScheduleID", SqlDbType.VarChar);
+                myParam.Value = scheduleID;
+                myCommand.Parameters.Add(myParam);
+                myReader = myCommand.ExecuteReader();
+
+                while (myReader.Read())
+                {
+                    Course temp = new Course();
+             
+
+                }
+                
+            }
+            catch (Exception exp)
+            {
+                page.ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + exp.ToString() + "');", true);
+            }
+            return ret;
+        }
+
+
     }
 }
