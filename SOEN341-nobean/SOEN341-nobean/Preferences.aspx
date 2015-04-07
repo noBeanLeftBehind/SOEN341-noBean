@@ -13,21 +13,22 @@
 <div id="allprefs">
     <h3>General Electives</h3>
     <div>
-        <asp:CheckBoxList runat="server" ID="ChkLstGeneral" TextAlign="Right"></asp:CheckBoxList>
+        <asp:CheckBoxList runat="server" ID="ChkLstGeneral" TextAlign="Right" Font-Size="Medium"></asp:CheckBoxList>
     </div>    
     <h3>Technical Electives</h3>
     <div>
-        <asp:CheckBoxList runat="server" ID="ChkLstTechnical" TextAlign="Right"></asp:CheckBoxList>
+        <asp:CheckBoxList runat="server" ID="ChkLstTechnical" TextAlign="Right" Font-Size="Medium"></asp:CheckBoxList>
     </div>
     <h3>Basic Science Electives</h3>    
     <div>
-        <asp:CheckBoxList runat="server" ID="ChkLstScience" TextAlign="Right"></asp:CheckBoxList>
+        <asp:CheckBoxList runat="server" ID="ChkLstScience" TextAlign="Right" Font-Size="Medium"></asp:CheckBoxList>
     </div>
 </div>
     <asp:Button runat="server" Text="Edit" ID="editPreferencesBtnBottom" OnClick="editPreferences" />
     <asp:Button runat="server" Text="Save" ID="savePreferencesBtnBottom" OnClientClick="if (!validateSave()) {return false;}" OnClick="savePreferences"  Visible="false" />
-    <br /><br />Test Label:<br />
-    <asp:Label runat="server" ID="testLabel"></asp:Label>
+   
+
+    <asp:Label runat="server" ID="testLabel" ></asp:Label>
     
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>

@@ -14,13 +14,7 @@ namespace SOEN341_nobean
     public partial class Preferences : System.Web.UI.Page
     {
         DBHandler DBHandler = new DBHandler();
-
-        //to change------------------------------------------------
-        //public static Boolean ReloadChanges = true;//put in global.when logout, resets bool to true.
-        //static Boolean FirstLoggin = true;//run displayCourses() when first login
-        //test netname
-        string netName = "4";//get from global user
-        //---------------------------------------------------------
+        string netName = Global.MainUser.getUserID() + "";
         protected void Page_Load(object sender, EventArgs e)
         {
             //SqlConnection tempConnection = new SqlConnection();
@@ -81,14 +75,6 @@ namespace SOEN341_nobean
             preferenceCourseID.AddRange(selectedValuesGeneral);
             preferenceCourseID.AddRange(selectedValuesTechnical);
             preferenceCourseID.AddRange(selectedValuesScience);
-
-            //test--------------
-            string testString = "";
-            foreach (string value in preferenceCourseID)
-            {
-                testString += ", " + value;
-            }
-            testLabel.Text = testString;
             
             //delete all user preferences
             DBHandler.removeUserPreferences(netName);
