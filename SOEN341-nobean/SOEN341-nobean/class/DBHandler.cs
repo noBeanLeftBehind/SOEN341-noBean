@@ -180,6 +180,28 @@ namespace SOEN341_nobean.Class
             }
             return courseIDList;
         }
+        public void removeUserPreferences(string netName)
+        {
+            SqlCommand myCommand = new SqlCommand(
+                    "DELETE FROM [dbo].[Preferences] WHERE UserID = @netName;", 
+                    Global.myConnection);
+            myCommand.Parameters.AddWithValue("@netName", netName);
+            myCommand.ExecuteNonQuery();
+        }
+        public void insertUserPreferences(string netNameString, string courseIDString)
+        {
+            int netName = Convert.ToInt32(netNameString);
+            int courseID = Convert.ToInt32(courseIDString);
+            string insertQuery = "insert into [dbo].[Preferences] (UserID,CourseID,Answer) values (@UserID,@CourseID,@Answer)";
+
+            SqlCommand com = new SqlCommand(insertQuery, Global.myConnection);
+
+            com.Parameters.AddWithValue("@UserID", netName);
+            com.Parameters.AddWithValue("@CourseID", courseID);
+            com.Parameters.AddWithValue("@Answer", true);
+
+            com.ExecuteNonQuery();
+        }
         public void addAllCoursestoDirectory(CourseDirectory cd)
         {
             var page = HttpContext.Current.CurrentHandler as Page;
