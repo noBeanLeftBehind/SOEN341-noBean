@@ -21,6 +21,7 @@ namespace SOEN341_nobean.Class
 
         static SqlConnection _myConnection;
         static public User MainUser;
+        static public User Admin;
         static public CourseDirectory CourseDirectory;
         Global()
         {
