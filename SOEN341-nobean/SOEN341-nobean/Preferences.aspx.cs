@@ -7,6 +7,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using SOEN341_nobean.Class;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace SOEN341_nobean
 {
@@ -18,7 +19,7 @@ namespace SOEN341_nobean
         //public static Boolean ReloadChanges = true;//put in global.when logout, resets bool to true.
         //static Boolean FirstLoggin = true;//run displayCourses() when first login
         //test netname
-        String netName = "4";//get from global 
+        string netName = "4";//get from global user
         //---------------------------------------------------------
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,9 +29,10 @@ namespace SOEN341_nobean
 
             if (Global.myConnection != null && Global.myConnection.State == ConnectionState.Open && Global.MainUser != null)
             {
-                //testLabel.Text = "ReloadChange: "+ReloadChanges;
+                if (!IsPostBack)
+                {
                     displayCourses();
-
+                }
             }
             else
             {
@@ -40,6 +42,7 @@ namespace SOEN341_nobean
         }
         public void editPreferences(object sender, EventArgs e)
         {
+            //switch buttons and allow checkboxes to be edited
             ChkLstGeneral.Enabled = true;
             ChkLstTechnical.Enabled = true;
             ChkLstScience.Enabled = true;
@@ -50,10 +53,7 @@ namespace SOEN341_nobean
         }
         public void savePreferences(object sender, EventArgs e)
         {
-
-            //CheckedListBox.CheckedItemCollection
-            //get all checked items, for each item, check item.Value (courseId in DB). 
-            //if item.Selected = true, add to DB
+            //switch buttons and disable checkboxes
             ChkLstGeneral.Enabled = false;
             ChkLstTechnical.Enabled = false;
             ChkLstScience.Enabled = false;
@@ -61,6 +61,45 @@ namespace SOEN341_nobean
             editPreferencesBtnBottom.Visible = true;
             savePreferencesBtnTop.Visible = false;
             savePreferencesBtnBottom.Visible = false;
+
+            //Get all selected courses by values(Corse ids) and add them to a list
+            List<string> selectedValuesGeneral = ChkLstGeneral.Items.Cast<ListItem>()
+                .Where(li => li.Selected)
+                .Select(li => li.Value)
+                .ToList();
+            List<string> selectedValuesTechnical = ChkLstTechnical.Items.Cast<ListItem>()
+               .Where(li => li.Selected)
+               .Select(li => li.Value)
+               .ToList();
+            List<string> selectedValuesScience = ChkLstScience.Items.Cast<ListItem>()
+                           .Where(li => li.Selected)
+                           .Select(li => li.Value)
+                           .ToList();
+
+            List<string> preferenceCourseID = new List<string>();
+            //add all preferences Course Id to one list
+            preferenceCourseID.AddRange(selectedValuesGeneral);
+            preferenceCourseID.AddRange(selectedValuesTechnical);
+            preferenceCourseID.AddRange(selectedValuesScience);
+
+            //test--------------
+            string testString = "";
+            foreach (string value in preferenceCourseID)
+            {
+                testString += ", " + value;
+            }
+            testLabel.Text = testString;
+            
+            //delete all user preferences
+            DBHandler.removeUserPreferences(netName);
+            //add new preferences to DB
+            foreach (string value in preferenceCourseID)
+            {
+                DBHandler.insertUserPreferences(netName, value);
+            }
+            //reload the page
+            Response.Redirect("Preferences.aspx");
+
         }
         private void displayCourses()
         {
@@ -77,7 +116,7 @@ namespace SOEN341_nobean
             //generates checkboxlist for general
             foreach (Course course in electiveGeneral)
             {
-                String chkText = course.getSubject() + " " + course.getCode() + " - " + course.getCourseName();
+                string chkText = course.getSubject() + " " + course.getCode() + " - " + course.getCourseName();
                 int courseID = course.getCourseID();
                 ListItem item = new ListItem(chkText);
                 //set value to courseID for save function
@@ -96,7 +135,7 @@ namespace SOEN341_nobean
             ChkLstGeneral.Enabled = false;
             foreach (Course course in electiveTechnical)
             {
-                String chkText = course.getSubject() + " " + course.getCode() + " - "+course.getCourseName();
+                string chkText = course.getSubject() + " " + course.getCode() + " - "+course.getCourseName();
                 int courseID = course.getCourseID();
                 ListItem item = new ListItem(chkText);
                 //set value to courseID for save function
@@ -115,7 +154,7 @@ namespace SOEN341_nobean
             ChkLstTechnical.Enabled = false;
             foreach (Course course in electiveScience)
             {
-                String chkText = course.getSubject() + " " + course.getCode() + " - " + course.getCourseName();
+                string chkText = course.getSubject() + " " + course.getCode() + " - " + course.getCourseName();
                 int courseID = course.getCourseID();
                 ListItem item = new ListItem(chkText);
                 //set value to courseID for save function
@@ -133,85 +172,5 @@ namespace SOEN341_nobean
             }
             ChkLstScience.Enabled = false;
         }
-        /*private void displayAllPreferences()
-        {
-            
-            //--------------------------------------------
-            Once list of all preferences is made
-             * Display list of all preferences
-             * then compare each item with user preferences
-             * if match, then selected=true
-             
-            //get list of all preferences of user
-            List<List<SOEN341_nobean.Class.Course>> preferencesList = dbhandler.getPreferences(netName);
-            //populate tables with course name+code and checkbox
-            
-            //**** do same as technical course 
-            foreach (SOEN341_nobean.Class.Course course in preferencesList[0])
-            {
-                TableRow row = new TableRow();
-                TableCell cellCourseName = new TableCell();
-                TableCell cellCheckBox = new TableCell();
-                CheckBox checkbox = new CheckBox();
-                checkbox.ID = "Checkbox" + course.getSubject() + course.getCode();
-
-                cellCourseName.Text = course.getSubject() + " " + course.getCode();
-                if (true)//change to check if course is in student preferences
-                {
-                    checkbox.Checked = true;
-                    //checkbox.Enabled = false;
-                }
-                else
-                {
-                    checkbox.Checked = false;
-                    //checkbox.Enabled = false;
-                }
-                cellCheckBox.Controls.Add(checkbox);
-                row.Cells.Add(cellCourseName);
-                row.Cells.Add(cellCheckBox);
-                TableScience.Rows.Add(row);
-            }
-            //**** do same as technical course 
-            foreach (SOEN341_nobean.Class.Course course in preferencesList[1])
-            {
-                TableRow row = new TableRow();
-                TableCell cellCourseName = new TableCell();
-                TableCell cellCheckBox = new TableCell();
-                CheckBox checkbox = new CheckBox();
-                checkbox.ID = "Checkbox" + course.getSubject() + course.getCode();
-
-                cellCourseName.Text = course.getSubject() + " " + course.getCode();
-                if (true)//change to check if course is in student preferences
-                {
-                    checkbox.Checked = true;
-                    //checkbox.Enabled = false;
-                }
-                else
-                {
-                    checkbox.Checked = false;
-                    //checkbox.Enabled = false;
-                }
-                cellCheckBox.Controls.Add(checkbox);
-                row.Cells.Add(cellCourseName);
-                row.Cells.Add(cellCheckBox);
-                TableGeneral.Rows.Add(row);
-            }
-            foreach (SOEN341_nobean.Class.Course course in preferencesList[2])
-            {
-                String chkText = course.getSubject() + " " + course.getCode();
-                ChkLstTechnical.Items.Add(chkText);
-                if (true)//change to check if course is in student preferences
-                {
-                    ChkLstTechnical.Items.FindByValue(chkText).Selected = true;
-                    //ChkLstTechnical.SetItemCheckState(0, true); //using System.Windows.Forms(.dll)
-                    
-                }
-                else
-                {
-                }
-            }
-            ChkLstTechnical.Enabled=false;
-            ReloadChanges = false;
-        }*/
     }
 }
