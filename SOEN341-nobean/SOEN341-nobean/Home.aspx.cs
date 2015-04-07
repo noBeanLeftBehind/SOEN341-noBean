@@ -12,8 +12,20 @@ namespace SOEN341_nobean
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+           
+
             if (Global.MainUser.getisAdmin() == true)
                 Response.Redirect("adminHome.aspx");
+        }
+
+       
+
+        protected void TextBox1_TextChanged1(object sender, EventArgs e)
+        {
+           
+
+            
         }
     }
 }
