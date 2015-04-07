@@ -12,7 +12,9 @@ namespace SOEN341_nobean
 {
     public partial class adminHome : System.Web.UI.Page
     {
-        private User student;
+
+        private static User student;
+        
         private DBHandler userHandler = new DBHandler();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -21,6 +23,7 @@ namespace SOEN341_nobean
 
                 if (Global.MainUser.getisAdmin() == false)
                     Response.Redirect("home.aspx");
+                Global.Admin = Global.MainUser;
 
                 SubmitIDButton.Click += new EventHandler(this.SubmitIDButton_Click);
                 connectStudent.Click += new EventHandler(this.connectStudent_Click1);
@@ -40,9 +43,17 @@ namespace SOEN341_nobean
 
                     try
                     {
-                        student = userHandler.getUserByID(studentID);
-                        if (student.getfirstName() != null && student.getlastName() != null)
+                        User tempStudent = userHandler.getUserByID(studentID);
+                        if (tempStudent.getisAdmin())
                         {
+                            error_IDStudent.Style["color"] = "red";
+                            error_IDStudent.Text = String.Format("You have not the rights to log in as an administrator", studentIDTextBox.Text);
+                            connectStudent.Visible = false;
+                            connectStudent.Visible = false;
+                        }
+                        else if (tempStudent.getfirstName() != null && tempStudent.getlastName() != null)
+                        {
+                            student = tempStudent;
                             hiddenStudentID.Value = studentID;
                             error_IDStudent.Text = "Student found: ";
                             LabelStudentFound.Text = String.Format("<p>\r\n {0}, {1} </p>", student.getlastName(), student.getfirstName());
@@ -54,9 +65,9 @@ namespace SOEN341_nobean
                         {
                             error_IDStudent.Style["color"] = "red";
                             error_IDStudent.Text = String.Format("Student with ID {0} was not found", studentIDTextBox.Text);
+                            connectStudent.Visible = false;
+                            connectStudent.Visible = false;
                         }
-                        
-                      
                     }
                     catch (Exception ex)
                     {
@@ -69,15 +80,18 @@ namespace SOEN341_nobean
             {
                 error_IDStudent.Text = "ERROR: Enter a 8 digit Student ID";
                 LabelStudentFound.Text = "";
+                connectStudent.Visible = false;
+                connectStudent.Visible = false;
             }
 
         }
 
         protected void connectStudent_Click1(object sender, EventArgs e)
         {
-            Global.MainUser = userHandler.getUserByID(hiddenStudentID.Value);
+            Global.MainUser = student;
             Response.Redirect("home.aspx");
         }
 
-    }
+    
+public  SOEN341_nobean.User _student { get; set; }}
 }
