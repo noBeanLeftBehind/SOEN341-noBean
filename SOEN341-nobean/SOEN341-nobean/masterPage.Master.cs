@@ -16,13 +16,33 @@ namespace SOEN341_nobean
             {
                 scheduleNavID.Style.Add("display", "none");
                 accountNavID.Style.Add("display", "none");
-                
+            }
+
+            if (Global.Admin != null && Global.Admin != Global.MainUser)
+            {
+                logoutAnchor.InnerHtml = "Administrator Home";
             }
             if (Request.QueryString["id"] == "logout")
             {
-                Global.MainUser = null;
-                Global.myConnection.Close();
-                Response.Redirect("login.aspx");
+                if (Global.Admin != null && Global.MainUser != null && Global.Admin != Global.MainUser)
+                {
+                    Global.MainUser = Global.Admin;
+                    Response.Redirect("home.aspx");
+                }
+                else if (Global.Admin == null && Global.MainUser != null)
+                {
+                    Global.MainUser = null;
+                    Global.myConnection.Close();
+                    Response.Redirect("login.aspx");
+                }
+                else if (Global.MainUser == Global.Admin)
+                {
+                    Global.MainUser = null;
+                    Global.Admin = null;
+                    Global.myConnection.Close();
+                    Response.Redirect("login.aspx");
+                }
+                
             }
         }
     }
