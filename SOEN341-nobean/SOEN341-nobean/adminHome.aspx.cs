@@ -18,12 +18,12 @@ namespace SOEN341_nobean
         private DBHandler userHandler = new DBHandler();
         protected void Page_Load(object sender, EventArgs e)
         {
-                Global.Admin = Global.MainUser;
                 if (Global.myConnection == null || Global.myConnection.State == System.Data.ConnectionState.Closed || Global.MainUser == null)
                     Response.Redirect("login.aspx");
 
-                if (Global.Admin.getisAdmin() == false)
+                if (Global.MainUser.getisAdmin() == false)
                     Response.Redirect("home.aspx");
+                Global.Admin = Global.MainUser;
 
                 SubmitIDButton.Click += new EventHandler(this.SubmitIDButton_Click);
                 connectStudent.Click += new EventHandler(this.connectStudent_Click1);
