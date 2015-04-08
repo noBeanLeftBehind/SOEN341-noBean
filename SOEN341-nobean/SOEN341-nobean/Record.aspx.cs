@@ -158,11 +158,10 @@ namespace SOEN341_nobean
 
         }
 
-		private void editCoursesTaken()
+        public void editCoursesTaken(object sender, EventArgs e)
 		{
-
-           Global.Record.addCourseTaken(DBHandler.getCourseByCourseName(studentCourse.Text));
-
+            Global.Record = new Class.Record();
+            Global.Record.addCourseTaken(DBHandler.getCourse(studentCourse.Text));
 		}
 	}
 }
