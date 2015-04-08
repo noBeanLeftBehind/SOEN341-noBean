@@ -43,6 +43,11 @@ namespace SOEN341_nobean.Class
             }
         }
 
+        public List<Course> getCoursesTaken()
+        {
+            return coursesTaken;
+        }
+
         public void addCourseTaken (Course cours){
             coursesTaken.Add(cours);
         }

@@ -11,17 +11,25 @@
         <asp:Table runat="server" id="recordTable" GridLines="both" HorizontalAlign="Center">
         </asp:Table>
     </div>
+    <div id="adminRecord">
+        <asp:TextBox Width="60px" runat="server" ID="studentCourse" Visible="false"></asp:TextBox>
+        <asp:Button Width="120px" runat="server" ID="submitCourseButton" Text="Submit" Visible="false" OnClick="editCoursesTaken" />
+    </div>
+    <div id="CoursesPassed">
+        <h3>Passed Courses</h3>
+        <div>
+            <asp:Table runat="server" id="pCoursesTable" GridLines="both" HorizontalAlign="Center">
+            </asp:Table>
+        </div>
+    </div>
     <div id="CoursesToBeTaken">
         <h3>Remaining Courses</h3>
         <div>
             <asp:Table runat="server" id="rCoursesTable" GridLines="both" HorizontalAlign="Center">
-                <asp:TableHeaderRow>
-                    <asp:TableHeaderCell>Class</asp:TableHeaderCell>
-                    <asp:TableHeaderCell>Credits</asp:TableHeaderCell>
-                </asp:TableHeaderRow>
             </asp:Table>
         </div>
     </div>
+
 
 
 
@@ -30,7 +38,7 @@
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script type="text/javascript">
         $(function () {
-            $("#CoursesToBeTaken").accordion({
+            $("#CoursesToBeTaken, #CoursesPassed").accordion({
                 active: false,
                 collapsible: true,
                 heightStyle: "content",
@@ -41,5 +49,6 @@
                 }
             });
         });
+
     </script>
 </asp:Content>

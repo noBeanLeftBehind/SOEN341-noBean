@@ -22,6 +22,33 @@ namespace SOEN341_nobean {
         protected global::System.Web.UI.WebControls.Table recordTable;
         
         /// <summary>
+        /// studentCourse control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox studentCourse;
+        
+        /// <summary>
+        /// submitCourseButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button submitCourseButton;
+        
+        /// <summary>
+        /// pCoursesTable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table pCoursesTable;
+        
+        /// <summary>
         /// rCoursesTable control.
         /// </summary>
         /// <remarks>

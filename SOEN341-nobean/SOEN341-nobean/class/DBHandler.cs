@@ -467,6 +467,50 @@ namespace SOEN341_nobean.Class
             return ret;
         }
 
+        public Course getCourseByCourseName(string name)
+        {
+            //Global.myConnection.Open();
+
+            var page = HttpContext.Current.CurrentHandler as Page;
+            Course tempCourse = null;
+            try
+            {
+                SqlDataReader myReader = null;
+                SqlCommand myCommand = new SqlCommand(
+                    "SELECT * FROM [dbo].[Course] WHERE courseName = @name;", Global.myConnection);
+                SqlParameter myParam = new SqlParameter("@name", SqlDbType.VarChar);
+                myParam.Value = name;
+                myCommand.Parameters.Add(myParam);
+                myReader = myCommand.ExecuteReader();
+                while (myReader.Read())
+                {
+                    tempCourse = new Course();
+                    tempCourse.setCourseID(Convert.ToInt32(myReader["CourseID"].ToString()));
+                    tempCourse.setCode(myReader["Code"].ToString());
+                    tempCourse.setSubject(myReader["Subject"].ToString());
+                    tempCourse.setCredits(Convert.ToInt32(myReader["CourseID"].ToString()));
+                    tempCourse.setDescription(myReader["Description"].ToString());
+                    tempCourse.setPriority(Convert.ToInt32(myReader["Priority"].ToString()));
+                    //tempUser.setisAdmin(myReader["isAdmin"].ToString());
+                    //page.ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + myReader["isAdmin"].ToString() + "');", true);
+
+                    // tempUser.setisAdmin(myReader[""])
+
+
+                }
+                myReader.Close();
+            }
+            catch (Exception exp)
+            {
+                //TextBox3.Text = TextBox3.Text + exp.ToString() + "\n";
+
+                page.ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + exp.ToString() + "');", true);
+            }
+
+
+
+            return tempCourse;
+        }
 
     }
 }
