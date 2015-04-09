@@ -23,7 +23,6 @@ namespace SOEN341_nobean.Class
         static public User MainUser;
         static public User Admin;
         static public CourseDirectory CourseDirectory;
-        static public Record Record;
         Global()
         {
             _myConnection = new SqlConnection();

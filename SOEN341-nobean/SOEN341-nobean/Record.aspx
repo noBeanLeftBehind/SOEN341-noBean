@@ -12,7 +12,7 @@
         </asp:Table>
     </div>
     <div id="adminRecord">
-        <asp:TextBox Width="60px" runat="server" ID="studentCourse" Visible="false"></asp:TextBox>
+        <asp:TextBox Width="60px" runat="server" ID="studentCourse" Text="Course ID" Visible="false"></asp:TextBox>
         <asp:Button Width="120px" runat="server" ID="submitCourseButton" Text="Submit" Visible="false" OnClick="editCoursesTaken" />
     </div>
     <div id="CoursesPassed">
@@ -23,7 +23,7 @@
         </div>
     </div>
     <div id="CoursesToBeTaken">
-        <h3>Remaining Courses</h3>
+        <h3>Remaining Core Courses</h3>
         <div>
             <asp:Table runat="server" id="rCoursesTable" GridLines="both" HorizontalAlign="Center">
             </asp:Table>

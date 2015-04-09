@@ -86,9 +86,6 @@ namespace SOEN341_nobean
 			cell.Text = Global.MainUser.getemail() + "";
 			tRow.Cells.Add(cell);
 			recordTable.Rows.Add(tRow);
-
-			//courses taken
-
 		}
 
 		private void displayPassedCourses()
@@ -96,14 +93,33 @@ namespace SOEN341_nobean
 			TableCell cell;
 			TableRow tRow;
 
+            if (Global.Admin != null)
+            {
+                TableHeaderCell hCell = new TableHeaderCell();
+                TableHeaderRow hRow = new TableHeaderRow();
+                hCell.Text = "Class";
+                hRow.Cells.Add(hCell);
+                hCell = new TableHeaderCell();
+                hCell.Text = "Course ID";
+                hRow.Cells.Add(hCell);
+                pCoursesTable.Rows.Add(hRow);
+            }
+
 				try
 				{
-                    foreach (Course course in Global.Record.getCoursesTaken())
+                    foreach (int CourseID in DBHandler.getRecord(netName))
 					{
 						cell = new TableCell();
 						tRow = new TableRow();
-						cell.Text = course.getCourseName() + "    ";
+                        Course course = DBHandler.getCourse(CourseID.ToString());
+						cell.Text = course.getCourseName() + "";
 						tRow.Cells.Add(cell);
+                        if (Global.Admin != null)
+                        {
+                            cell = new TableCell();
+                            cell.Text = course.getCourseID() + "    ";
+                            tRow.Cells.Add(cell);
+                        }
 						pCoursesTable.Rows.Add(tRow);
 					}
 				}
@@ -122,25 +138,51 @@ namespace SOEN341_nobean
 		{
 			TableCell cell;
 			TableRow tRow;
+            bool passed;
+            Course course;
+            if (Global.Admin != null)
+            {
+                TableHeaderCell hCell = new TableHeaderCell();
+                TableHeaderRow hRow = new TableHeaderRow();
+                hCell.Text = "Class";
+                hRow.Cells.Add(hCell);
+                hCell = new TableHeaderCell();
+                hCell.Text = "Course ID";
+                hRow.Cells.Add(hCell);
+                rCoursesTable.Rows.Add(hRow);
+            }
 
-			foreach (Course course in Global.CourseDirectory.getAllCourses())
+			foreach (int courseID1 in DBHandler.getCoreClasses())
 			{
+                passed = false;       
                 try
                 {
-                    foreach (Course pcourse in Global.Record.getCoursesTaken())
+                    foreach (int courseID2 in DBHandler.getRecord(netName))
                     {
-                        if (course.getCourseID() != pcourse.getCourseID())
+                        if (courseID1 == courseID2)
+                        {
+                            passed = true;
+                        }
+                    }
+                    if (!passed)
+                    {
+                        course = DBHandler.getCourse(courseID1.ToString());
+                        cell = new TableCell();
+                        tRow = new TableRow();
+                        cell.Text = course.getCourseName() + "    " ;
+                        tRow.Cells.Add(cell);
+                        if (Global.Admin != null)
                         {
                             cell = new TableCell();
-                            tRow = new TableRow();
-                            cell.Text = course.getCourseName() + "    ";
+                            cell.Text = course.getCourseID() + "    ";
                             tRow.Cells.Add(cell);
-                            rCoursesTable.Rows.Add(tRow);
                         }
+                        rCoursesTable.Rows.Add(tRow);
                     }
                 }
                 catch(Exception e)
                 {
+                    course = DBHandler.getCourse(courseID1.ToString());
                     cell = new TableCell();
                     tRow = new TableRow();
                     cell.Text = course.getCourseName() + "    ";
@@ -160,8 +202,8 @@ namespace SOEN341_nobean
 
         public void editCoursesTaken(object sender, EventArgs e)
 		{
-            Global.Record = new Class.Record();
-            Global.Record.addCourseTaken(DBHandler.getCourse(studentCourse.Text));
+            DBHandler.insertUserRecord(netName, studentCourse.Text);
+            Response.Redirect(Request.RawUrl);
 		}
 	}
 }

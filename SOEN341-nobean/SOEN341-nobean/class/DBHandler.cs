@@ -467,6 +467,79 @@ namespace SOEN341_nobean.Class
             return ret;
         }
 
+        public void insertUserRecord(string netNameString, string courseIDString)
+        {
+            int netName = Convert.ToInt32(netNameString);
+            int courseID = Convert.ToInt32(courseIDString);
+            string insertQuery = "insert into [dbo].[Record] (UserID,CourseID) values (@UserID,@CourseID)";
 
-    }
+            SqlCommand com = new SqlCommand(insertQuery, Global.myConnection);
+
+            com.Parameters.AddWithValue("@UserID", netName);
+            com.Parameters.AddWithValue("@CourseID", courseID);
+
+            com.ExecuteNonQuery();
+        }
+
+        public List<int> getRecord(string UserID)
+        {
+            var page = HttpContext.Current.CurrentHandler as Page;
+            List<int> courseIDList = new List<int>();
+            try
+            {
+                SqlDataReader myReader = null;
+                SqlCommand myCommand = new SqlCommand(
+                    "SELECT * FROM [dbo].[Record] WHERE UserID = @UserID;", Global.myConnection);
+                SqlParameter myParam = new SqlParameter("@UserID", SqlDbType.VarChar);
+                myParam.Value = UserID;
+                myCommand.Parameters.Add(myParam);
+                myReader = myCommand.ExecuteReader();
+                while (myReader.Read())
+                {
+                    //get course by id
+                    courseIDList.Add(Convert.ToInt32(myReader["CourseID"].ToString()));
+                }
+                myReader.Close();
+            }
+            catch (Exception exp)
+            {
+                page.ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + exp.ToString() + "');", true);
+            }
+            return courseIDList;
+        }
+
+        public List<int> getCoreClasses()
+        {
+            var page = HttpContext.Current.CurrentHandler as Page;
+            List<int> courseId = new List<int>(0);
+            Course course = null;
+            try
+            {
+                SqlDataReader myReader = null;
+                SqlCommand myCommand = new SqlCommand(
+                    "SELECT * FROM [dbo].[Course] WHERE isCore = 1;", Global.myConnection
+                    );
+                myReader = myCommand.ExecuteReader();
+                while (myReader.Read())
+                {
+                    course = new Course();
+                    course.setCourseID(Convert.ToInt32(myReader["CourseID"].ToString()));
+                    course.setCode(myReader["Number"].ToString());
+                    course.setCourseName(myReader["Title"].ToString());
+                    course.setSubject(myReader["Name"].ToString());
+                    course.setPriority(Convert.ToInt32(myReader["Priority"].ToString()));
+                    course.setAsCore();
+                    courseId.Add(course.getCourseID());
+                }
+
+                myReader.Close();
+            }
+            catch (Exception exp)
+            {
+                page.ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + exp.ToString() + "');", true);
+            }
+
+            return courseId;
+        }
+     }
 }
