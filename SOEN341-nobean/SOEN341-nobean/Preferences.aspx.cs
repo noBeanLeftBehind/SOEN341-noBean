@@ -84,8 +84,18 @@ namespace SOEN341_nobean
                 DBHandler.insertUserPreferences(netName, value);
             }
             //reload the page
+            savePreferencesToGlobal(preferenceCourseID);
             Response.Redirect("Preferences.aspx");
 
+        }
+        private void savePreferencesToGlobal(List<string> preferenceCourseID)
+        {
+            List<Course> preferenceCourse = new List<Course>();
+            foreach (string courseID in preferenceCourseID)
+            {
+                preferenceCourse.Add(DBHandler.getCourse(courseID));
+            }
+            Global.ListPreferences = preferenceCourse;
         }
         private void displayCourses()
         {
