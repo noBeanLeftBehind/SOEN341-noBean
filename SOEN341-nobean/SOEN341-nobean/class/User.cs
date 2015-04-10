@@ -6,6 +6,7 @@ using System.Web;
 
 namespace SOEN341_nobean
 {
+    [Serializable]
     public class User
     {
         protected int UserID;
