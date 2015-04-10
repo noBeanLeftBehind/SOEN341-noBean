@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/masterPage.master" CodeBehind="adminHome.aspx.cs" Inherits="SOEN341_nobean.adminHome" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/masterPage.master" EnableViewState="true" EnableViewStateMAC="true" ViewStateEncryptionMode="Always" CodeBehind="adminHome.aspx.cs" Inherits="SOEN341_nobean.adminHome" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head"  runat="server">
     <link rel="stylesheet" href="master.css" type="text/css" />
