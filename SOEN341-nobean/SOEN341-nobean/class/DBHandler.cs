@@ -261,6 +261,7 @@ namespace SOEN341_nobean.Class
                     course.setCourseName(myReader["Title"].ToString());
                     course.setSubject(myReader["Name"].ToString());
                     course.setPriority(Convert.ToInt32(myReader["Priority"].ToString()));
+                    course.setDescription(myReader["CourseDescription"].ToString());
                     //set course type
                    
                     if (myReader["isCore"].ToString().Equals("True"))
