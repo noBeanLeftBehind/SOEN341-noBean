@@ -12,7 +12,7 @@ namespace SOEN341_nobean
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Global.MainUser.getisAdmin() == true)
+            if ( (Global.MainUser!=null) && (Global.MainUser.getisAdmin()))
             {
                 scheduleNavID.Style.Add("display", "none");
                 accountNavID.Style.Add("display", "none");
