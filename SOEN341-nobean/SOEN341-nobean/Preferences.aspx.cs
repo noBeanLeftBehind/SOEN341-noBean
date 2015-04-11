@@ -149,12 +149,14 @@ namespace SOEN341_nobean
             ChkLstTechnical.Enabled = false;
             foreach (Course course in electiveScience)
             {
-                string chkText = course.getSubject() + " " + course.getCode() + " - " + course.getCourseName();
+                //string chkText = course.getSubject() + " " + course.getCode() + " - " + course.getCourseName();
+                string chkText = course.getSubject() + " " + course.getCode() + " - " + course.getCourseName() +
+                    "&nbsp&nbsp<img src=\"getInfo.png\" title=\"" + course.getDescription() + "\">";
                 int courseID = course.getCourseID();
                 ListItem item = new ListItem(chkText);
                 //set value to courseID for save function
                 item.Value = courseID + "";
-                item.Attributes["Title"] = course.getDescription();
+                //item.Attributes["Title"] = course.getDescription();
                 if (preferenceCourseID.IndexOf(courseID) != -1)//if courseId is in preferenceCourseID
                 {
                     item.Selected = true;
