@@ -111,12 +111,11 @@ namespace SOEN341_nobean
             //generates checkboxlist for general
             foreach (Course course in electiveGeneral)
             {
-                string chkText = course.getSubject() + " " + course.getCode() + " - " + course.getCourseName();
-                int courseID = course.getCourseID();
+                string chkText = course.getSubject() + " " + course.getCode() + " - " + course.getCourseName() +
+                    "&nbsp&nbsp<img src=\"getInfo.png\" title=\"" + course.getDescription() + "\">"; int courseID = course.getCourseID();
                 ListItem item = new ListItem(chkText);
                 //set value to courseID for save function
                 item.Value = courseID+"";
-                item.Attributes["Title"] = course.getDescription();
                 if (preferenceCourseID.IndexOf(courseID) != -1)//if courseId is in preferenceCourseID
                 {
                     item.Selected = true;
@@ -130,12 +129,11 @@ namespace SOEN341_nobean
             ChkLstGeneral.Enabled = false;
             foreach (Course course in electiveTechnical)
             {
-                string chkText = course.getSubject() + " " + course.getCode() + " - "+course.getCourseName();
-                int courseID = course.getCourseID();
+                string chkText = course.getSubject() + " " + course.getCode() + " - " + course.getCourseName() +
+                    "&nbsp&nbsp<img src=\"getInfo.png\" title=\"" + course.getDescription() + "\">"; int courseID = course.getCourseID();
                 ListItem item = new ListItem(chkText);
                 //set value to courseID for save function
                 item.Value = courseID + "";
-                item.Attributes["Title"] = course.getDescription();
                 if (preferenceCourseID.IndexOf(courseID) != -1)//if courseId is in preferenceCourseID
                 {
                     item.Selected = true;

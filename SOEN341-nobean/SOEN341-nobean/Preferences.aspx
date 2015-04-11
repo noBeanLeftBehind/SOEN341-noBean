@@ -39,7 +39,10 @@
 
         $(function () {
             $(document).tooltip({
-                track: false
+                track: false,
+                open: function (event, ui) {
+                    ui.tooltip.css("max-width", "1000px");
+                }
             });
         });
         $(function () {
