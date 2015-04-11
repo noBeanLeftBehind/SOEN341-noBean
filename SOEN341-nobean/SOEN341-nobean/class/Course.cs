@@ -13,10 +13,10 @@ namespace SOEN341_nobean.Class
         protected String code;
         protected String subject;
         protected String courseName;
-        protected int credits;
+        //protected int credits;
         protected String description;
         protected int priority;
-        protected List<Course> preRequisites = new List<Course>();
+        //protected List<Course> preRequisites = new List<Course>();
         protected List<Section> lecture = new List<Section>();
         Record studentRecord = new Record();
         private Boolean isCore = false;
@@ -24,12 +24,12 @@ namespace SOEN341_nobean.Class
         private Boolean isGeneral = false;
         private Boolean isTechnical = false;
 
-        public Course(String name, String code, String description, int credits)
+        public Course(String name, String code, String description) //int credits)
         {
             this.courseName = name;
             this.code = code;
             this.description = description;
-            this.credits = credits;
+           // this.credits = credits;
         }
         public Course(){}
         public int getCourseID()
@@ -40,10 +40,10 @@ namespace SOEN341_nobean.Class
         {
             this.courseID = courseID;
         }
-        protected void addpreRequisites(Course pre)
-        {
-            preRequisites.Add(pre);
-        }
+        //protected void addpreRequisites(Course pre)
+        //{
+        //    preRequisites.Add(pre);
+        //}
         public void addLecture(Section sec)
         {
             lecture.Add(sec);
@@ -63,15 +63,15 @@ namespace SOEN341_nobean.Class
             this.courseName = name;
         }
 
-        public int getCredits()
-        {
-            return credits;
-        }
+        //public int getCredits()
+        //{
+        //    return credits;
+        //}
 
-        public void setCredits(int credits)
-        {
-            this.credits = credits;
-        }
+        //public void setCredits(int credits)
+        //{
+        //    this.credits = credits;
+        //}
 
         public String getCode()
         {
@@ -108,25 +108,26 @@ namespace SOEN341_nobean.Class
         {
             return priority;
         }
-        public Boolean equals(Course cours)
-        {
-            return (this.courseName == cours.courseName && this.code == cours.code && this.description == cours.description && this.credits == cours.credits);
-        }
 
-        public Boolean preReqs()
-        {
-            foreach (Course i in preRequisites)
-            {
-                foreach (Course j in studentRecord.coursesTaken)
-                {
-                    if (j == i)
-                        continue;
-                    else
-                        return false;
-                }
-            }
-            return true;
-        }
+        //public Boolean equals(Course cours)
+        //{
+        //    return (this.courseName == cours.courseName && this.code == cours.code && this.description == cours.description && this.credits == cours.credits);
+        //}
+
+        //public Boolean preReqs()
+        //{
+        //    foreach (Course i in preRequisites)
+        //    {
+        //        foreach (Course j in studentRecord.coursesTaken)
+        //        {
+        //            if (j == i)
+        //                continue;
+        //            else
+        //                return false;
+        //        }
+        //    }
+        //    return true;
+        //}
 
         //checks if course is of a specified type
         public Boolean isCoreCourse()

@@ -16,14 +16,14 @@ namespace SOEN341_nobean.Class
             this.semesters = new List<semester>();
         }
 
-        public int getCredits()
-        {
-            return this.credits;
-        }
-        public void setCredits(int credits)
-        {
-            this.credits = credits;
-        }
+        //public int getCredits()
+        //{
+        //    return this.credits;
+        //}
+        //public void setCredits(int credits)
+        //{
+        //    this.credits = credits;
+        //}
 
         public List<semester> getSemester()
         {
