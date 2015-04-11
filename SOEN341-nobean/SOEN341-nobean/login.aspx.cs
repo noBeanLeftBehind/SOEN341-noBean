@@ -60,6 +60,7 @@ namespace SOEN341_nobean
                    CourseDirectory cd = new CourseDirectory();
                    db.addAllCoursestoDirectory(cd);
                    Global.CourseDirectory = cd;
+                   savePreferencesToGlobal(Global.MainUser.getUserID()+"");
                    if (Global.MainUser.getisAdmin())
                        Response.Redirect("adminHome.aspx");
                    Response.Redirect("Home.aspx");
@@ -74,6 +75,18 @@ namespace SOEN341_nobean
            // String myStringVariable = "hi";
           
 
+        }
+        //sets preference courses in a list in global
+        public void savePreferencesToGlobal(string userID)
+        {
+            DBHandler DBHandler = new DBHandler();
+            List<int> preferenceID = DBHandler.getPreferences(userID);
+            List<Course> preferenceCourse = new List<Course>();
+            foreach (int courseID in preferenceID)
+            {
+                preferenceCourse.Add(DBHandler.getCourse(courseID + ""));
+            }
+            Global.ListPreferences = preferenceCourse;
         }
 
         protected void TextBox1_TextChanged(object sender, EventArgs e) 
