@@ -3,6 +3,7 @@
          <link rel="stylesheet" href="master.css" type="text/css" />
         <link rel="stylesheet" href="/css/Regist.css" type="text/css" />
          <script  src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
          <script src="js/registration.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Stylesheets" runat="server">
@@ -11,7 +12,6 @@
     <div id="registDiv">
         <span id="registheader" >Registration</span>
         <br />
-
         
         <asp:TextBox ID="TextBoxFN" runat="server" OnTextChanged="TextBoxFN_TextChanged" MaxLength="50" placeholder="First Name" CssClass="textboxCss"></asp:TextBox>
         <br />
@@ -47,7 +47,7 @@
         <!--<asp:Label ID="Label3" runat="server" Text="Password :"></asp:Label>-->
         <asp:TextBox ID="TextBoxPWD" runat="server" MaxLength="50" placeholder="Password" CssClass="textboxCss"></asp:TextBox>      
         <br />
-        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="TextBoxPWD" ErrorMessage="Password is required" ForeColor="Red" CssClass="errormsg" ></asp:RequiredFieldValidator>
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="TextBoxPWD" ErrorMessage="Password is required &nbsp&nbsp<img id='passwordTooltip' src='getInfo.png' title=''>" ForeColor="Red" CssClass="errormsg" ></asp:RequiredFieldValidator>
         <br />
 
         <!--<asp:Label ID="Label4" runat="server" Text="Confirm Password :"></asp:Label>-->
@@ -71,4 +71,11 @@
         <br />
         <input id="Reset1" type="reset" value="reset" class="reset"/>
     </div>
+    <script>
+        $(function () {
+        $(document).tooltip({
+            content: '<img style="margin-left:40%;" src="http://meatballcandy.com/wp-content/uploads/2013/02/sorry-your-password-must-contain.jpg" />'
+        });
+        });
+    </script>
 </asp:Content>
