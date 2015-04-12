@@ -61,6 +61,8 @@ namespace SOEN341_nobean
                    db.addAllCoursestoDirectory(cd);
                    Global.CourseDirectory = cd;
                    savePreferencesToGlobal(Global.MainUser.getUserID()+"");
+                   savePassedCoursesToGlobal(Global.MainUser.getUserID() + "");
+                   getRemainingCourses();
                    if (Global.MainUser.getisAdmin())
                        Response.Redirect("adminHome.aspx");
                    Response.Redirect("Home.aspx");
@@ -87,6 +89,46 @@ namespace SOEN341_nobean
                 preferenceCourse.Add(DBHandler.getCourse(courseID + ""));
             }
             Global.ListPreferences = preferenceCourse;
+        }
+
+        public void savePassedCoursesToGlobal(string userID)
+        {
+            DBHandler DBHandler = new DBHandler();
+            List<int> CourseID = DBHandler.getRecord(userID);
+            List<Course> TakenCourse = new List<Course>();
+            if (CourseID.Count != 0)
+            {
+                foreach (int courseID in CourseID)
+                {
+                    TakenCourse.Add(DBHandler.getCourse(courseID + ""));
+                }
+            }
+            Global.ListCourseTaken = TakenCourse;
+        }
+
+        public void getRemainingCourses()
+        {
+            List<Course> passedCourse = Global.ListCourseTaken;
+            List<Course> preferenceList = Global.ListPreferences;
+            List<Course> remainingCourse = new List<Course>();
+            CourseDirectory cd = Global.CourseDirectory;
+            List<Course> coreCourse = cd.getAllCourses();
+
+            if (passedCourse.Count != 0)
+            {
+                foreach (Course cours in coreCourse)
+                {
+                    if (!passedCourse.Contains(cours))
+                    {
+                        remainingCourse.Add(cours);
+                    }
+
+                }
+            }
+            else
+                remainingCourse = coreCourse;
+
+            Global.ListCourseRemaining = remainingCourse;
         }
 
         protected void TextBox1_TextChanged(object sender, EventArgs e) 
