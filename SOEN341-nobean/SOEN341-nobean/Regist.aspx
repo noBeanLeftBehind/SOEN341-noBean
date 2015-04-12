@@ -72,10 +72,10 @@
         <input id="Reset1" type="reset" value="reset" class="reset"/>
     </div>
     <script>
-
-        $('#passwordTooltip').tooltip({
+        $(function () {
+        $(document).tooltip({
             content: '<img style="margin-left:40%;" src="http://meatballcandy.com/wp-content/uploads/2013/02/sorry-your-password-must-contain.jpg" />'
         });
-
+        });
     </script>
 </asp:Content>

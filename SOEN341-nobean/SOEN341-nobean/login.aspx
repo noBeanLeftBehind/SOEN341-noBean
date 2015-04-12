@@ -3,7 +3,6 @@
      <link rel="stylesheet" href="master.css" type="text/css" />
     <link rel="stylesheet" href="/css/login.css" type="text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="js/login.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Stylesheets" runat="server">
@@ -25,14 +24,9 @@
         <asp:HyperLink runat="server" Text="Register" NavigateUrl="~/Regist.aspx" CssClass="register"></asp:HyperLink>
     </div>
     <asp:TextBox ID="TextBox3" runat="server" Height="133px" TextMode="MultiLine"></asp:TextBox>
-    <br />
-    <img id="dodo" height="20" title="" src="https://babetter.files.wordpress.com/2012/06/dodo-bird.jpg" />
     <script>
         function forgotpass() {
             alert("Too Bad! :(");
         }
-        $('#dodo').tooltip({
-            content: '<img src="http://24.media.tumblr.com/tumblr_m4g52w4teD1qer56yo1_500.gif"/>'
-        });
     </script>
 </asp:Content>
