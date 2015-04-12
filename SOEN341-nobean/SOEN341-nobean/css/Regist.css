@@ -1,0 +1,73 @@
+﻿body {
+}
+
+#registDiv{
+    padding-bottom:100px;
+    width:600px;
+    margin: 40px auto;
+    background-color:#E8E8E8;
+    border-radius:6px;
+    text-align:center;
+}
+#registheader{
+    display:inline-block;
+    margin-top:50px;
+    margin-bottom:40px;
+    font-size:24pt;
+    font-weight:500;
+    font-family:Georgia, sans-serif;
+}
+.textboxCss{
+    width:200px;
+    height:20px;
+    display:inline-block;
+    margin:10px auto 0px;
+    padding-top:3px;
+    padding-bottom:3px;
+    border-style:solid;
+    border-width:1px;
+    border-color:#808080;
+    border-radius:4px;
+    text-align:center;
+    font-size:11pt;
+}
+.textboxCss:focus{
+    outline:0;
+    border-color:#700000;
+}
+.errormsg{
+    font-size:10pt;
+
+}
+.submitbtn{
+    height:40px;
+    width:100px;
+    margin:20px auto 10px;
+    border-style:none;
+    border-radius:4px;
+    background-color:#700000;
+    color:white;
+    font-size:14pt;  
+}
+.reset{
+    border:none;
+    background:none;
+}
+.reset:active{
+    background-color:#D8D8D8;
+    color:#700000;
+}
+.reset:focus{
+    outline:0;
+}
+
+#radioDiv{
+    width:180px;
+    margin:auto;
+}
+.radiotitle{
+    display:inline-block;
+}
+.radiobtn{
+    font-size:12pt;
+}

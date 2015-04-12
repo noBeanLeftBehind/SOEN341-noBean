@@ -12,10 +12,10 @@
         <span id="loginheader" >Login</span>
         <br />
         <!--<asp:Label ID="Label1" runat="server" Text="Net Name"></asp:Label>-->
-        <asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged" placeholder="Username" CssClass="username" ></asp:TextBox>
+        <asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged" MaxLength="50" placeholder="Username" CssClass="username" ></asp:TextBox>
         <br />
         <!--<asp:Label ID="Label2" runat="server" Text="Password"></asp:Label>-->
-        <asp:TextBox ID="TextBox2" runat="server" OnTextChanged="TextBox2_TextChanged" TextMode="Password" placeholder="Password" CssClass="password"></asp:TextBox>
+        <asp:TextBox ID="TextBox2" runat="server" OnTextChanged="TextBox2_TextChanged" TextMode="Password" MaxLength="50" placeholder="Password" CssClass="password"></asp:TextBox>
         <br />
         <a id="forgotpass" href="http://deedtheinky.com/wp-content/uploads/2010/01/2004-06-28-toobadsosad1.jpg">Forgot password?</a>
         <br />
@@ -23,7 +23,7 @@
         <br />
         <asp:HyperLink runat="server" Text="Register" NavigateUrl="~/Regist.aspx" CssClass="register"></asp:HyperLink>
     </div>
-    <asp:TextBox ID="TextBox3" runat="server" Height="133px" TextMode="MultiLine" style="margin:auto;"></asp:TextBox>
+    <asp:TextBox ID="TextBox3" runat="server" Height="133px" TextMode="MultiLine"></asp:TextBox>
     <script>
         function forgotpass() {
             alert("Too Bad! :(");

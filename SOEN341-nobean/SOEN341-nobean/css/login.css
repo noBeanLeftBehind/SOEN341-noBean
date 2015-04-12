@@ -20,7 +20,8 @@
 .username{
     height:26px;
     width:180px;
-    margin:40px 110px 0px 110px;
+    display:inline-block;
+    margin:40px auto 0px;
     padding-top:5px;
     padding-bottom:5px;
     border-style:solid;
@@ -37,7 +38,8 @@
 .password{
     height:26px;
     width:180px;
-    margin:10px 110px 5px 110px;
+    display:inline-block;
+    margin:15px auto 5px;
     padding-top:5px;
     padding-bottom:5px;
     border-style:solid;
@@ -58,7 +60,7 @@
 .loginbtn{
     height:40px;
     width:100px;
-    margin:40px 150px 15px 150px;
+    margin:40px auto 10px;
     border-style:none;
     border-radius:4px;
     background-color:#700000;
