@@ -11,21 +11,9 @@
 
 <body runat="server">
     <asp:ContentPlaceHolder ID="Stylesheets" runat="server">
-        <link rel="stylesheet" href="master.css" type="text/css" />
+        <link rel="stylesheet" href="/css/master.css" type="text/css" />
     </asp:ContentPlaceHolder>
-    <div id="wrapper">
-        <div>
-          <div class="rectangle">
-               <div id="header">Master Schedular</div> 
-              <link href="http://fonts.googleapis.com/css?family=Oleo+Script" rel="stylesheet" type="text/css"/>
-          </div>
-        </div>
-        <div id="navigation">
-            <ul id="navbar">
-               
-            </ul>
-                        <p style="width: 710px"></p>
-         </div>
+
         <div id="content">
             <form id="form1" runat="server">
                 <div>
@@ -34,8 +22,9 @@
                 </div>
             </form>
         </div>
-        <div id="footer">Copyright © noBean</div>
-    </div>
+                <div id="footer">Copyright © noBean <br />
+                    <strong>Support: <a href="mailto:nobean@outlook.com">nobean@outlook.com</a></strong>
+        </div>
 </body>
 
 </html>

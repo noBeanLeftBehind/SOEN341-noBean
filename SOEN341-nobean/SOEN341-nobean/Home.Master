@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="masterPage.Master.cs" Inherits="SOEN341_nobean.Site2" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Home.Master.cs" Inherits="SOEN341_nobean.Site1" %>
 
 <!DOCTYPE html>
 
@@ -10,7 +10,7 @@
 
 <body runat="server">
     <asp:ContentPlaceHolder ID="Stylesheets" runat="server">
-        <link rel="stylesheet" href="/css/master.css" type="text/css" />
+        <link rel="stylesheet" href="/css/cssHome.css" type="text/css"/>
     </asp:ContentPlaceHolder>
        <div id="navigation">
             <nav>
@@ -22,15 +22,13 @@
             </nav>
             <p style="width: 710px"></p>
         </div>
-        <div id="wrapper">
-            <div id="content">
+        <div id="content">
                 <form id="form1" runat="server">
                     <div>
                         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                         </asp:ContentPlaceHolder>
                     </div>
                 </form>
-             </div>
         </div>
         <div id="footer">Copyright © noBean <br />
                     <strong>Support: <a href="mailto:nobean@outlook.com">nobean@outlook.com</a></strong>

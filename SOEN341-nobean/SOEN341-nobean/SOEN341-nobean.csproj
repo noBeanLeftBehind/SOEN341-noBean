@@ -40,6 +40,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DayPilot, Version=5.0.302.0, Culture=neutral, PublicKeyToken=ce5d34538e20ef65, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DayPilot.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ApplicationInsights">
       <HintPath>..\packages\Microsoft.ApplicationInsights.0.13.2-build00132\lib\net40\Microsoft.ApplicationInsights.dll</HintPath>
     </Reference>
@@ -88,13 +92,85 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="adminHome.aspx" />
+    <Content Include="bin\DayPilot.dll" />
+    <Content Include="bin\Microsoft.ApplicationInsights.dll" />
+    <Content Include="bin\Microsoft.ApplicationInsights.Extensibility.PerfCollector.dll" />
+    <Content Include="bin\Microsoft.ApplicationInsights.Extensibility.RuntimeTelemetry.dll" />
+    <Content Include="bin\Microsoft.ApplicationInsights.Extensibility.RuntimeTelemetry.pdb" />
+    <Content Include="bin\Microsoft.ApplicationInsights.Extensibility.RuntimeTelemetry.xml" />
+    <Content Include="bin\Microsoft.ApplicationInsights.Extensibility.Web.dll" />
+    <Content Include="bin\Microsoft.ApplicationInsights.Extensibility.Web.pdb" />
+    <Content Include="bin\Microsoft.ApplicationInsights.Extensibility.Web.xml" />
+    <Content Include="bin\Microsoft.ApplicationInsights.Extensions.Intercept_x64.dll" />
+    <Content Include="bin\Microsoft.ApplicationInsights.Extensions.Intercept_x86.dll" />
+    <Content Include="bin\Microsoft.ApplicationInsights.xml" />
+    <Content Include="bin\Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.dll" />
+    <Content Include="bin\Microsoft.Diagnostics.Tracing.EventSource.dll" />
+    <Content Include="bin\Microsoft.Diagnostics.Tracing.EventSource.xml" />
+    <Content Include="bin\Microsoft.Threading.Tasks.dll" />
+    <Content Include="bin\Microsoft.Threading.Tasks.Extensions.Desktop.dll" />
+    <Content Include="bin\Microsoft.Threading.Tasks.Extensions.Desktop.xml" />
+    <Content Include="bin\Microsoft.Threading.Tasks.Extensions.dll" />
+    <Content Include="bin\Microsoft.Threading.Tasks.Extensions.xml" />
+    <Content Include="bin\Microsoft.Threading.Tasks.xml" />
+    <Content Include="bin\SOEN341-nobean.dll" />
+    <Content Include="bin\SOEN341-nobean.pdb" />
+    <Content Include="css\calendar.css" />
+    <Content Include="css\cssHome.css" />
+    <Content Include="css\login.css" />
+    <Content Include="css\Regist.css" />
+    <Content Include="Generator.aspx" />
+    <Content Include="getInfo.png" />
+    <Content Include="green.jpg" />
     <Content Include="Home.aspx" />
-    <Content Include="master.css" />
+    <Content Include="js\login.js" />
+    <Content Include="js\registration.js" />
+    <Content Include="logo.png" />
+    <Content Include="css\master.css" />
+    <Content Include="obj\Debug\SOEN341-nobean.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Release\CSAutoParameterize.parameters.xml" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Microsoft.ApplicationInsights.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Microsoft.ApplicationInsights.Extensibility.PerfCollector.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Microsoft.ApplicationInsights.Extensibility.RuntimeTelemetry.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Microsoft.ApplicationInsights.Extensibility.Web.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Microsoft.ApplicationInsights.Extensions.Intercept_x64.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Microsoft.ApplicationInsights.Extensions.Intercept_x86.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Microsoft.Diagnostics.Tracing.EventSource.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Microsoft.Threading.Tasks.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Microsoft.Threading.Tasks.Extensions.Desktop.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Microsoft.Threading.Tasks.Extensions.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\SOEN341-nobean.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\Hello.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\login.aspx" />
+    <Content Include="obj\Release\Package\SOEN341-nobean.SourceManifest.xml" />
+    <Content Include="obj\Release\SOEN341-nobean.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Release\SOEN341-nobean.dll" />
+    <Content Include="obj\Release\SOEN341-nobean.pdb" />
+    <Content Include="obj\Release\_WPPLastBuildInfo.txt" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config" />
     <Content Include="masterPage.Master" />
     <Content Include="NoNav.Master" />
+    <Content Include="bin\ApplicationInsights.config" />
+    <Content Include="bin\SOEN341-nobean.dll.config" />
+    <Content Include="obj\Debug\ApplicationInsights.config" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Release\ApplicationInsights.config" />
+    <Content Include="obj\Release\CSAutoParameterize\original\Web.config" />
+    <Content Include="obj\Release\CSAutoParameterize\transformed\Web.config" />
+    <Content Include="obj\Release\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Release\Package\PackageTmp\ApplicationInsights.config" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\ApplicationInsights.config" />
+    <Content Include="obj\Release\Package\PackageTmp\packages.config" />
+    <Content Include="obj\Release\Package\PackageTmp\Web.config" />
+    <Content Include="obj\Release\SOEN341-nobean.csprojResolveAssemblyReference.cache" />
+    <Content Include="obj\Release\TransformWebConfig\assist\Web.config" />
+    <Content Include="obj\Release\TransformWebConfig\original\Web.config" />
+    <Content Include="obj\Release\TransformWebConfig\transformed\Web.config" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Properties\PublishProfiles\masterscheduler100.pubxml" />
+    <Content Include="Home.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -107,6 +183,8 @@
     <Content Include="login.aspx" />
     <Content Include="Preferences.aspx" />
     <Content Include="Record.aspx" />
+    <Content Include="Red.png" />
+    <Content Include="Regist.aspx" />
     <Content Include="Schedule.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -121,7 +199,17 @@
     <Compile Include="class\Course.cs" />
     <Compile Include="class\CourseDirectory.cs" />
     <Compile Include="class\DBHandler.cs" />
+    <Compile Include="class\DuplicateKeyComparer.cs" />
     <Compile Include="class\Global.cs" />
+    <Compile Include="class\Priority.cs" />
+    <Compile Include="class\semester.cs" />
+    <Compile Include="Generator.aspx.cs">
+      <DependentUpon>Generator.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Generator.aspx.designer.cs">
+      <DependentUpon>Generator.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Hello.aspx.cs">
       <DependentUpon>Hello.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -157,6 +245,12 @@
     <Compile Include="NoNav.Master.designer.cs">
       <DependentUpon>NoNav.Master</DependentUpon>
     </Compile>
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Preferences.aspx.cs">
       <DependentUpon>Preferences.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -173,6 +267,13 @@
       <DependentUpon>Record.aspx</DependentUpon>
     </Compile>
     <Compile Include="class\Record.cs" />
+    <Compile Include="Regist.aspx.cs">
+      <DependentUpon>Regist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Regist.aspx.designer.cs">
+      <DependentUpon>Regist.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Schedule.aspx.cs">
       <DependentUpon>Schedule.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -184,6 +285,16 @@
     <Compile Include="class\ScheduleGenerator.cs" />
     <Compile Include="class\Section.cs" />
     <Compile Include="class\User.cs" />
+    <Compile Include="Home.Master.cs">
+      <DependentUpon>Home.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home.Master.designer.cs">
+      <DependentUpon>Home.Master</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

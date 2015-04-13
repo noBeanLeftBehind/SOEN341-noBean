@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NoNav.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="SOEN341_nobean.Login" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-     <link rel="stylesheet" href="master.css" type="text/css" />
+     <link rel="stylesheet" href="/css/master.css" type="text/css" />
     <link rel="stylesheet" href="/css/login.css" type="text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="js/login.js"></script>

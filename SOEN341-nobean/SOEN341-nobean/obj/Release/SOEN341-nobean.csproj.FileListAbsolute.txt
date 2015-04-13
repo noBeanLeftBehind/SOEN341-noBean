@@ -26,3 +26,22 @@ c:\users\tawfiq\documents\visual studio 2013\Projects\SOEN341-nobean\SOEN341-nob
 c:\users\tawfiq\documents\visual studio 2013\Projects\SOEN341-nobean\SOEN341-nobean\obj\Release\ApplicationInsights.config
 c:\users\tawfiq\documents\visual studio 2013\Projects\SOEN341-nobean\SOEN341-nobean\obj\Release\SOEN341-nobean.dll
 c:\users\tawfiq\documents\visual studio 2013\Projects\SOEN341-nobean\SOEN341-nobean\obj\Release\SOEN341-nobean.pdb
+C:\Users\Tithii\Documents\GitHub\SOEN341-noBean\SOEN341-nobean\SOEN341-nobean\obj\Release\SOEN341-nobean.csprojResolveAssemblyReference.cache
+C:\Users\Tithii\Documents\GitHub\SOEN341-noBean\SOEN341-nobean\SOEN341-nobean\obj\Release\SOEN341-nobean.dll
+C:\Users\Tithii\Documents\GitHub\SOEN341-noBean\SOEN341-nobean\SOEN341-nobean\bin\ApplicationInsights.config
+C:\Users\Tithii\Documents\GitHub\SOEN341-noBean\SOEN341-nobean\SOEN341-nobean\bin\Microsoft.ApplicationInsights.Extensions.Intercept_x86.dll
+C:\Users\Tithii\Documents\GitHub\SOEN341-noBean\SOEN341-nobean\SOEN341-nobean\bin\Microsoft.ApplicationInsights.Extensions.Intercept_x64.dll
+C:\Users\Tithii\Documents\GitHub\SOEN341-noBean\SOEN341-nobean\SOEN341-nobean\bin\SOEN341-nobean.dll.config
+C:\Users\Tithii\Documents\GitHub\SOEN341-noBean\SOEN341-nobean\SOEN341-nobean\bin\SOEN341-nobean.dll
+C:\Users\Tithii\Documents\GitHub\SOEN341-noBean\SOEN341-nobean\SOEN341-nobean\bin\SOEN341-nobean.pdb
+C:\Users\Tithii\Documents\GitHub\SOEN341-noBean\SOEN341-nobean\SOEN341-nobean\bin\Microsoft.ApplicationInsights.xml
+C:\Users\Tithii\Documents\GitHub\SOEN341-noBean\SOEN341-nobean\SOEN341-nobean\bin\Microsoft.ApplicationInsights.Extensibility.RuntimeTelemetry.pdb
+C:\Users\Tithii\Documents\GitHub\SOEN341-noBean\SOEN341-nobean\SOEN341-nobean\bin\Microsoft.ApplicationInsights.Extensibility.RuntimeTelemetry.xml
+C:\Users\Tithii\Documents\GitHub\SOEN341-noBean\SOEN341-nobean\SOEN341-nobean\bin\Microsoft.ApplicationInsights.Extensibility.Web.pdb
+C:\Users\Tithii\Documents\GitHub\SOEN341-noBean\SOEN341-nobean\SOEN341-nobean\bin\Microsoft.ApplicationInsights.Extensibility.Web.xml
+C:\Users\Tithii\Documents\GitHub\SOEN341-noBean\SOEN341-nobean\SOEN341-nobean\bin\Microsoft.Diagnostics.Tracing.EventSource.xml
+C:\Users\Tithii\Documents\GitHub\SOEN341-noBean\SOEN341-nobean\SOEN341-nobean\bin\Microsoft.Threading.Tasks.xml
+C:\Users\Tithii\Documents\GitHub\SOEN341-noBean\SOEN341-nobean\SOEN341-nobean\bin\Microsoft.Threading.Tasks.Extensions.xml
+C:\Users\Tithii\Documents\GitHub\SOEN341-noBean\SOEN341-nobean\SOEN341-nobean\bin\Microsoft.Threading.Tasks.Extensions.Desktop.xml
+C:\Users\Tithii\Documents\GitHub\SOEN341-noBean\SOEN341-nobean\SOEN341-nobean\obj\Release\ApplicationInsights.config
+C:\Users\Tithii\Documents\GitHub\SOEN341-noBean\SOEN341-nobean\SOEN341-nobean\obj\Release\SOEN341-nobean.pdb

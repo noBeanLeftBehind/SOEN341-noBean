@@ -2,13 +2,13 @@
 <%@ Register assembly="DayPilot" namespace="DayPilot.Web.Ui" tagprefix="DayPilot" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!--MasterPage css-->
-    <link rel="stylesheet" href="master.css" type="text/css" />
+    <link rel="stylesheet" href="/css/master.css" type="text/css" />
     <!--Slick slider with buttons css-->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.4.1/slick.css"/>
     <!--Slick slider default css-->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.4.1/slick-theme.css"/>
     <!--Modify default components css-->
-    <link rel="stylesheet" href="calendar.css" type="text/css" />
+    <link rel="stylesheet" href="/css/calendar.css" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Stylesheets" runat="server">
 </asp:Content>

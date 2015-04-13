@@ -10,7 +10,7 @@
 namespace SOEN341_nobean {
     
     
-    public partial class Site2 {
+    public partial class Site1 {
         
         /// <summary>
         /// head control.
