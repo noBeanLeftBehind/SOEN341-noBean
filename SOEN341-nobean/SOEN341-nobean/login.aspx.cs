@@ -60,6 +60,9 @@ namespace SOEN341_nobean
                    CourseDirectory cd = new CourseDirectory();
                    db.addAllCoursestoDirectory(cd);
                    Global.CourseDirectory = cd;
+                   savePreferencesToGlobal(Global.MainUser.getUserID()+"");
+                   savePassedCoursesToGlobal(Global.MainUser.getUserID() + "");
+                   getRemainingCourses();
                    if (Global.MainUser.getisAdmin())
                        Response.Redirect("adminHome.aspx");
                    Response.Redirect("Home.aspx");
@@ -74,6 +77,78 @@ namespace SOEN341_nobean
            // String myStringVariable = "hi";
           
 
+        }
+        //sets preference courses in a list in global
+        public void savePreferencesToGlobal(string userID)
+        {
+            DBHandler DBHandler = new DBHandler();
+            List<int> preferenceID = DBHandler.getPreferences(userID);
+            List<Course> preferenceCourse = new List<Course>();
+            foreach (int courseID in preferenceID)
+            {
+                preferenceCourse.Add(DBHandler.getCourse(courseID + ""));
+            }
+            Global.ListPreferences = preferenceCourse;
+        }
+
+        public void savePassedCoursesToGlobal(string userID)
+        {
+            DBHandler DBHandler = new DBHandler();
+            List<int> CourseID = DBHandler.getRecord(userID);
+            List<Course> TakenCourse = new List<Course>();
+            int[] ids = CourseID.ToArray();
+            if (CourseID.Count != 0)
+            {         
+                //add in order of courseID
+                for (int i = 0; i < ids.Length-1; i++)
+                {
+                    for (int j = i + 1; j < ids.Length; j++)
+                    {
+                        if (ids[i] > ids[j])
+                        {
+                            int temp = ids[i];
+                            ids[i] = ids[j];
+                            ids[j] = temp;
+                        }
+                    }
+                }
+                foreach (int id in ids){
+                     TakenCourse.Add(DBHandler.getCourse(id + ""));
+                }
+            }
+            Global.ListCourseTaken = TakenCourse;
+        }
+
+        public void getRemainingCourses()
+        {
+            List<Course> passedCourse = Global.ListCourseTaken;
+            List<Course> preferenceList = Global.ListPreferences;
+            List<Course> remainingCourse = new List<Course>();
+            CourseDirectory cd = Global.CourseDirectory;
+            List<Course> coreCourse = cd.getAllCourses();
+
+            if (passedCourse.Count != 0)
+            {
+                foreach (Course cours in coreCourse)
+                {
+                    bool passed = false;
+                    foreach (Course cours2 in passedCourse)
+                    {
+                        if (cours.getCourseID() == cours2.getCourseID())
+                        {
+                            passed = true;
+                        }
+                    }
+                    if (!passed)
+                    {
+                        remainingCourse.Add(cours);
+                    }
+                }
+            }
+            else
+                remainingCourse = coreCourse;
+
+            Global.ListCourseRemaining = remainingCourse;
         }
 
         protected void TextBox1_TextChanged(object sender, EventArgs e) 

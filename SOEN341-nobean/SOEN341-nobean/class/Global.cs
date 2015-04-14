@@ -24,6 +24,9 @@ namespace SOEN341_nobean.Class
         static public User Admin;
         static public CourseDirectory CourseDirectory;
         static public List<Course> ListPreferences;
+        static public List<Course> ListCourseTaken;
+        static public List<Course> ListCourseRemaining;
+
         Global()
         {
             _myConnection = new SqlConnection();

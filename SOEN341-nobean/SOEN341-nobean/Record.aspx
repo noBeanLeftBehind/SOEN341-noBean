@@ -12,8 +12,13 @@
         </asp:Table>
     </div>
     <div id="adminRecord">
-        <asp:TextBox Width="60px" runat="server" ID="studentCourse" Text="Course ID" Visible="false"></asp:TextBox>
+        <asp:RadioButtonList ID="adminInstruction" Visible="false" runat="server">
+            <asp:ListItem Text="Add course to student passed courses" Value="add" Selected="true"/>
+            <asp:ListItem Text="Remove course to student passed courses" Value="remove" />
+        </asp:RadioButtonList>
+        <asp:TextBox Width="60px" runat="server" ID="studentCourse" placeholder="Course ID" Visible="false"></asp:TextBox>
         <asp:Button Width="120px" runat="server" ID="submitCourseButton" Text="Submit" Visible="false" OnClick="editCoursesTaken" />
+        <asp:Label runat="server" ID="error_record" Text="Submit" Visible="false"/>
     </div>
     <div id="CoursesPassed">
         <h3>Passed Courses</h3>
