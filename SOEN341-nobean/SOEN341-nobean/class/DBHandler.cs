@@ -485,6 +485,23 @@ namespace SOEN341_nobean.Class
                 throw new Exception();
         }
 
+        public void removeUserRecord(string netNameString, string courseIDString)
+        {
+            int netName = Convert.ToInt32(netNameString);
+            int courseID = Convert.ToInt32(courseIDString);
+
+            string insertQuery = "IF EXISTS (SELECT * FROM [dbo].[Record] WHERE UserID = @UserID AND CourseID = @CourseID) DELETE FROM [dbo].[Record] WHERE UserID = @UserID AND CourseID = @CourseID";
+
+
+            SqlCommand com = new SqlCommand(insertQuery, Global.myConnection);
+
+            com.Parameters.AddWithValue("@UserID", netName);
+            com.Parameters.AddWithValue("@CourseID", courseID);
+
+            if (com.ExecuteNonQuery() < 1)
+                throw new Exception();
+        }
+
         public List<int> getRecord(string UserID)
         {
             var page = HttpContext.Current.CurrentHandler as Page;

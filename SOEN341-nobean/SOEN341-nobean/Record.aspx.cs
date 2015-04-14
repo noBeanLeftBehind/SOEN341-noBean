@@ -14,8 +14,7 @@ namespace SOEN341_nobean
 	{
 		DBHandler DBHandler = new DBHandler();
 		string netName = Global.MainUser.getUserID() + "";
-        static bool error;
-        static bool nanError;
+        static String err_msg = "";
 
 		protected void Page_Load(object sender, EventArgs e)
 		{
@@ -181,17 +180,11 @@ namespace SOEN341_nobean
         {
             studentCourse.Visible = true;
             submitCourseButton.Visible = true;
-            if (error)
+            adminInstruction.Visible = true;
+            if (!err_msg.Equals(""))
             {
-                error_record.Style["color"] = "red";
-                error_record.Text = String.Format("Course already in Courses Passed.");
-                error_record.Visible = true;
-            }
-            if (nanError)
-            {
-                error_record.Style["color"] = "red";
-                error_record.Text = String.Format("Invalid course id.");
-                error_record.Visible = true;
+                displayError(err_msg);
+                err_msg = "";
             }
         }
 
@@ -202,26 +195,43 @@ namespace SOEN341_nobean
             Match match = sCourse_regex.Match(sCourse);
             if (!match.Success)
             {
-                nanError = true;
+                err_msg = "Invalid course id.";
                 Response.Redirect(Request.RawUrl);
             }
 
             Course course = DBHandler.getCourse(studentCourse.Text);
-            error = false;
-            nanError = false;
-
             try
             {
-                DBHandler.insertUserRecord(netName, course.getCourseID().ToString());
+                if (adminInstruction.SelectedValue == "add")
+                    DBHandler.insertUserRecord(netName, course.getCourseID().ToString());
+                else
+                    DBHandler.removeUserRecord(netName, course.getCourseID().ToString());
             }
             catch (Exception)
             {
-                error = true;
-                Response.Redirect(Request.RawUrl);
+                if (adminInstruction.SelectedValue == "add")
+                {
+                    err_msg = "Error adding course to courses passed.";
+                    Response.Redirect(Request.RawUrl);
+                }
+                else
+                {
+                    err_msg = "Error removing course from courses passed.";
+                    Response.Redirect(Request.RawUrl);
+                }
             }
 
-            addCourseTaken(course);
-            removeCourseRemaining(course);
+            if (adminInstruction.SelectedValue == "add")
+            {
+                addCourseTaken(course);
+                removeCourseRemaining(course);
+            }
+            else
+            {
+                removeCourseTaken(course);
+                addCourseRemaining(course);
+            }
+
             Response.Redirect(Request.RawUrl);
 		}
 
@@ -243,8 +253,55 @@ namespace SOEN341_nobean
             }
         }
 
+        public void removeCourseTaken(Course course)
+        {
+            if (Global.ListCourseTaken.Count == 0)
+            {
+                err_msg = "Cannot delete course: Passed courses is empty.";
+                Response.Redirect(Request.RawUrl);
+            }
+            else
+            {
+                int index = 0;
+                foreach (Course pCourse in Global.ListCourseTaken)
+                {
+                    if (pCourse.getCourseID() == course.getCourseID())
+                        break;
+                    index++;
+                }
+                
+                //course was not in courses passed, throw error display error dont remove
+                if (index == Global.ListCourseTaken.Count)
+                {
+                    err_msg = "Cannot delete course: Course not present in passed courses.";
+                    Response.Redirect(Request.RawUrl);
+                }
+
+                Global.ListCourseTaken.RemoveAt(index);
+            }
+        }
+
+        public void addCourseRemaining(Course course)
+        {
+            if (Global.ListCourseRemaining.Count == 0)
+                Global.ListCourseRemaining.Add(course);
+            else
+            {
+                int index = 0;
+                foreach (Course rCourse in Global.ListCourseRemaining)
+                {
+                    if (rCourse.getCourseID() < course.getCourseID())
+                        index++;
+                    else
+                        break;
+                }
+                Global.ListCourseRemaining.Insert(index, course);
+            }
+        }
+
         public void removeCourseRemaining(Course course)
         {
+            //add error clause
             if (Global.ListCourseRemaining.Count != 0)
             {
                 int index = 0;
@@ -257,6 +314,13 @@ namespace SOEN341_nobean
                 }
                 Global.ListCourseRemaining.RemoveAt(index);
             }
+        }
+
+        private void displayError(String err)
+        {
+            error_record.Style["color"] = "red";
+            error_record.Text = String.Format(err + "");
+            error_record.Visible = true;
         }
 	}
 }
