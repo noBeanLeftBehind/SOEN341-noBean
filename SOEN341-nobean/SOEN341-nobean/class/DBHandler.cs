@@ -472,14 +472,17 @@ namespace SOEN341_nobean.Class
         {
             int netName = Convert.ToInt32(netNameString);
             int courseID = Convert.ToInt32(courseIDString);
-            string insertQuery = "insert into [dbo].[Record] (UserID,CourseID) values (@UserID,@CourseID)";
+
+            string insertQuery = "IF NOT EXISTS (SELECT * FROM [dbo].[Record] WHERE UserID = @UserID AND CourseID = @CourseID) INSERT INTO [dbo].[Record] (UserID, CourseID) values(@UserID,@CourseID)";
+
 
             SqlCommand com = new SqlCommand(insertQuery, Global.myConnection);
 
             com.Parameters.AddWithValue("@UserID", netName);
             com.Parameters.AddWithValue("@CourseID", courseID);
 
-            com.ExecuteNonQuery();
+            if (com.ExecuteNonQuery() != 1)
+                throw new Exception();
         }
 
         public List<int> getRecord(string UserID)

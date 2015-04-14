@@ -96,11 +96,24 @@ namespace SOEN341_nobean
             DBHandler DBHandler = new DBHandler();
             List<int> CourseID = DBHandler.getRecord(userID);
             List<Course> TakenCourse = new List<Course>();
+            int[] ids = CourseID.ToArray();
             if (CourseID.Count != 0)
-            {
-                foreach (int courseID in CourseID)
+            {         
+                //add in order of courseID
+                for (int i = 0; i < ids.Length-1; i++)
                 {
-                    TakenCourse.Add(DBHandler.getCourse(courseID + ""));
+                    for (int j = i + 1; j < ids.Length; j++)
+                    {
+                        if (ids[i] > ids[j])
+                        {
+                            int temp = ids[i];
+                            ids[i] = ids[j];
+                            ids[j] = temp;
+                        }
+                    }
+                }
+                foreach (int id in ids){
+                     TakenCourse.Add(DBHandler.getCourse(id + ""));
                 }
             }
             Global.ListCourseTaken = TakenCourse;
@@ -118,11 +131,18 @@ namespace SOEN341_nobean
             {
                 foreach (Course cours in coreCourse)
                 {
-                    if (!passedCourse.Contains(cours))
+                    bool passed = false;
+                    foreach (Course cours2 in passedCourse)
+                    {
+                        if (cours.getCourseID() == cours2.getCourseID())
+                        {
+                            passed = true;
+                        }
+                    }
+                    if (!passed)
                     {
                         remainingCourse.Add(cours);
                     }
-
                 }
             }
             else

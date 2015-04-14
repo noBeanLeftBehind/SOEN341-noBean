@@ -89,7 +89,74 @@ namespace SOEN341_nobean
         protected void connectStudent_Click1(object sender, EventArgs e)
         {
             Global.MainUser = (User)ViewState["StudentViewState"];
+            CourseDirectory cd = new CourseDirectory();
+            userHandler.addAllCoursestoDirectory(cd);
+            Global.CourseDirectory = cd;
+           // savePreferencesToGlobal(Global.MainUser.getUserID() + "");
+            savePassedCoursesToGlobal(Global.MainUser.getUserID() + "");
+            getRemainingCourses();
             Response.Redirect("home.aspx");
+        }
+
+        public void savePassedCoursesToGlobal(string userID)
+        {
+            DBHandler DBHandler = new DBHandler();
+            List<int> CourseID = DBHandler.getRecord(userID);
+            List<Course> TakenCourse = new List<Course>();
+            int[] ids = CourseID.ToArray();
+            if (CourseID.Count != 0)
+            {
+                //add in order of courseID
+                for (int i = 0; i < ids.Length - 1; i++)
+                {
+                    for (int j = i + 1; j < ids.Length; j++)
+                    {
+                        if (ids[i] > ids[j])
+                        {
+                            int temp = ids[i];
+                            ids[i] = ids[j];
+                            ids[j] = temp;
+                        }
+                    }
+                }
+                foreach (int id in ids)
+                {
+                    TakenCourse.Add(DBHandler.getCourse(id + ""));
+                }
+            }
+            Global.ListCourseTaken = TakenCourse;
+        }
+
+        public void getRemainingCourses()
+        {
+            List<Course> passedCourse = Global.ListCourseTaken;
+            List<Course> preferenceList = Global.ListPreferences;
+            List<Course> remainingCourse = new List<Course>();
+            CourseDirectory cd = Global.CourseDirectory;
+            List<Course> coreCourse = cd.getAllCourses();
+
+            if (passedCourse.Count != 0)
+            {
+                foreach (Course cours in coreCourse)
+                {
+                    bool passed = false;
+                    foreach (Course cours2 in passedCourse)
+                    {
+                        if (cours.getCourseID() == cours2.getCourseID())
+                        {
+                            passed = true;
+                        }
+                    }
+                    if (!passed)
+                    {
+                        remainingCourse.Add(cours);
+                    }
+                }
+            }
+            else
+                remainingCourse = coreCourse;
+
+            Global.ListCourseRemaining = remainingCourse;
         }
     }
 }

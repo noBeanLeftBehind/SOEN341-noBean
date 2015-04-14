@@ -12,8 +12,9 @@
         </asp:Table>
     </div>
     <div id="adminRecord">
-        <asp:TextBox Width="60px" runat="server" ID="studentCourse" Text="Course ID" Visible="false"></asp:TextBox>
+        <asp:TextBox Width="60px" runat="server" ID="studentCourse" placeholder="Course ID" Visible="false"></asp:TextBox>
         <asp:Button Width="120px" runat="server" ID="submitCourseButton" Text="Submit" Visible="false" OnClick="editCoursesTaken" />
+        <asp:Label runat="server" ID="error_record" Text="Submit" Visible="false"/>
     </div>
     <div id="CoursesPassed">
         <h3>Passed Courses</h3>

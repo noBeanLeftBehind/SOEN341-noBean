@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Text.RegularExpressions;
 
 namespace SOEN341_nobean
 {
@@ -13,6 +14,8 @@ namespace SOEN341_nobean
 	{
 		DBHandler DBHandler = new DBHandler();
 		string netName = Global.MainUser.getUserID() + "";
+        static bool error;
+        static bool nanError;
 
 		protected void Page_Load(object sender, EventArgs e)
 		{
@@ -105,13 +108,13 @@ namespace SOEN341_nobean
                 pCoursesTable.Rows.Add(hRow);
             }
 
-				try
+				if(Global.ListCourseTaken.Count!=0)
 				{
-                    foreach (int CourseID in DBHandler.getRecord(netName))
+                    foreach (Course course in Global.ListCourseTaken)
 					{
 						cell = new TableCell();
 						tRow = new TableRow();
-                        Course course = DBHandler.getCourse(CourseID.ToString());
+                       // Course course = DBHandler.getCourse(CourseID.ToString());
 						cell.Text = course.getCourseName() + "";
 						tRow.Cells.Add(cell);
                         if (Global.Admin != null)
@@ -123,12 +126,17 @@ namespace SOEN341_nobean
 						pCoursesTable.Rows.Add(tRow);
 					}
 				}
-			catch(Exception e)
+                else
 				{
 				    cell = new TableCell();
 				    tRow = new TableRow();
 				    cell.Text = "No passed courses.";
 				    tRow.Cells.Add(cell);
+                    if (Global.Admin != null)
+                    {
+                        cell = new TableCell();
+                        tRow.Cells.Add(cell);
+                    }
 				    pCoursesTable.Rows.Add(tRow);
 			}
 
@@ -138,8 +146,6 @@ namespace SOEN341_nobean
 		{
 			TableCell cell;
 			TableRow tRow;
-            bool passed;
-            Course course;
             if (Global.Admin != null)
             {
                 TableHeaderCell hCell = new TableHeaderCell();
@@ -152,43 +158,21 @@ namespace SOEN341_nobean
                 rCoursesTable.Rows.Add(hRow);
             }
 
-			foreach (int courseID1 in DBHandler.getCoreClasses())
+			foreach (Course course in Global.ListCourseRemaining)
 			{
-                passed = false;       
-                try
+
+                //course = DBHandler.getCourse(courseID1.ToString());
+                cell = new TableCell();
+                tRow = new TableRow();
+                cell.Text = course.getCourseName() + "    " ;
+                tRow.Cells.Add(cell);
+                if (Global.Admin != null)
                 {
-                    foreach (int courseID2 in DBHandler.getRecord(netName))
-                    {
-                        if (courseID1 == courseID2)
-                        {
-                            passed = true;
-                        }
-                    }
-                    if (!passed)
-                    {
-                        course = DBHandler.getCourse(courseID1.ToString());
-                        cell = new TableCell();
-                        tRow = new TableRow();
-                        cell.Text = course.getCourseName() + "    " ;
-                        tRow.Cells.Add(cell);
-                        if (Global.Admin != null)
-                        {
-                            cell = new TableCell();
-                            cell.Text = course.getCourseID() + "    ";
-                            tRow.Cells.Add(cell);
-                        }
-                        rCoursesTable.Rows.Add(tRow);
-                    }
-                }
-                catch(Exception e)
-                {
-                    course = DBHandler.getCourse(courseID1.ToString());
                     cell = new TableCell();
-                    tRow = new TableRow();
-                    cell.Text = course.getCourseName() + "    ";
+                    cell.Text = course.getCourseID() + "    ";
                     tRow.Cells.Add(cell);
-                    rCoursesTable.Rows.Add(tRow);
                 }
+                rCoursesTable.Rows.Add(tRow);
 			}
 		}
 
@@ -197,13 +181,82 @@ namespace SOEN341_nobean
         {
             studentCourse.Visible = true;
             submitCourseButton.Visible = true;
-
+            if (error)
+            {
+                error_record.Style["color"] = "red";
+                error_record.Text = String.Format("Course already in Courses Passed.");
+                error_record.Visible = true;
+            }
+            if (nanError)
+            {
+                error_record.Style["color"] = "red";
+                error_record.Text = String.Format("Invalid course id.");
+                error_record.Visible = true;
+            }
         }
 
         public void editCoursesTaken(object sender, EventArgs e)
 		{
-            DBHandler.insertUserRecord(netName, studentCourse.Text);
+            String sCourse = studentCourse.Text;
+            Regex sCourse_regex = new Regex(@"\d+$");
+            Match match = sCourse_regex.Match(sCourse);
+            if (!match.Success)
+            {
+                nanError = true;
+                Response.Redirect(Request.RawUrl);
+            }
+
+            Course course = DBHandler.getCourse(studentCourse.Text);
+            error = false;
+            nanError = false;
+
+            try
+            {
+                DBHandler.insertUserRecord(netName, course.getCourseID().ToString());
+            }
+            catch (Exception)
+            {
+                error = true;
+                Response.Redirect(Request.RawUrl);
+            }
+
+            addCourseTaken(course);
+            removeCourseRemaining(course);
             Response.Redirect(Request.RawUrl);
 		}
+
+        public void addCourseTaken(Course course){
+            if (Global.ListCourseTaken.Count == 0)
+                Global.ListCourseTaken.Add(course);
+            else
+            {
+                int index = 0;
+                foreach (Course pCourse in Global.ListCourseTaken)
+                {
+                    if (pCourse.getCourseID() < course.getCourseID())
+                        index++;
+                    else
+                        break;
+
+                }
+                Global.ListCourseTaken.Insert(index, course);
+            }
+        }
+
+        public void removeCourseRemaining(Course course)
+        {
+            if (Global.ListCourseRemaining.Count != 0)
+            {
+                int index = 0;
+                foreach (Course rCourse in Global.ListCourseRemaining)
+                {
+                    if (rCourse.getCourseID() < course.getCourseID())
+                        index++;
+                    else
+                        break;
+                }
+                Global.ListCourseRemaining.RemoveAt(index);
+            }
+        }
 	}
 }
