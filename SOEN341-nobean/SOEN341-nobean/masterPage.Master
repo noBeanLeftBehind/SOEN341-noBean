@@ -15,7 +15,7 @@
        <div id="navigation">
             <nav>
                 <a id="home" href="Home.aspx"><img src="logo.png" id="logo"/> Master Schedular 100</a>                
-                <a runat="server" id="logoutAnchor" href="?id=logout"><img src="green.jpg" onmouseover="this.src='Red.png'" onmouseout="this.src='green.jpg'" style="height: 40px; width: 45px; margin-left: 0px;" id="logButton" /></a>
+                <a runat="server" id="logoutAnchor" href="?id=logout"><img src="login.png" onmouseover="this.src='logout.png'" onmouseout="this.src='login.png'" style="height: 40px; width: 45px; margin-left: 0px;" id="logButton" /></a>
                 <a runat="server" id="scheduleNavID" href="Schedule.aspx">Schedule</a>
                 <a id="pref" href="Preferences.aspx">Preferences</a>
                 <a runat="server" id="accountNavID" href="Record.aspx">Record</a>                     

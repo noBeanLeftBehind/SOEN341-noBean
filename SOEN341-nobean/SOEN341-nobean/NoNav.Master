@@ -13,7 +13,11 @@
     <asp:ContentPlaceHolder ID="Stylesheets" runat="server">
         <link rel="stylesheet" href="/css/master.css" type="text/css" />
     </asp:ContentPlaceHolder>
-
+       <div id="navigation">
+            <nav>
+                <p id="home"><img src="logo.png" id="logo"/> Master Schedular 100</p>                             
+            </nav>
+        </div>
         <div id="content">
             <form id="form1" runat="server">
                 <div>

@@ -1,5 +1,5 @@
 ﻿body {
-	background-color:#a82020;
+	background-color:#700303;
     width: 100%;
     height: 100%;
     margin-top: 100px;
@@ -37,7 +37,6 @@
     color:#a82020;
 }
 
-
 #navigation{
    height:105px;
    background-color:#FFFFFF;
@@ -50,7 +49,6 @@
    box-shadow: #424242 10px 5px 10px;
 }
 
-   
 #navigation nav {
     height: 105px;
     text-align: right;
@@ -59,7 +57,6 @@
 
 #navigation nav a {
    list-style: none;
-   float: right;
    margin-left: 0px;
    display: block;
    text-decoration: none; 
@@ -72,8 +69,9 @@
 
 #scheduleNavID,#pref,#accountNavID {
    height:105px; 
-    width:187px;
-          color: #000;
+   width:187px;
+   color: #000;
+   float: right;
 }
 
 #logoutAnchor {
@@ -90,7 +88,7 @@
     float: left !important;
     font-family: 'Lobster', Georgia, Times, serif;
     font-size: 35px;
-    width:689px;
+    width:800px;
 }
 
 
@@ -113,4 +111,10 @@ h2{
     color:#FFFFFF;
     text-decoration: underline;
     margin-bottom:30px;
+}
+
+#navigation nav p{
+   margin-top:5px;
+   color: #333333;
+   font-family: Century Gothic, sans-serif;
 }

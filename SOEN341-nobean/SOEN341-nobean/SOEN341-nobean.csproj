@@ -121,12 +121,13 @@
     <Content Include="css\Regist.css" />
     <Content Include="Generator.aspx" />
     <Content Include="getInfo.png" />
-    <Content Include="green.jpg" />
     <Content Include="Home.aspx" />
     <Content Include="js\login.js" />
     <Content Include="js\registration.js" />
+    <Content Include="login.png" />
     <Content Include="logo.png" />
     <Content Include="css\master.css" />
+    <Content Include="logout.png" />
     <Content Include="obj\Debug\SOEN341-nobean.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Release\CSAutoParameterize.parameters.xml" />
     <Content Include="obj\Release\Package\PackageTmp\bin\Microsoft.ApplicationInsights.dll" />
@@ -183,7 +184,6 @@
     <Content Include="login.aspx" />
     <Content Include="Preferences.aspx" />
     <Content Include="Record.aspx" />
-    <Content Include="Red.png" />
     <Content Include="Regist.aspx" />
     <Content Include="Schedule.aspx" />
     <Content Include="Web.config" />
