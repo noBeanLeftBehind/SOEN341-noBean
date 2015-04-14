@@ -53,6 +53,17 @@ namespace SOEN341_nobean.Class
         {
             return lecture;
         }
+
+        public Section getLecture(string id)
+        {
+            Section lect=null;
+            foreach(Section lec in this.lecture)
+            {
+                if (lec.getID().Equals(id))
+                    lect = lec;
+            }
+            return lect;
+        }
         public String getCourseName()
         {
             return courseName;

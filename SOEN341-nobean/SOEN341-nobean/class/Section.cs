@@ -8,6 +8,8 @@ namespace SOEN341_nobean.Class
     public class Section
     {
         int semester;
+        private String courseSig;
+        private String courseID;
         String sectionName;
         String day;
         String startTime;
@@ -75,13 +77,53 @@ namespace SOEN341_nobean.Class
         {
             return this.endTime;
         }
-        public List<Section> getTut()
+        public List<Section> getTutorials()
         {
             return this.tutorial;
         }
-        public List<Section> getLab()
+        public List<Section> getLabs()
         {
             return this.lab;
+        }
+
+        public Section getTut(String id)
+        {
+            Section tut = null;
+            foreach (Section tuts in tutorial)
+                if (tuts.getID() == id)
+                    tut = tuts;
+
+            return tut;
+        }
+
+        public Section getLab(String id)
+        {
+            Section lab = null;
+            foreach (Section labs in this.lab)
+                if (labs.getID() == id)
+                    lab = labs;
+
+            return lab;
+        }
+
+        public void setCourseSig(String sig)
+        {
+            this.courseSig = sig;
+        }
+
+        public String getCourseSig()
+        {
+            return this.courseSig;
+        }
+
+        public void setCourseID(String id)
+        {
+            this.courseID = id;
+        }
+
+        public String getCourseID()
+        {
+            return this.courseID;
         }
     }
 }

@@ -52,6 +52,36 @@ namespace SOEN341_nobean.Class
             return electiveScience;
         }
 
+        public Course getCourse(String id)
+        {
+            Course temp=null;
+            foreach(Course course in allCourses)
+            {
+                if ((course.getCourseID()+"").Equals(id))
+                    temp = course;
+            }
+
+            foreach (Course course in electiveScience)
+            {
+                if ((course.getCourseID() + "").Equals(id))
+                    temp = course;
+            }
+
+            foreach (Course course in electiveTechnical)
+            {
+                if ((course.getCourseID() + "").Equals(id))
+                    temp = course;
+            }
+
+            foreach (Course course in electiveGeneral)
+            {
+                if ((course.getCourseID() + "").Equals(id))
+                    temp = course;
+            }
+
+            return temp;
+        }
+
 
     }
 }

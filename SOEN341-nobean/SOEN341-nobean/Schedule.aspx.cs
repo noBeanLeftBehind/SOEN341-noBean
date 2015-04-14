@@ -7,7 +7,8 @@ using System.Web.UI.WebControls;
 using SOEN341_nobean.Class;
 using System.Data;
 using DayPilot.Web.Ui.Events.Calendar;
-using DayPilot.Web.Ui; 
+using DayPilot.Web.Ui;
+using System.Diagnostics;
 
 namespace SOEN341_nobean
 {
@@ -17,47 +18,94 @@ namespace SOEN341_nobean
         DataTable dt;
         protected void Page_Load(object sender, EventArgs e)
         {
+            DBHandler db= new DBHandler();
+            List<semester> semesters = db.getCourseSchedule(Global.MainUser.getUserID()+"");
+            int counter = 0;
             //Select source, either online db or local
             //Calendar may also be binded to an arraylist.  
             // http://www.daypilot.org/demo/Lite/Calendar/BindingArrayList.aspx
-            DayPilotCalendar1.DataSource = makeTestDB();
-            DayPilotCalendar2.DataSource = makeTestDB();
+            if(semesters.Count==0)
+                sliderID.Controls.Add(new LiteralControl("<div style='text-align:center;'><p>Schedule Not Available</p></div>"));
 
-            //configure the look and feel of calendar
-            configureCalendar(DayPilotCalendar1);
-            configureCalendar(DayPilotCalendar2);
+            foreach(semester sem in semesters)
+            {
+                counter++;
+                sliderID.Controls.Add(new LiteralControl("<div style='text-align:center;'><p>" + (sem.getSection() == 1 ? "Fall " : "Winter ") + sem.getYear() + "</p>"));
+                DayPilotCalendar calendar=new DayPilotCalendar();
+                calendar.ID = "DayPilotCalendar" + counter;
+                calendar.Attributes.Add("TimeHeaderCellDuration", "15");
+                calendar.Attributes.Add("ColumnWidthSpec", "fixed");
+                calendar.Attributes.Add("ColumnWidth", "100");
+                calendar.ViewType = DayPilot.Web.Ui.Enums.Calendar.ViewTypeEnum.WorkWeek;
+                calendar.BusinessBeginsHour = 8;
+                calendar.BusinessEndsHour = 24;
+                calendar.DataSource = makeTestDB(sem);
+                configureCalendar(calendar);
+                sliderID.Controls.Add(calendar);
+                sliderID.Controls.Add(new LiteralControl("</div>"));
+            }
+         
             
             //Bind the data once everything is loaded.
-            if (!IsPostBack)
-                DayPilotCalendar1.DataBind();
-                DayPilotCalendar2.DataBind();
+            if (!IsPostBack&&counter==semesters.Count)
+            {
+                foreach(Control cntrl in sliderID.Controls)
+                    cntrl.DataBind();
+            }
 
         }
 
         /**
          * Test DB to create a schedule.
          */
-        private DataTable makeTestDB()
+        private DataTable makeTestDB(semester sem)
         {
             dt = new DataTable();
             dt.Columns.Add("start", typeof(DateTime));
             dt.Columns.Add("end", typeof(DateTime));
             dt.Columns.Add("name", typeof(string));
             dt.Columns.Add("id", typeof(string));
-
-            //My fall schedule 2015 :)
-            makeRow(DayOfWeek.Thursday, 16, 45, 18, 05,  "COMP353 - Laboratory");
-            makeRow(DayOfWeek.Thursday, 13, 15, 16, 00, "COMP353 - Lecture");
-            makeRow(DayOfWeek.Thursday, 12, 15, 13, 05, "COMP535 - Tutorial");
-            makeRow(DayOfWeek.Wednesday, 11, 45, 13, 00, "SOEN342 - Lecture");
-            makeRow(DayOfWeek.Friday, 11, 45, 13, 00, "SOEN342 - Lecture");
-            makeRow(DayOfWeek.Friday, 15, 45, 16, 35, "SOEN342 - Tutorial");
-            makeRow(DayOfWeek.Wednesday, 13, 15, 14, 30, "SOEN343 - Lecture");
-            makeRow(DayOfWeek.Friday, 13, 15, 14, 30, "SOEN343 - Lecture");
-            makeRow(DayOfWeek.Friday, 14, 45, 15, 35, "SOEN343 - Tutorial");
-            makeRow(DayOfWeek.Wednesday, 10, 15, 11, 30, "SOEN384 - Lecture");
-            makeRow(DayOfWeek.Friday, 10, 15, 11, 30, "SOEN384 - Lecture");
-            makeRow(DayOfWeek.Friday, 09, 15, 10, 05, "SOEN384 - Tutorial");
+          
+           foreach(Section section in sem.getLectures())
+            {
+                if(section.getDay().Contains("Mo"))
+                    makeRow(DayOfWeek.Monday, Convert.ToInt32(section.getStart().Substring(0, 2)), Convert.ToInt32(section.getStart().Substring(3, 2)), Convert.ToInt32(section.getEnd().Substring(0, 2)), Convert.ToInt32(section.getEnd().Substring(3, 2)), section.getCourseSig()+" - Lecture "+section.getSectionName()+"\nStart: "+section.getStart().Substring(0,5)+" End: "+section.getEnd().Substring(0,5));
+                if (section.getDay().Contains("Tu"))
+                    makeRow(DayOfWeek.Tuesday, Convert.ToInt32(section.getStart().Substring(0, 2)), Convert.ToInt32(section.getStart().Substring(3, 2)), Convert.ToInt32(section.getEnd().Substring(0, 2)), Convert.ToInt32(section.getEnd().Substring(3, 2)), section.getCourseSig() + " - Lecture " + section.getSectionName() + "\nStart: " + section.getStart().Substring(0, 5) + " End: " + section.getEnd().Substring(0, 5));
+                if (section.getDay().Contains("We"))
+                    makeRow(DayOfWeek.Wednesday, Convert.ToInt32(section.getStart().Substring(0, 2)), Convert.ToInt32(section.getStart().Substring(3, 2)), Convert.ToInt32(section.getEnd().Substring(0, 2)), Convert.ToInt32(section.getEnd().Substring(3, 2)), section.getCourseSig() + " - Lecture " + section.getSectionName() + "\nStart: " + section.getStart().Substring(0, 5) + " End: " + section.getEnd().Substring(0, 5));
+                if (section.getDay().Contains("Th"))
+                    makeRow(DayOfWeek.Thursday, Convert.ToInt32(section.getStart().Substring(0, 2)), Convert.ToInt32(section.getStart().Substring(3, 2)), Convert.ToInt32(section.getEnd().Substring(0, 2)), Convert.ToInt32(section.getEnd().Substring(3, 2)), section.getCourseSig() + " - Lecture " + section.getSectionName() + "\nStart: " + section.getStart().Substring(0, 5) + " End: " + section.getEnd().Substring(0, 5));
+                if (section.getDay().Contains("Fr"))
+                    makeRow(DayOfWeek.Friday, Convert.ToInt32(section.getStart().Substring(0, 2)), Convert.ToInt32(section.getStart().Substring(3, 2)), Convert.ToInt32(section.getEnd().Substring(0, 2)), Convert.ToInt32(section.getEnd().Substring(3, 2)), section.getCourseSig() + " - Lecture " + section.getSectionName() + "\nStart: " + section.getStart().Substring(0, 5) + " End: " + section.getEnd().Substring(0, 5));
+            }
+            foreach (Section section in sem.getTuts())
+            {
+                if (section.getDay().Contains("Mo"))
+                    makeRow(DayOfWeek.Monday, Convert.ToInt32(section.getStart().Substring(0, 2)), Convert.ToInt32(section.getStart().Substring(3, 2)), Convert.ToInt32(section.getEnd().Substring(0, 2)), Convert.ToInt32(section.getEnd().Substring(3, 2)), section.getCourseSig() + " - Tutorial  " + section.getSectionName() + " \nStart: " + section.getStart().Substring(0, 5) + " End: " + section.getEnd().Substring(0, 5));
+                if (section.getDay().Contains("Tu"))
+                    makeRow(DayOfWeek.Tuesday, Convert.ToInt32(section.getStart().Substring(0, 2)), Convert.ToInt32(section.getStart().Substring(3, 2)), Convert.ToInt32(section.getEnd().Substring(0, 2)), Convert.ToInt32(section.getEnd().Substring(3, 2)), section.getCourseSig() + " - Tutorial  " + section.getSectionName() + " \nStart: " + section.getStart().Substring(0, 5) + " End: " + section.getEnd().Substring(0, 5));
+                if (section.getDay().Contains("We"))
+                    makeRow(DayOfWeek.Wednesday, Convert.ToInt32(section.getStart().Substring(0, 2)), Convert.ToInt32(section.getStart().Substring(3, 2)), Convert.ToInt32(section.getEnd().Substring(0, 2)), Convert.ToInt32(section.getEnd().Substring(3, 2)), section.getCourseSig() + " - Tutorial  " + section.getSectionName() + " \nStart: " + section.getStart().Substring(0, 5) + " End: " + section.getEnd().Substring(0, 5));
+                if (section.getDay().Contains("Th"))
+                    makeRow(DayOfWeek.Thursday, Convert.ToInt32(section.getStart().Substring(0, 2)), Convert.ToInt32(section.getStart().Substring(3, 2)), Convert.ToInt32(section.getEnd().Substring(0, 2)), Convert.ToInt32(section.getEnd().Substring(3, 2)), section.getCourseSig() + " - Tutorial  " + section.getSectionName() + " \nStart: " + section.getStart().Substring(0, 5) + " End: " + section.getEnd().Substring(0, 5));
+                if (section.getDay().Contains("Fr"))
+                    makeRow(DayOfWeek.Friday, Convert.ToInt32(section.getStart().Substring(0, 2)), Convert.ToInt32(section.getStart().Substring(3, 2)), Convert.ToInt32(section.getEnd().Substring(0, 2)), Convert.ToInt32(section.getEnd().Substring(3, 2)), section.getCourseSig() + " - Tutorial  " + section.getSectionName() + " \nStart: " + section.getStart().Substring(0, 5) + " End: " + section.getEnd().Substring(0, 5));
+            }
+            foreach (Section section in sem.getLabs())
+            {
+                if (section.getDay().Contains("Mo"))
+                    makeRow(DayOfWeek.Monday, Convert.ToInt32(section.getStart().Substring(0, 2)), Convert.ToInt32(section.getStart().Substring(3, 2)), Convert.ToInt32(section.getEnd().Substring(0, 2)), Convert.ToInt32(section.getEnd().Substring(3, 2)), section.getCourseSig() + " - Lab  " + section.getSectionName() + "\nStart: " + section.getStart().Substring(0, 5) + " End: " + section.getEnd().Substring(0, 5));
+                if (section.getDay().Contains("Tu"))
+                    makeRow(DayOfWeek.Tuesday, Convert.ToInt32(section.getStart().Substring(0, 2)), Convert.ToInt32(section.getStart().Substring(3, 2)), Convert.ToInt32(section.getEnd().Substring(0, 2)), Convert.ToInt32(section.getEnd().Substring(3, 2)), section.getCourseSig() + " - Lab  " + section.getSectionName() + "\nStart: " + section.getStart().Substring(0, 5) + " End: " + section.getEnd().Substring(0, 5));
+                if (section.getDay().Contains("We"))
+                    makeRow(DayOfWeek.Wednesday, Convert.ToInt32(section.getStart().Substring(0, 2)), Convert.ToInt32(section.getStart().Substring(3, 2)), Convert.ToInt32(section.getEnd().Substring(0, 2)), Convert.ToInt32(section.getEnd().Substring(3, 2)), section.getCourseSig() + " - Lab  " + section.getSectionName() + "\nStart: " + section.getStart().Substring(0, 5) + " End: " + section.getEnd().Substring(0, 5));
+                if (section.getDay().Contains("Th"))
+                    makeRow(DayOfWeek.Thursday, Convert.ToInt32(section.getStart().Substring(0, 2)), Convert.ToInt32(section.getStart().Substring(3, 2)), Convert.ToInt32(section.getEnd().Substring(0, 2)), Convert.ToInt32(section.getEnd().Substring(3, 2)), section.getCourseSig() + " - Lab  " + section.getSectionName() + "\nStart: " + section.getStart().Substring(0, 5) + " End: " + section.getEnd().Substring(0, 5));
+                if (section.getDay().Contains("Fr"))
+                    makeRow(DayOfWeek.Friday, Convert.ToInt32(section.getStart().Substring(0, 2)), Convert.ToInt32(section.getStart().Substring(3, 2)), Convert.ToInt32(section.getEnd().Substring(0, 2)), Convert.ToInt32(section.getEnd().Substring(3, 2)), section.getCourseSig() + " - Lab  " + section.getSectionName() + "\nStart: " + section.getStart().Substring(0, 5) + " End: " + section.getEnd().Substring(0, 5));
+            }
+     
             return dt;
         }
 

@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Diagnostics;
 
 namespace SOEN341_nobean.Class
 {
@@ -291,6 +292,7 @@ namespace SOEN341_nobean.Class
                     tempLec.setDay(lecReder["onDay"].ToString());
                     tempLec.setTime(lecReder["StartTime"].ToString(), lecReder["EndTime"].ToString());
                     tempLec.setId(lecReder["LecID"].ToString());
+                    tempLec.setCourseID(CourseID);
                     course.addLecture(tempLec);
                 }
                 lecReder.Close();
@@ -332,6 +334,7 @@ namespace SOEN341_nobean.Class
                     tut.setDay(tutReader["onDay"].ToString());
                     tut.setSectionName(tutReader["Section"].ToString());
                     tut.setTime(tutReader["StartTime"].ToString(), tutReader["EndTime"].ToString());
+                    tut.setId(tutReader["TutID"].ToString());
                     lecture.addTut(tut);
                 }
                 tutReader.Close();
@@ -360,6 +363,7 @@ namespace SOEN341_nobean.Class
                     while (labReader.Read())
                     {
                         lab=new Section();
+                        lab.setId(labReader["LabID"].ToString());
                         lab.setSemester((int)labReader["Semester"]);
                         lab.setDay(labReader["onDay"].ToString());
                         lab.setSectionName(labReader["Section"].ToString());
@@ -411,7 +415,7 @@ namespace SOEN341_nobean.Class
         //alright an attempt at getting
         //i have no clue what im doing
 
-        public void GetUserSchedules(string ID)
+        /*public void GetUserSchedules(string ID)
         {
             var page = HttpContext.Current.CurrentHandler as Page;
             Schedule userSchedule = new Schedule();
@@ -437,37 +441,99 @@ namespace SOEN341_nobean.Class
             {
                 page.ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + exp.ToString() + "');", true);
             }
-        }
-        public List<Course> GetCourseSchedule(String scheduleID)
+        }*/
+        public List<semester> getCourseSchedule(String UserID)
         {
             var page = HttpContext.Current.CurrentHandler as Page;
-            List<Course> ret = new List<Course>();
+            List<semester> schedule = new List<semester>();
             try
             {
                 SqlDataReader myReader = null;
                 SqlCommand myCommand = new SqlCommand(
-                    "SELECT * FROM [dbo].[CourseScheduleSchedule] WHERE UserID = @ScheduleID;", Global.myConnection
+                    "SELECT * FROM [dbo].[CourseSchedule] WHERE UserID = @UserID;", Global.myConnection
                     );
-                SqlParameter myParam = new SqlParameter("@ScheduleID", SqlDbType.VarChar);
-                myParam.Value = scheduleID;
+                SqlParameter myParam = new SqlParameter("@UserID", SqlDbType.VarChar);
+                myParam.Value = UserID;
                 myCommand.Parameters.Add(myParam);
                 myReader = myCommand.ExecuteReader();
-
                 while (myReader.Read())
                 {
-                    Course temp = new Course();
-             
+                    semester tempSemester = new semester();
+                    tempSemester.setSection(Convert.ToInt32(myReader["Section"].ToString()));
+                    tempSemester.setYear(Convert.ToInt32(myReader["year"].ToString()));
+                    foreach(semester sem in schedule)
+                    {
+                        if (sem.getSection() == tempSemester.getSection() && sem.getYear() == tempSemester.getYear())
+                            tempSemester = sem;
+                    }
+                    Course tempCourse = Global.CourseDirectory.getCourse(myReader["CourseID"].ToString());
+                    Section tempLecture=tempCourse.getLecture(myReader["LecID"].ToString());
+                    tempSemester.addLecture(tempLecture);
+                    tempLecture.setCourseSig(tempCourse.getSubject() + " " + tempCourse.getCode());
 
+                    if (!string.IsNullOrEmpty(myReader["TutID"].ToString()) && !myReader["TutID"].ToString().Equals("0"))
+                    {
+                        Section tempTut = tempLecture.getTut(myReader["TutID"].ToString());
+                        tempSemester.addTutorials(tempTut);
+                        tempTut.setCourseSig(tempCourse.getSubject() + " " + tempCourse.getCode());
+                    }
+                    if (!string.IsNullOrEmpty(myReader["LabID"].ToString()) && !myReader["LabID"].ToString().Equals("0"))
+                    {
+                        Section tempLab = tempLecture.getLab(myReader["LabID"].ToString());
+                        tempLab.setCourseSig(tempCourse.getSubject() + " " + tempCourse.getCode());
+                        tempSemester.addLabs(tempLab);
+                    }
+                    if(!schedule.Contains(tempSemester))
+                        schedule.Add(tempSemester);
                 }
-                
+                myReader.Close();
+
             }
             catch (Exception exp)
             {
                 page.ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + exp.ToString() + "');", true);
             }
-            return ret;
+            return schedule;
         }
+        public void insertCourseSchedule(Schedule sched)
+        {
+            List<semester> allSems = sched.getSemester();
+            foreach(semester sem in allSems)
+            {
+                foreach(Section lecture in sem.getLectures())
+                {
+                    String TutID = "";
+                    String LabID = "";
 
+                    foreach(Section tut in sem.getTuts())
+                    {
+                        if (lecture.getTutorials().Contains(tut))
+                            TutID = tut.getID();
+                    }
+
+                    foreach (Section lab in sem.getLabs())
+                    {
+                        if (lecture.getLabs().Contains(lab))
+                            LabID = lab.getID();
+                    }
+
+                    string insertQuery = "insert into [dbo].[CourseSchedule] (UserID, Section, year, CourseID, LecID, TutID, LabID) values (@UserID, @Section, @year, @CourseID, @LecID, @TutID, @LabID)";
+
+                    SqlCommand com = new SqlCommand(insertQuery, Global.myConnection);
+
+                    com.Parameters.AddWithValue("@UserID", Global.MainUser.getUserID());
+                    com.Parameters.AddWithValue("@Section", sem.getSection());
+                    com.Parameters.AddWithValue("@year", sem.getYear());
+                    com.Parameters.AddWithValue("@CourseID", lecture.getCourseID());
+                    com.Parameters.AddWithValue("@LecID", lecture.getID());
+                    com.Parameters.AddWithValue("@TutID", TutID);
+                    com.Parameters.AddWithValue("@LabID", LabID);
+
+
+                    com.ExecuteNonQuery();
+                }
+            }
+        }
         public void insertUserRecord(string netNameString, string courseIDString)
         {
             int netName = Convert.ToInt32(netNameString);
