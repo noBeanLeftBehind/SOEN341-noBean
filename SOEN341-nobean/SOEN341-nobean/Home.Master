@@ -10,29 +10,44 @@
 
 <body runat="server">
     <asp:ContentPlaceHolder ID="Stylesheets" runat="server">
-        <link rel="stylesheet" href="/css/cssHome.css" type="text/css"/>
+        <link rel="stylesheet" href="/css/master.css" type="text/css" />
     </asp:ContentPlaceHolder>
-       <div id="navigation">
-            <nav>
-                <a id="home" href="Home.aspx"><img src="logo.png" id="logo"/> Master Schedular 100</a>                
-                <a runat="server" id="logoutAnchor" href="?id=logout"><img src="green.jpg" onmouseover="this.src='Red.png'" onmouseout="this.src='green.jpg'" style="height: 40px; width: 45px; margin-left: 0px;" id="logButton" /></a>
-                <a runat="server" id="scheduleNavID" href="Schedule.aspx">Schedule</a>
-                <a id="pref" href="Preferences.aspx">Preferences</a>
-                <a runat="server" id="accountNavID" href="Record.aspx">Record</a>                     
-            </nav>
-            <p style="width: 710px"></p>
-        </div>
+    <div id="wrapper">
+          <div class="Title">
+               <h1><img src="/images/logo.png" id="logo"/>Master Schedular</h1> 
+          </div>
+        <div id="navigation">
+            <ul>
+                <li id="home"><a href="Home.aspx">Home</a></li>
+                <li runat="server" id="scheduleNavID"><a href="Schedule.aspx">Schedule</a></li>
+                <li runat="server" id="accountNavID"><a href="Preferences.aspx">Preferences</a></li>
+                <li id="record"><a href="Record.aspx">Record</a></li>                       
+                <li runat="server" id="log"><a runat="server" id="logoutAnchor" href="?id=logout">Log out</a></li>
+            </ul>
+         </div>
         <div id="content">
-                <form id="form1" runat="server">
-                    <div>
-                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                        </asp:ContentPlaceHolder>
-                    </div>
-                </form>
+            <form id="form1" runat="server">
+                <div>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </form>
         </div>
-        <div id="footer">Copyright © noBean <br />
-                    <strong>Support: <a href="mailto:nobean@outlook.com">nobean@outlook.com</a></strong>
-        </div>
+        <div id="footer">Copyright © noBean <br/></div>
+    </div>
 </body>
-
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function(){
+        var stickyRibbonTop = $('#navigation').offset().top;
+          
+        $(window).scroll(function(){
+                if( $(window).scrollTop() > stickyRibbonTop ) {
+                    $('#navigation').css({ position: 'fixed', top: '0px' });
+                } else {
+                    $('#navigation').css({ position: 'static', top: '0px' });
+                }
+        });
+});
+</script>
 </html>

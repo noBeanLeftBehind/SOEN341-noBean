@@ -122,6 +122,8 @@
     <Content Include="Generator.aspx" />
     <Content Include="getInfo.png" />
     <Content Include="Home.aspx" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\ribbon_corner.png" />
     <Content Include="js\login.js" />
     <Content Include="js\registration.js" />
     <Content Include="login.png" />

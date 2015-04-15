@@ -13,11 +13,14 @@
     <asp:ContentPlaceHolder ID="Stylesheets" runat="server">
         <link rel="stylesheet" href="/css/master.css" type="text/css" />
     </asp:ContentPlaceHolder>
-       <div id="navigation">
-            <nav>
-                <p id="home"><img src="logo.png" id="logo"/> Master Schedular 100</p>                             
-            </nav>
-        </div>
+    <div id="wrapper">
+          <div class="Title">
+               <h1><img src="/images/logo.png" id="logo"/>Master Schedular</h1> 
+          </div>
+        <div id="navigation">
+            <ul>
+            </ul>
+         </div>
         <div id="content">
             <form id="form1" runat="server">
                 <div>
@@ -26,9 +29,8 @@
                 </div>
             </form>
         </div>
-                <div id="footer">Copyright © noBean <br />
-                    <strong>Support: <a href="mailto:nobean@outlook.com">nobean@outlook.com</a></strong>
-        </div>
+        <div id="footer">Copyright © noBean</div>
+    </div>
 </body>
 
 </html>

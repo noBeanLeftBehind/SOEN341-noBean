@@ -31,22 +31,13 @@ namespace SOEN341_nobean {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder Stylesheets;
         
         /// <summary>
-        /// logoutAnchor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor logoutAnchor;
-        
-        /// <summary>
         /// scheduleNavID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor scheduleNavID;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl scheduleNavID;
         
         /// <summary>
         /// accountNavID control.
@@ -55,7 +46,25 @@ namespace SOEN341_nobean {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor accountNavID;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl accountNavID;
+        
+        /// <summary>
+        /// log control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl log;
+        
+        /// <summary>
+        /// logoutAnchor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor logoutAnchor;
         
         /// <summary>
         /// form1 control.

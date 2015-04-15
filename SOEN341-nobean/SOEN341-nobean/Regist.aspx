@@ -71,6 +71,7 @@
         <br />
         <input id="Reset1" type="reset" value="reset" class="reset"/>
     </div>
+    <a id="back" href="login.aspx">◀◀ Back to Login Page</a>
     <script>
         $(function () {
         $(document).tooltip({
