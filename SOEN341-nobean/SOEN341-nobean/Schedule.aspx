@@ -20,8 +20,8 @@
     
     <!--Slick slider for semesters-->
     <div class="semesterSlider" data-slick='{"infinite": false, "slidesToShow": 1, "slidesToScroll": 1}' style="width:70%; margin:0 auto">
-    <div style="text-align:center;"><p>Fall 2015</p><DayPilot:DayPilotCalendar ID="DayPilotCalendar1" runat="server" TimeHeaderCellDuration="15" ColumnWidthSpec="fixed" ColumnWidth="100" ViewType="WorkWeek" OnBeforeEventRender="DayPilotMonth1_BeforeEventRender" /></div>
-    <div style="text-align:center;"><p>Winter 2016</p><DayPilot:DayPilotCalendar ID="DayPilotCalendar2" runat="server"  ColumnWidthSpec="fixed" ColumnWidth="100" ViewType="WorkWeek" OnBeforeEventRender="DayPilotMonth1_BeforeEventRender" /></div>
+    <div style="text-align:center;text-decoration:underline;"><p>Fall 2015</p><DayPilot:DayPilotCalendar ID="DayPilotCalendar1" runat="server" TimeHeaderCellDuration="15" ColumnWidthSpec="fixed" ColumnWidth="100" ViewType="WorkWeek" OnBeforeEventRender="DayPilotMonth1_BeforeEventRender" /></div>
+    <div style="text-align:center;text-decoration:underline;"><p>Winter 2016</p><DayPilot:DayPilotCalendar ID="DayPilotCalendar2" runat="server"  ColumnWidthSpec="fixed" ColumnWidth="100" ViewType="WorkWeek" OnBeforeEventRender="DayPilotMonth1_BeforeEventRender" /></div>
     </div>
 
     <p>Not the best calendar finally.. Course don't overlap, they fit exact hours in the table, but the blue line on the left is the duration of the event.. 

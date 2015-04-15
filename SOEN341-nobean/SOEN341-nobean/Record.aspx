@@ -6,8 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Stylesheets" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-    <div id="Record">
+    <div id="Record" style="margin-bottom: 15px">
         <asp:Table runat="server" id="recordTable" GridLines="both" HorizontalAlign="Center">
         </asp:Table>
     </div>
@@ -30,13 +29,22 @@
         </div>
     </div>
 
-
-
-
-
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script type="text/javascript">
+
+        $(function () {
+            var stickyRibbonTop = $('[id$=navigation]').offset().top;
+
+            $(window).scroll(function () {
+                if ($(window).scrollTop() > stickyRibbonTop) {
+                    $('[id$=navigation]').css({ position: 'fixed', top: '0px' });
+                } else {
+                    $('[id$=navigation]').css({ position: 'static', top: '0px' });
+                }
+            });
+        });
+
         $(function () {
             $("#CoursesToBeTaken, #CoursesPassed").accordion({
                 active: false,
@@ -48,6 +56,10 @@
                     }
                 }
             });
+        });
+
+        $(function () {
+            $('[id$=recordTable]').css({ 'border': '5px outset #808080' });
         });
 
     </script>

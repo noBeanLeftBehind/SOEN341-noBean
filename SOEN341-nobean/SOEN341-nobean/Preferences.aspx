@@ -37,6 +37,18 @@
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script type="text/javascript">
 
+    $(function () {
+        var stickyRibbonTop = $('[id$=navigation]').offset().top;
+
+        $(window).scroll(function () {
+            if ($(window).scrollTop() > stickyRibbonTop) {
+                $('[id$=navigation]').css({ position: 'fixed', top: '0px' });
+            } else {
+                $('[id$=navigation]').css({ position: 'static', top: '0px' });
+            }
+        });
+    });
+
         $(function () {
             $(document).tooltip({
                 track: false,
