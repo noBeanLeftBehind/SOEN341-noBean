@@ -40,6 +40,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DayPilot, Version=5.0.302.0, Culture=neutral, PublicKeyToken=ce5d34538e20ef65, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DayPilot.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ApplicationInsights">
       <HintPath>..\packages\Microsoft.ApplicationInsights.0.13.2-build00132\lib\net40\Microsoft.ApplicationInsights.dll</HintPath>
     </Reference>
@@ -122,6 +126,7 @@
     <Compile Include="class\CourseDirectory.cs" />
     <Compile Include="class\DBHandler.cs" />
     <Compile Include="class\Global.cs" />
+    <Compile Include="class\semester.cs" />
     <Compile Include="Hello.aspx.cs">
       <DependentUpon>Hello.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
