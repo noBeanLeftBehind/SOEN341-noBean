@@ -6,8 +6,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Stylesheets" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div style="text-align:center;"><h2>Search for a student ID</h2>
-    <h3 style="color:red">Input only 8-digits ID.</h3>
+    <div style="text-align:center;"><h2>Student administration</h2>
+            <p style="margin-top:30px">Enter a valid 8-digits Concordia Student ID in the textbox below and click Search. To log in as a new student, you will have to come back to administrator home.</p>
+        <p style="font-style:italic">Please note that you do not have the rights to log in as an administrator.</p>
+        <p>With great power comes great responsability</p>
+        <p>Speak friend and enter</p>
     </div>
     <div style="text-align:center;">
         <asp:TextBox Width="60px" runat="server" ID="studentIDTextBox"></asp:TextBox>
@@ -15,9 +18,8 @@
         <asp:Button Width="120px" runat="server" ID="SubmitIDButton" Text="Search Student"/>
         </div>
         <p><asp:Label runat="server" ID="error_IDStudent"></asp:Label></p>
-        <asp:HiddenField runat="server" ID="hiddenStudentID" />
-        <asp:Label runat="server" ID="LabelStudentFound"></asp:Label>
-        <asp:Button runat="server" ID="connectStudent" Text="Connect" Visible="false"></asp:Button>
+        <asp:Checkbox style="display:none" runat="server" ID="CheckboxStudentFound"></asp:Checkbox>
+        <asp:Button runat="server" ID="connectStudent" Text="Connect" Visible="false" style="margin:0 auto; display:block"></asp:Button>
     </div>
 
       <script type="text/javascript">
