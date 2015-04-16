@@ -1,23 +1,28 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterPage.Master" AutoEventWireup="true" CodeBehind="Record.aspx.cs" Inherits="SOEN341_nobean.Record" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
         <link rel="stylesheet" href="/css/master.css" type="text/css" />
+        <link rel="stylesheet" href="/css/record.css" type="text/css" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Stylesheets" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+    <h2>Student Record</h2>
     <div id="Record">
         <asp:Table runat="server" id="recordTable" GridLines="both" HorizontalAlign="Center">
-        </asp:Table>
+        </asp:Table><br/>
     </div>
-    <div id="adminRecord">
+    <div id="adminRecord" Visible="false" runat="server">
+        <br/><br/>
+        <h2>Input Course ID to be added/removed.</h2>
         <asp:RadioButtonList ID="adminInstruction" Visible="false" runat="server">
-            <asp:ListItem Text="Add course to student passed courses" Value="add" Selected="true"/>
-            <asp:ListItem Text="Remove course to student passed courses" Value="remove" />
-        </asp:RadioButtonList>
-        <asp:TextBox Width="60px" runat="server" ID="studentCourse" placeholder="Course ID" Visible="false"></asp:TextBox>
+            <asp:ListItem Text="Add course to student passed courses&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" Value="add" Selected="true"/>
+            <asp:ListItem Text="Remove course from student passed courses" Value="remove" />
+        </asp:RadioButtonList><br/>
+        <asp:TextBox Width="60px" runat="server" ID="studentCourse" placeholder="Course ID" Visible="false"></asp:TextBox><br/>
         <asp:Button Width="120px" runat="server" ID="submitCourseButton" Text="Submit" Visible="false" OnClick="editCoursesTaken" />
+        <br/>
         <asp:Label runat="server" ID="error_record" Text="Submit" Visible="false"/>
     </div>
     <div id="CoursesPassed">
