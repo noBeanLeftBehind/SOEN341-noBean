@@ -20,7 +20,7 @@ namespace SOEN341_nobean
             //SqlConnection tempConnection = new SqlConnection();
             //tempConnection.ConnectionString = "Data Source=buax9l2psh.database.windows.net,1433;Initial Catalog=masterscheduler100_db;Persist Security Info=True;User ID=nobean;Password=Abc_12345";
             //Global.myConnection = tempConnection;
-            if (Global.myConnection != null && Global.myConnection.State == ConnectionState.Open && Global.MainUser != null)
+            if (Global.myConnection != null && Global.myConnection.State == ConnectionState.Open && Global.MainUser != null && Global.MainUser.getisAdmin())
             {
                 if (!IsPostBack)
                 {
