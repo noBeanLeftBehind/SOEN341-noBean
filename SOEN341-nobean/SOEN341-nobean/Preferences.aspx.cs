@@ -13,14 +13,22 @@ namespace SOEN341_nobean
 {
     public partial class Preferences : System.Web.UI.Page
     {
+
         DBHandler DBHandler = new DBHandler();
-        string netName = Global.MainUser.getUserID() + "";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             //SqlConnection tempConnection = new SqlConnection();
             //tempConnection.ConnectionString = "Data Source=buax9l2psh.database.windows.net,1433;Initial Catalog=masterscheduler100_db;Persist Security Info=True;User ID=nobean;Password=Abc_12345";
             //Global.myConnection = tempConnection;
-            if (Global.myConnection != null && Global.myConnection.State == ConnectionState.Open && Global.MainUser != null && !Global.MainUser.getisAdmin())
+            if(Global.MainUser==null)
+                Response.Redirect("login.aspx");
+            if (Global.MainUser.getisAdmin() == true)
+                Response.Redirect("adminHome.aspx");
+
+            string netName = Global.MainUser.getUserID() + "";
+
+            if (Global.myConnection != null && Global.myConnection.State == ConnectionState.Open && Global.MainUser != null)
             {
                 if (!IsPostBack)
                 {
@@ -76,11 +84,11 @@ namespace SOEN341_nobean
             preferenceCourseID.AddRange(selectedValuesScience);
             
             //delete all user preferences
-            DBHandler.removeUserPreferences(netName);
+            DBHandler.removeUserPreferences(Global.MainUser.getUserID()+"");
             //add new preferences to DB
             foreach (string value in preferenceCourseID)
             {
-                DBHandler.insertUserPreferences(netName, value);
+                DBHandler.insertUserPreferences(Global.MainUser.getUserID() + "", value);
             }
             //reload the page
             savePreferencesToGlobal(preferenceCourseID);
@@ -101,7 +109,7 @@ namespace SOEN341_nobean
             ChkLstGeneral.Items.Clear();
             ChkLstTechnical.Items.Clear();
             ChkLstScience.Items.Clear();
-            List<int> preferenceCourseID = DBHandler.getPreferences(netName);
+            List<int> preferenceCourseID = DBHandler.getPreferences(Global.MainUser.getUserID() + "");
             CourseDirectory CourseDirectory = Global.CourseDirectory;
 
             List<Course> electiveGeneral = CourseDirectory.getElectiveGeneral();
