@@ -78,5 +78,17 @@
             content: '<img style="margin-left:40%;" src="http://meatballcandy.com/wp-content/uploads/2013/02/sorry-your-password-must-contain.jpg" />'
         });
         });
+
+        $(function () {
+            var stickyRibbonTop = $('[id$=navigation]').offset().top;
+
+            $(window).scroll(function () {
+                if ($(window).scrollTop() > stickyRibbonTop) {
+                    $('[id$=navigation]').css({ position: 'fixed', top: '0px' });
+                } else {
+                    $('[id$=navigation]').css({ position: 'static', top: '0px' });
+                }
+            });
+        });
     </script>
 </asp:Content>
