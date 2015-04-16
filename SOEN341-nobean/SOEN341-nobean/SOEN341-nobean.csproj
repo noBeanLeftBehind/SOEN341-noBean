@@ -92,12 +92,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="adminHome.aspx" />
+    <Content Include="calendar.css" />
+    <Content Include="css\login.css" />
+    <Content Include="css\Regist.css" />
+    <Content Include="Generator.aspx" />
+    <Content Include="getInfo.png" />
     <Content Include="Home.aspx" />
+    <Content Include="js\login.js" />
+    <Content Include="js\registration.js" />
+    <Content Include="login.css" />
     <Content Include="master.css" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config" />
     <Content Include="masterPage.Master" />
     <Content Include="NoNav.Master" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Properties\PublishProfiles\masterscheduler100.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -111,6 +120,8 @@
     <Content Include="login.aspx" />
     <Content Include="Preferences.aspx" />
     <Content Include="Record.aspx" />
+    <Content Include="Regist.aspx" />
+    <Content Include="Regist.css" />
     <Content Include="Schedule.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -125,8 +136,17 @@
     <Compile Include="class\Course.cs" />
     <Compile Include="class\CourseDirectory.cs" />
     <Compile Include="class\DBHandler.cs" />
+    <Compile Include="class\DuplicateKeyComparer.cs" />
     <Compile Include="class\Global.cs" />
+    <Compile Include="class\Priority.cs" />
     <Compile Include="class\semester.cs" />
+    <Compile Include="Generator.aspx.cs">
+      <DependentUpon>Generator.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Generator.aspx.designer.cs">
+      <DependentUpon>Generator.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Hello.aspx.cs">
       <DependentUpon>Hello.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -178,6 +198,13 @@
       <DependentUpon>Record.aspx</DependentUpon>
     </Compile>
     <Compile Include="class\Record.cs" />
+    <Compile Include="Regist.aspx.cs">
+      <DependentUpon>Regist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Regist.aspx.designer.cs">
+      <DependentUpon>Regist.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Schedule.aspx.cs">
       <DependentUpon>Schedule.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -1,0 +1,80 @@
+﻿body {
+
+}
+
+#loginDiv {
+    height:400px;
+    width:400px;
+    margin: 40px auto;
+    background-color:#E8E8E8;
+    border-radius:6px;
+    text-align:center;
+}
+#loginheader{
+    display:inline-block;
+    margin-top:40px;
+    font-size:24pt;
+    font-weight:500;
+    font-family:Georgia, sans-serif;
+}
+.username{
+    height:26px;
+    width:180px;
+    display:inline-block;
+    margin:40px auto 0px;
+    padding-top:5px;
+    padding-bottom:5px;
+    border-style:solid;
+    border-width:1px;
+    border-color:#808080;
+    border-radius:4px;
+    text-align:center;
+    font-size:12pt;
+}
+.username:focus{
+    outline:0;
+    border-color:#700000;
+}
+.password{
+    height:26px;
+    width:180px;
+    display:inline-block;
+    margin:15px auto 5px;
+    padding-top:5px;
+    padding-bottom:5px;
+    border-style:solid;
+    border-width:1px;
+    border-color:#808080;
+    border-radius:4px;
+    text-align:center;
+    font-size:12pt;
+}
+.password:focus{
+    outline:0;
+    border-color:#700000;
+}
+#forgotpass{
+    font-size:8pt;
+    color:#808080;
+}
+.loginbtn{
+    height:40px;
+    width:100px;
+    margin:40px auto 10px;
+    border-style:none;
+    border-radius:4px;
+    background-color:#700000;
+    color:white;
+    font-size:14pt;   
+}
+.loginbtn:active{
+    background-color:#808080;
+    outline:none;
+}
+.loginbtn:focus{
+    outline:0;
+}
+.register{
+    font-size:10pt;
+    color:#808080;
+}

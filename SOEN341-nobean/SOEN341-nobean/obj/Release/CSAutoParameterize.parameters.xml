@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
   <parameter name="masterscheduler100_dbConnectionString-Web.config Connection String" description="masterscheduler100_dbConnectionString Connection String used in web.config by the application to access the database." defaultValue="Data Source=buax9l2psh.database.windows.net,1433;Initial Catalog=masterscheduler100_db;Persist Security Info=True;User ID=nobean;Password=Abc_12345" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="c:\\users\\tawfiq\\documents\\visual\ studio\ 2013\\Projects\\SOEN341-nobean\\SOEN341-nobean\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='masterscheduler100_dbConnectionString']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Tawfiq\\Git\\SOEN341-noBean\\SOEN341-nobean\\SOEN341-nobean\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='masterscheduler100_dbConnectionString']/@connectionString" />
   </parameter>
 </parameters>
