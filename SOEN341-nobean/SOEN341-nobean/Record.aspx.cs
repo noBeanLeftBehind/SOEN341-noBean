@@ -10,90 +10,92 @@ using System.Text.RegularExpressions;
 
 namespace SOEN341_nobean
 {
-	public partial class Record : System.Web.UI.Page
-	{
-		DBHandler DBHandler = new DBHandler();
-		string netName = Global.MainUser.getUserID() + "";
+    public partial class Record : System.Web.UI.Page
+    {
+        DBHandler DBHandler = new DBHandler();
+        string netName = Global.MainUser.getUserID() + "";
         static String err_msg = "";
 
-		protected void Page_Load(object sender, EventArgs e)
-		{
-			//SqlConnection tempConnection = new SqlConnection();
-			//tempConnection.ConnectionString = "Data Source=buax9l2psh.database.windows.net,1433;Initial Catalog=masterscheduler100_db;Persist Security Info=True;User ID=nobean;Password=Abc_12345";
-			//Global.myConnection = tempConnection;
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            //SqlConnection tempConnection = new SqlConnection();
+            //tempConnection.ConnectionString = "Data Source=buax9l2psh.database.windows.net,1433;Initial Catalog=masterscheduler100_db;Persist Security Info=True;User ID=nobean;Password=Abc_12345";
+            //Global.myConnection = tempConnection;
 
-			if (Global.myConnection != null && Global.myConnection.State == ConnectionState.Open && Global.Admin != null && Global.MainUser != null)
-			{
-				if (!IsPostBack)
-				{
-					displayRecord();
-					displayPassedCourses();
-					displayRemainingCourses();
+            if (Global.myConnection != null && Global.myConnection.State == ConnectionState.Open && Global.Admin != null && Global.MainUser != null)
+            {
+                if (!IsPostBack)
+                {
+                    displayRecord();
+                    displayPassedCourses();
+                    displayRemainingElectives();
+                    displayRemainingCourses();
                     adminView();
-				}
-			}
-			else if (Global.myConnection != null && Global.myConnection.State == ConnectionState.Open && Global.MainUser != null)
-			{
-				if (!IsPostBack)
-				{
-					displayRecord();
-					displayPassedCourses();
-					displayRemainingCourses();
-				}
-			}
-			else
-			{
-				Response.Redirect("login.aspx");
-			}
+                }
+            }
+            else if (Global.myConnection != null && Global.myConnection.State == ConnectionState.Open && Global.MainUser != null)
+            {
+                if (!IsPostBack)
+                {
+                    displayRecord();
+                    displayPassedCourses();
+                    displayRemainingElectives();
+                    displayRemainingCourses();
+                }
+            }
+            else
+            {
+                Response.Redirect("login.aspx");
+            }
 
-		}
-		private void displayRecord()
-		{
-			CourseDirectory CourseDirectory = Global.CourseDirectory;
+        }
+        private void displayRecord()
+        {
+            CourseDirectory CourseDirectory = Global.CourseDirectory;
 
-			TableCell cell = new TableCell();
-			TableRow tRow = new TableRow();
+            TableCell cell = new TableCell();
+            TableRow tRow = new TableRow();
 
-			//Record Table
-			cell.Text = "Name:   ";
-			tRow.Cells.Add(cell);
-			cell = new TableCell();
-			cell.Text = Global.MainUser.getfirstName() + " " + Global.MainUser.getlastName();
-			tRow.Cells.Add(cell);
-			recordTable.Rows.Add(tRow);
+            //Record Table
+            cell.Text = "Name:   ";
+            tRow.Cells.Add(cell);
+            cell = new TableCell();
+            cell.Text = Global.MainUser.getfirstName() + " " + Global.MainUser.getlastName();
+            tRow.Cells.Add(cell);
+            recordTable.Rows.Add(tRow);
 
-			cell = new TableCell();
-			tRow = new TableRow();
-			cell.Text = "Student ID:   ";
-			tRow.Cells.Add(cell);
-			cell = new TableCell();
-			cell.Text = Global.MainUser.getStudentID() + "";
-			tRow.Cells.Add(cell);
-			recordTable.Rows.Add(tRow);
+            cell = new TableCell();
+            tRow = new TableRow();
+            cell.Text = "Student ID:   ";
+            tRow.Cells.Add(cell);
+            cell = new TableCell();
+            cell.Text = Global.MainUser.getStudentID() + "";
+            tRow.Cells.Add(cell);
+            recordTable.Rows.Add(tRow);
 
-			cell = new TableCell();
-			tRow = new TableRow();
-			cell.Text = "Netname:   ";
-			tRow.Cells.Add(cell);
-			cell = new TableCell();
-			cell.Text = Global.MainUser.getnetName() + "";
-			tRow.Cells.Add(cell);
-			recordTable.Rows.Add(tRow);
+            cell = new TableCell();
+            tRow = new TableRow();
+            cell.Text = "Netname:   ";
+            tRow.Cells.Add(cell);
+            cell = new TableCell();
+            cell.Text = Global.MainUser.getnetName() + "";
+            tRow.Cells.Add(cell);
+            recordTable.Rows.Add(tRow);
 
-			cell = new TableCell();
-			tRow = new TableRow();
-			cell.Text = "Email:   ";
-			tRow.Cells.Add(cell);
-			cell = new TableCell();
-			cell.Text = Global.MainUser.getemail() + "";
-			tRow.Cells.Add(cell);
-			recordTable.Rows.Add(tRow);
-		}
+            cell = new TableCell();
+            tRow = new TableRow();
+            cell.Text = "Email:   ";
+            tRow.Cells.Add(cell);
+            cell = new TableCell();
+            cell.Text = Global.MainUser.getemail() + "";
+            tRow.Cells.Add(cell);
+            recordTable.Rows.Add(tRow);
+        }
 
-		private void displayPassedCourses()
-		{
-			TableCell cell;
-			TableRow tRow;
+        private void displayPassedCourses()
+        {
+            TableCell cell;
+            TableRow tRow;
 
             if (Global.Admin != null)
             {
@@ -107,44 +109,68 @@ namespace SOEN341_nobean
                 pCoursesTable.Rows.Add(hRow);
             }
 
-				if(Global.ListCourseTaken.Count!=0)
-				{
-                    foreach (Course course in Global.ListCourseTaken)
-					{
-						cell = new TableCell();
-						tRow = new TableRow();
-                       // Course course = DBHandler.getCourse(CourseID.ToString());
-						cell.Text = course.getCourseName() + "";
-						tRow.Cells.Add(cell);
-                        if (Global.Admin != null)
-                        {
-                            cell = new TableCell();
-                            cell.Text = course.getCourseID() + "    ";
-                            tRow.Cells.Add(cell);
-                        }
-						pCoursesTable.Rows.Add(tRow);
-					}
-				}
-                else
-				{
-				    cell = new TableCell();
-				    tRow = new TableRow();
-				    cell.Text = "No passed courses.";
-				    tRow.Cells.Add(cell);
+            if (Global.ListCourseTaken.Count != 0)
+            {
+                foreach (Course course in Global.ListCourseTaken)
+                {
+                    cell = new TableCell();
+                    tRow = new TableRow();
+                    cell.Text = course.getCourseName() + "";
+                    tRow.Cells.Add(cell);
                     if (Global.Admin != null)
                     {
                         cell = new TableCell();
+                        cell.Text = course.getCourseID() + "    ";
                         tRow.Cells.Add(cell);
                     }
-				    pCoursesTable.Rows.Add(tRow);
-			}
+                    pCoursesTable.Rows.Add(tRow);
+                }
+            }
+            else
+            {
+                cell = new TableCell();
+                tRow = new TableRow();
+                cell.Text = "No passed courses.";
+                tRow.Cells.Add(cell);
+                if (Global.Admin != null)
+                {
+                    cell = new TableCell();
+                    tRow.Cells.Add(cell);
+                }
+                pCoursesTable.Rows.Add(tRow);
+            }
 
-		}
+        }
 
-		private void displayRemainingCourses()
-		{
-			TableCell cell;
-			TableRow tRow;
+        private void displayRemainingCourses()
+        {
+            TableCell cell;
+            TableRow tRow;
+
+            foreach (Course course in Global.ListCourseRemaining)
+            {
+                cell = new TableCell();
+                tRow = new TableRow();
+                cell.Text = course.getCourseName() + "    ";
+                tRow.Cells.Add(cell);
+                if (Global.Admin != null)
+                {
+                    cell = new TableCell();
+                    cell.Text = course.getCourseID() + "    ";
+                    tRow.Cells.Add(cell);
+                }
+                rCoursesTable.Rows.Add(tRow);
+            }
+        }
+
+        public void displayRemainingElectives()
+        {
+            int science = 0;
+            int general = 0;
+            int technical = 0;
+            TableCell cell;
+            TableRow tRow;
+
             if (Global.Admin != null)
             {
                 TableHeaderCell hCell = new TableHeaderCell();
@@ -157,23 +183,64 @@ namespace SOEN341_nobean
                 rCoursesTable.Rows.Add(hRow);
             }
 
-			foreach (Course course in Global.ListCourseRemaining)
-			{
+            //check through passed courses every page load to count electives, to optimize could be done at global level?
+            foreach (Course pCourse in Global.ListCourseTaken)
+            {
+                if (pCourse.isGeneralCourse())
+                    general++;
+                if (pCourse.isScienceCourse())
+                    science++;
+                if (pCourse.isTechnicalCourse())
+                    technical++;
+            }
 
-                //course = DBHandler.getCourse(courseID1.ToString());
+            if (science < 2)
+                for (int i = science; i < 2; i++)
+                {
+                    cell = new TableCell();
+                    tRow = new TableRow();
+                    cell.Text = "Basic Science Option";
+                    tRow.Cells.Add(cell);
+                    if (Global.Admin != null)
+                    {
+                        cell = new TableCell();
+                        cell.Text = "";
+                        tRow.Cells.Add(cell);
+                    }
+                    rCoursesTable.Rows.Add(tRow);
+                }
+
+            if (general < 1)
+            {
                 cell = new TableCell();
                 tRow = new TableRow();
-                cell.Text = course.getCourseName() + "    " ;
+                cell.Text = "General Elective";
                 tRow.Cells.Add(cell);
                 if (Global.Admin != null)
                 {
                     cell = new TableCell();
-                    cell.Text = course.getCourseID() + "    ";
+                    cell.Text = "";
                     tRow.Cells.Add(cell);
                 }
                 rCoursesTable.Rows.Add(tRow);
-			}
-		}
+            }
+
+            if (technical < 5)
+                for (int i = technical; i < 5; i++)
+                {
+                    cell = new TableCell();
+                    tRow = new TableRow();
+                    cell.Text = "Technical Elective Option";
+                    tRow.Cells.Add(cell);
+                    if (Global.Admin != null)
+                    {
+                        cell = new TableCell();
+                        cell.Text = "";
+                        tRow.Cells.Add(cell);
+                    }
+                    rCoursesTable.Rows.Add(tRow);
+                }
+        }
 
 
         private void adminView()
@@ -189,7 +256,7 @@ namespace SOEN341_nobean
         }
 
         public void editCoursesTaken(object sender, EventArgs e)
-		{
+        {
             String sCourse = studentCourse.Text;
             Regex sCourse_regex = new Regex(@"\d+$");
             Match match = sCourse_regex.Match(sCourse);
@@ -224,18 +291,21 @@ namespace SOEN341_nobean
             if (adminInstruction.SelectedValue == "add")
             {
                 addCourseTaken(course);
-                removeCourseRemaining(course);
+                if (course.isCoreCourse())
+                    removeCourseRemaining(course);
             }
             else
             {
                 removeCourseTaken(course);
-                addCourseRemaining(course);
+                if (course.isCoreCourse())
+                    addCourseRemaining(course);
             }
 
             Response.Redirect(Request.RawUrl);
-		}
+        }
 
-        public void addCourseTaken(Course course){
+        public void addCourseTaken(Course course)
+        {
             if (Global.ListCourseTaken.Count == 0)
                 Global.ListCourseTaken.Add(course);
             else
@@ -269,7 +339,7 @@ namespace SOEN341_nobean
                         break;
                     index++;
                 }
-                
+
                 //course was not in courses passed, throw error display error dont remove
                 if (index == Global.ListCourseTaken.Count)
                 {
@@ -322,5 +392,5 @@ namespace SOEN341_nobean
             error_record.Text = String.Format(err + "");
             error_record.Visible = true;
         }
-	}
+    }
 }
