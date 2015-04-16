@@ -13,7 +13,6 @@ namespace SOEN341_nobean
     public partial class Record : System.Web.UI.Page
     {
         DBHandler DBHandler = new DBHandler();
-        string netName = Global.MainUser.getUserID() + "";
         static String err_msg = "";
 
         protected void Page_Load(object sender, EventArgs e)
@@ -21,6 +20,12 @@ namespace SOEN341_nobean
             //SqlConnection tempConnection = new SqlConnection();
             //tempConnection.ConnectionString = "Data Source=buax9l2psh.database.windows.net,1433;Initial Catalog=masterscheduler100_db;Persist Security Info=True;User ID=nobean;Password=Abc_12345";
             //Global.myConnection = tempConnection;
+            if (Global.MainUser == null)
+                Response.Redirect("login.aspx");
+            if (Global.MainUser.getisAdmin() == true)
+                Response.Redirect("adminHome.aspx");
+
+            string netName = Global.MainUser.getUserID() + "";
 
             if (Global.myConnection != null && Global.myConnection.State == ConnectionState.Open && Global.Admin != null && Global.MainUser != null)
             {
@@ -270,9 +275,9 @@ namespace SOEN341_nobean
             try
             {
                 if (adminInstruction.SelectedValue == "add")
-                    DBHandler.insertUserRecord(netName, course.getCourseID().ToString());
+                    DBHandler.insertUserRecord(Global.MainUser.getUserID()+"", course.getCourseID().ToString());
                 else
-                    DBHandler.removeUserRecord(netName, course.getCourseID().ToString());
+                    DBHandler.removeUserRecord(Global.MainUser.getUserID() + "", course.getCourseID().ToString());
             }
             catch (Exception)
             {

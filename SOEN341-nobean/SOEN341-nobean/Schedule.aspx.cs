@@ -18,6 +18,10 @@ namespace SOEN341_nobean
         DataTable dt;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Global.MainUser == null)
+                Response.Redirect("login.aspx");
+            if (Global.MainUser.getisAdmin() == true)
+                Response.Redirect("adminHome.aspx");
             DBHandler db= new DBHandler();
             List<semester> semesters = db.getCourseSchedule(Global.MainUser.getUserID()+"");
             int counter = 0;
