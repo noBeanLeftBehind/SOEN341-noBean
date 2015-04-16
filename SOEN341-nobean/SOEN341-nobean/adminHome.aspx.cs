@@ -47,15 +47,17 @@ namespace SOEN341_nobean
                         error_IDStudent.Style["color"] = "red";
                         error_IDStudent.Text = String.Format("You have not the rights to log in as an administrator", studentIDTextBox.Text);
                         connectStudent.Visible = false;
-                        LabelStudentFound.Text = "";
+                        CheckboxStudentFound.Style.Add("display", "none");
+                        CheckboxStudentFound.Text = "";
                     }
                     else if (tempStudent.getfirstName() != null && tempStudent.getlastName() != null)
                     {
                         ViewState["StudentViewState"] = tempStudent;
-                        hiddenStudentID.Value = studentID;
                         error_IDStudent.Style["color"] = "black";
                         error_IDStudent.Text = "Student found: ";
-                        LabelStudentFound.Text = String.Format("<p>\r\n {0}, {1} </p>", tempStudent.getlastName(), tempStudent.getfirstName());
+                        CheckboxStudentFound.Style.Add("display", "inline");
+                        CheckboxStudentFound.Checked = false;
+                        CheckboxStudentFound.Text = String.Format("{0}, {1}, with Student ID: {2}", tempStudent.getlastName(), tempStudent.getfirstName(), tempStudent.getStudentID());
                         studentIDTextBox.Text = "";
                         connectStudent.Visible = true;
                     }
@@ -65,7 +67,8 @@ namespace SOEN341_nobean
                         error_IDStudent.Style["color"] = "red";
                         error_IDStudent.Text = String.Format("Student with ID {0} was not found", studentIDTextBox.Text);
                         connectStudent.Visible = false;
-                        LabelStudentFound.Text = "";
+                        CheckboxStudentFound.Style.Add("display", "none");
+                        CheckboxStudentFound.Text = "";
                     }
                        
                 }
@@ -78,8 +81,9 @@ namespace SOEN341_nobean
             }
             else
             {
-                error_IDStudent.Text = "ERROR: Enter a 8 digit Student ID";
-                LabelStudentFound.Text = "";
+                error_IDStudent.Text = "Enter a 8 digit Student ID";
+                CheckboxStudentFound.Style.Add("display", "none");
+                CheckboxStudentFound.Text = "";
                 connectStudent.Visible = false;
                 connectStudent.Visible = false;
             }
@@ -88,14 +92,19 @@ namespace SOEN341_nobean
 
         protected void connectStudent_Click1(object sender, EventArgs e)
         {
-            Global.MainUser = (User)ViewState["StudentViewState"];
-            CourseDirectory cd = new CourseDirectory();
-            userHandler.addAllCoursestoDirectory(cd);
-            Global.CourseDirectory = cd;
-           // savePreferencesToGlobal(Global.MainUser.getUserID() + "");
-            savePassedCoursesToGlobal(Global.MainUser.getUserID() + "");
-            getRemainingCourses();
-            Response.Redirect("home.aspx");
+            if (CheckboxStudentFound.Checked == true)
+            {
+                Global.MainUser = (User)ViewState["StudentViewState"];
+                CourseDirectory cd = new CourseDirectory();
+                userHandler.addAllCoursestoDirectory(cd);
+                Global.CourseDirectory = cd;
+                // savePreferencesToGlobal(Global.MainUser.getUserID() + "");
+                savePassedCoursesToGlobal(Global.MainUser.getUserID() + "");
+                getRemainingCourses();
+                Response.Redirect("home.aspx");
+            }
+            else
+                error_IDStudent.Text = error_IDStudent.Text + "<br/> You must validate the student before logging in.";
         }
 
         public void savePassedCoursesToGlobal(string userID)

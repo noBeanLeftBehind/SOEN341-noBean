@@ -31,14 +31,14 @@
     </asp:ContentPlaceHolder>
     <div id="wrapper">
           <div class="Title">
-               <h1><img src="/images/logo.png" id="logo"/>Master Schedular</h1> 
+               <h1><img src="/images/logo.png" id="logo"/>Master Scheduler 100</h1> 
           </div>
         <div id="navigation">
             <ul>
                 <li id="home"><a href="Home.aspx">Home</a></li>
                 <li runat="server" id="scheduleNavID"><a href="Schedule.aspx">Schedule</a></li>
                 <li runat="server" id="accountNavID"><a href="Preferences.aspx">Preferences</a></li>
-                <li id="record"><a href="Record.aspx">Record</a></li>                       
+                <li runat="server" id="recordNavID"><a href="Record.aspx">Record</a></li>                       
                 <li runat="server" id="log"><a runat="server" id="logoutAnchor" href="?id=logout">Log out</a></li>
             </ul>
          </div>

@@ -40,22 +40,13 @@ namespace SOEN341_nobean {
         protected global::System.Web.UI.WebControls.Label error_IDStudent;
         
         /// <summary>
-        /// hiddenStudentID control.
+        /// CheckboxStudentFound control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hiddenStudentID;
-        
-        /// <summary>
-        /// LabelStudentFound control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelStudentFound;
+        protected global::System.Web.UI.WebControls.CheckBox CheckboxStudentFound;
         
         /// <summary>
         /// connectStudent control.
