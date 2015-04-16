@@ -11,20 +11,15 @@
 
 <body runat="server">
     <asp:ContentPlaceHolder ID="Stylesheets" runat="server">
-        <link rel="stylesheet" href="master.css" type="text/css" />
+        <link rel="stylesheet" href="/css/master.css" type="text/css" />
     </asp:ContentPlaceHolder>
     <div id="wrapper">
-        <div>
-          <div class="rectangle">
-               <div id="header">Master Schedular</div> 
-              <link href="http://fonts.googleapis.com/css?family=Oleo+Script" rel="stylesheet" type="text/css"/>
+          <div class="Title">
+               <h1 style="text-align:center"><img src="/images/logo.png" id="logo"/>Master Schedular</h1> 
           </div>
-        </div>
         <div id="navigation">
-            <ul id="navbar">
-               
+            <ul>
             </ul>
-                        <p style="width: 710px"></p>
          </div>
         <div id="content">
             <form id="form1" runat="server">

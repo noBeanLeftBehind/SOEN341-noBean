@@ -2,7 +2,7 @@
 <%@ Register assembly="DayPilot" namespace="DayPilot.Web.Ui" tagprefix="DayPilot" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!--MasterPage css-->
-    <link rel="stylesheet" href="master.css" type="text/css" />
+        <link rel="stylesheet" href="/css/master.css" type="text/css" />
     <!--Slick slider with buttons css-->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.4.1/slick.css"/>
     <!--Slick slider default css-->
@@ -24,6 +24,18 @@
     </div>
 
     <script type="text/javascript">
+        $(function () {
+            var stickyRibbonTop = $('[id$=navigation]').offset().top;
+
+            $(window).scroll(function () {
+                if ($(window).scrollTop() > stickyRibbonTop) {
+                    $('[id$=navigation]').css({ position: 'fixed', top: '0px' });
+                } else {
+                    $('[id$=navigation]').css({ position: 'static', top: '0px' });
+                }
+            });
+        });
+
     $(document).ready(function(){
       $('.semesterSlider').slick({
       });

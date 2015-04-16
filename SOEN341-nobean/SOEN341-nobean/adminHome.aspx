@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/masterPage.master" EnableViewState="true" EnableViewStateMAC="true" ViewStateEncryptionMode="Always" CodeBehind="adminHome.aspx.cs" Inherits="SOEN341_nobean.adminHome" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head"  runat="server">
-    <link rel="stylesheet" href="master.css" type="text/css" />
+        <link rel="stylesheet" href="/css/master.css" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Stylesheets" runat="server">
 </asp:Content>
@@ -19,4 +19,18 @@
         <asp:Label runat="server" ID="LabelStudentFound"></asp:Label>
         <asp:Button runat="server" ID="connectStudent" Text="Connect" Visible="false"></asp:Button>
     </div>
+
+      <script type="text/javascript">
+               $(function () {
+                   var stickyRibbonTop = $('[id$=navigation]').offset().top;
+
+                   $(window).scroll(function () {
+                       if ($(window).scrollTop() > stickyRibbonTop) {
+                           $('[id$=navigation]').css({ position: 'fixed', top: '0px' });
+                       } else {
+                           $('[id$=navigation]').css({ position: 'static', top: '0px' });
+                       }
+                   });
+               });
+                       </script>
 </asp:Content>

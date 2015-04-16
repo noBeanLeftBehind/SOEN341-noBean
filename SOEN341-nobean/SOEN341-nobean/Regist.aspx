@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NoNav.Master" AutoEventWireup="true" CodeBehind="Regist.aspx.cs" Inherits="SOEN341_nobean.Regist" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-         <link rel="stylesheet" href="master.css" type="text/css" />
+        <link rel="stylesheet" href="/css/master.css" type="text/css" />
         <link rel="stylesheet" href="/css/Regist.css" type="text/css" />
          <script  src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -72,6 +72,19 @@
         <input id="Reset1" type="reset" value="reset" class="reset"/>
     </div>
     <script>
+
+        $(function () {
+            var stickyRibbonTop = $('[id$=navigation]').offset().top;
+
+            $(window).scroll(function () {
+                if ($(window).scrollTop() > stickyRibbonTop) {
+                    $('[id$=navigation]').css({ position: 'fixed', top: '0px' });
+                } else {
+                    $('[id$=navigation]').css({ position: 'static', top: '0px' });
+                }
+            });
+        });
+
         $(function () {
         $(document).tooltip({
             content: '<img style="margin-left:40%;" src="http://meatballcandy.com/wp-content/uploads/2013/02/sorry-your-password-must-contain.jpg" />'
