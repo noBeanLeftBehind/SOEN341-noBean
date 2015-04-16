@@ -16,6 +16,7 @@ namespace SOEN341_nobean
             {
                 scheduleNavID.Style.Add("display", "none");
                 accountNavID.Style.Add("display", "none");
+                recordNavID.Style.Add("display", "none");
             }
 
             if (Global.Admin != null && Global.Admin != Global.MainUser)
