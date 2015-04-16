@@ -31,7 +31,7 @@
     </asp:ContentPlaceHolder>
     <div id="wrapper">
           <div class="Title">
-               <h1><img src="/images/logo.png" id="logo"/>Master Scheduler 100</h1> 
+               <h1>Master Scheduler 100<img src="/images/logo.png" id="logo"/></h1> 
           </div>
         <div id="navigation">
             <ul>

@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Stylesheets" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div style="text-align:center;"><h2>Student administration</h2>
+    <div style="text-align:center;"><h2>Student Administration</h2>
             <p style="margin-top:30px">Enter a valid 8-digits Concordia Student ID in the textbox below and click Search. To log in as a new student, you will have to come back to administrator home.</p>
         <p style="font-style:italic">Please note that you do not have the rights to log in as an administrator.</p>
         <p>With great power comes great responsability</p>

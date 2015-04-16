@@ -5,7 +5,7 @@
 }
 
 img{
-    margin-top:32px;
+    margin-top:19px;
 }
 
 h1 {
@@ -17,9 +17,10 @@ h1 {
     font-family: Copperplate / Copperplate Gothic Light, sans-serif;
     text-shadow: 4px 4px 0px rgba(0,0,0,0.1); 
     font-size:50px;
-    margin-left: 4px;
+    margin-left: 44px;
     width: 945px;
 }
+
 
 h2{
     font-family:Century Gothic, sans-serif;
@@ -116,7 +117,7 @@ h2{
 #log{float: right !important;}
 
 #logo {
-    width: 137px;
-    height: 112px;
-    margin-left: 2px;
+    width: 152px;
+    height: 119px;
+    margin-left: 234px;
 }
