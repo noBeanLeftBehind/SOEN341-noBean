@@ -17,7 +17,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Stylesheets" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h2>Welcome to <b> Master Scheduler</b>,</h2>
+    <h2>Welcome to <b> Master Scheduler 100</b>,</h2>
        <p> Master Scheduler allows Software Engineering students enrolled at Concordia University to generate academic schedules based on their preferences. 
         The system starts with selecting the courses the student is required to take based on the academic semester he/she is enrolled in, taking into consideration the user’s preferences for the classes.</p>
     <address style="width: 643px; font-family: Calibri;">

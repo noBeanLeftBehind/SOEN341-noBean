@@ -49,13 +49,13 @@ h1 {
 
      margin-top: 0px;  
      text-align: left;
-    height: 108px;
+    height: 133px;
 	color: #740000;
     font-family: Copperplate / Copperplate Gothic Light, sans-serif;
     text-shadow: 4px 4px 0px rgba(0,0,0,0.1); 
     font-size:50px;
-    margin-left: 10px;
-    width: 680px;
+    margin-left: 44px;
+    width: 945px;
 }
 
 #content {
@@ -73,7 +73,7 @@ h1 {
         width: 960px;   
 }
 
-#Title {
+#Title{
         padding: 40px 50px 30px;        
 }
 
@@ -142,6 +142,7 @@ h1 {
 #log{float: right !important;}
 
 #logo {
-    width: 140px;
-    height: 113px;
+    width: 152px;
+    height: 119px;
+    margin-left: 234px;
 }

@@ -253,6 +253,8 @@ namespace SOEN341_nobean
             studentCourse.Visible = true;
             submitCourseButton.Visible = true;
             adminInstruction.Visible = true;
+            adminRecord.Visible = true;
+
             if (!err_msg.Equals(""))
             {
                 displayError(err_msg);

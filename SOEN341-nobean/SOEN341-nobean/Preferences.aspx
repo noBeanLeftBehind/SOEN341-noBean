@@ -2,34 +2,36 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
         <link rel="stylesheet" href="/css/master.css" type="text/css" />
+        <link rel="stylesheet" href="/css/preferences.css" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Stylesheets" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2>Preferences</h2>
-    <asp:Button runat="server" Text="Edit" ID="editPreferencesBtnTop" OnClick="editPreferences" />
-    <asp:Button runat="server" Text="Save" ID="savePreferencesBtnTop" OnClientClick="if (!validateSave()) {return false;}" OnClick="savePreferences"  Visible="false" />
+    <asp:Button runat="server" Text="Edit" ID="editPreferencesBtnTop" OnClick="editPreferences" CssClass="buttonSaveEdit"/>
+    <asp:Button runat="server" Text="Save" ID="savePreferencesBtnTop" OnClientClick="if (!validateSave()) {return false;}" OnClick="savePreferences"  Visible="false" CssClass="buttonSaveEdit"/>
+    <asp:Button runat="server" Text="Generate Schedule" ID="generateBtnTop" CssClass="buttonGenerate" />
     <br />
 <div id="allprefs">
-    <h3 style="margin-top:10px;">General Electives</h3>
+    <h3>General Electives</h3>
     <div>
         <p style="font-size:12pt;font-style:italic">Select a minimum of one general elective from the list below.</p>
         <asp:CheckBoxList runat="server" ID="ChkLstGeneral" TextAlign="Right" Font-Size="Medium"></asp:CheckBoxList>
     </div>   
-    <h3 style="margin-top:10px">Technical Electives</h3>
+    <h3>Technical Electives</h3>
     <div>
         <p style="font-size:12pt;font-style:italic">Select a minimum of five technical electives from the list below.</p>
         <asp:CheckBoxList runat="server" ID="ChkLstTechnical" TextAlign="Right" Font-Size="Medium"></asp:CheckBoxList>
     </div>
-    <h3 style="margin-top:10px">Basic Science Electives</h3>  
+    <h3>Basic Science Electives</h3>  
     <div>
         <p style="font-size:12pt;font-style:italic">Select a minimum of two science electives from the list below.</p>
         <asp:CheckBoxList runat="server" ID="ChkLstScience" TextAlign="Right" Font-Size="Medium"></asp:CheckBoxList>
     </div>
 </div>
-    <asp:Button runat="server" style="margin-top:10px" Text="Edit" ID="editPreferencesBtnBottom" OnClick="editPreferences" />
-    <asp:Button runat="server" Text="Save" ID="savePreferencesBtnBottom" OnClientClick="if (!validateSave()) {return false;}" OnClick="savePreferences"  Visible="false" />
-   
+    <asp:Button runat="server" style="margin-top:10px" Text="Edit" ID="editPreferencesBtnBottom" OnClick="editPreferences" CssClass="buttonSaveEdit"/>
+    <asp:Button runat="server" Text="Save" ID="savePreferencesBtnBottom" OnClientClick="if (!validateSave()) {return false;}" OnClick="savePreferences"  Visible="false" CssClass="buttonSaveEdit"/>
+    <asp:Button runat="server" Text="Generate Schedule" ID="generateBtnBotton" CssClass="buttonGenerate" />
 
     <asp:Label runat="server" ID="testLabel" ></asp:Label>
     
