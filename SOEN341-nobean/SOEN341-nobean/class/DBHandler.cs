@@ -562,6 +562,18 @@ namespace SOEN341_nobean.Class
                 }
             }
         }
+
+        public void deletePreviousSchedules(string UserID)
+        {
+
+            String deleteQuery = "delete from [dbo].[CourseSchedule] where UserID=@UserID";
+
+            SqlCommand com = new SqlCommand(deleteQuery, Global.myConnection);
+            com.Parameters.AddWithValue("@UserID", UserID);
+
+           com.ExecuteNonQuery();
+
+        }
         public void insertUserRecord(string netNameString, string courseIDString)
         {
             int netName = Convert.ToInt32(netNameString);

@@ -89,7 +89,7 @@ namespace SOEN341_nobean
                 }
             }
 
-
+            DBHandler.deletePreviousSchedules(Global.MainUser.getUserID()+"");
 
             DBHandler.insertCourseSchedule(ScheduleGenerator.generate(priorityCourse, prefBool[0], prefBool[1], prefBool[2], prefBool[3], prefBool[4], prefBool[5], prefBool[6]));
 
