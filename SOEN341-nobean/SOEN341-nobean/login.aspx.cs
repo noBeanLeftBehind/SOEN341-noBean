@@ -115,16 +115,23 @@ namespace SOEN341_nobean
             List<Course> coreCourse = cd.getAllCourses();
 
             if (passedCourse.Count != 0)
-            {
-                foreach (Course cours in coreCourse)
-                {
-                    if (!passedCourse.Contains(cours))
+             {
+                 foreach (Course cours in coreCourse)
+                 {
+                    bool passed = false;
+                    foreach (Course cours2 in passedCourse)
                     {
-                        remainingCourse.Add(cours);
+                        if (cours.getCourseID() == cours2.getCourseID())
+                        {
+                            passed = true;
+                        }
                     }
-
-                }
-            }
+                    if (!passed)
+                     {
+                         remainingCourse.Add(cours);
+                     }
+                 }
+             }
             else
                 remainingCourse = coreCourse;
 

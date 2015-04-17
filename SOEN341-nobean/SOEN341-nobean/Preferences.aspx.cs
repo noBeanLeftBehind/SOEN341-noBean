@@ -47,7 +47,8 @@ namespace SOEN341_nobean
             //add all courses wanna be scheduled into the priority list 
             //right now im adding all core courses from directory
             List<Course> courses = Global.CourseDirectory.getAllCourses();
-            foreach (Course temp in courses)
+            List<Course> rCourse = Global.ListCourseRemaining;
+            foreach (Course temp in rCourse)
                 priorityCourse.Add(temp.getPriority(), temp);
            
 
