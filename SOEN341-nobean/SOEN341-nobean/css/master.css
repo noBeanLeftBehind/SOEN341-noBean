@@ -73,6 +73,7 @@ h2{
         height: 69px;
         margin-left: -20px;
         width: 1000px;
+        z-index: 500;
 
 }
    
