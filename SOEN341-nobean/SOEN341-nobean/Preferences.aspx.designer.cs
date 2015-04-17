@@ -31,6 +31,24 @@ namespace SOEN341_nobean {
         protected global::System.Web.UI.WebControls.Button savePreferencesBtnTop;
         
         /// <summary>
+        /// generateBtnTop control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button generateBtnTop;
+        
+        /// <summary>
+        /// prefCheckbox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList prefCheckbox;
+        
+        /// <summary>
         /// ChkLstGeneral control.
         /// </summary>
         /// <remarks>
@@ -74,6 +92,15 @@ namespace SOEN341_nobean {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button savePreferencesBtnBottom;
+        
+        /// <summary>
+        /// generateBtnBotton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button generateBtnBotton;
         
         /// <summary>
         /// testLabel control.
