@@ -12,12 +12,14 @@ namespace SOEN341_nobean.Class
         private List<Section> Lectures;
         private List<Section> Tutorials;
         private List<Section> Labs;
+        private List<Course> onlineCourses;
 
         public semester()
         {
             this.Lectures = new List<Section>();
             this.Tutorials = new List<Section>();
             this.Labs = new List<Section>();
+            this.onlineCourses = new List<Course>();
         }
 
         public void setSection(int sect){this.section = sect;}
@@ -76,6 +78,16 @@ namespace SOEN341_nobean.Class
         public List<Section> getLectures()
         {
             return this.Lectures;
+        }
+
+        public void addOnlineCourse(Course crs)
+        {
+            this.onlineCourses.Add(crs);
+        }
+
+        public List<Course> getOnlineCourses()
+        {
+            return this.onlineCourses;
         }
 	}
 }

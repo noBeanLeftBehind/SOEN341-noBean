@@ -467,21 +467,28 @@ namespace SOEN341_nobean.Class
                             tempSemester = sem;
                     }
                     Course tempCourse = Global.CourseDirectory.getCourse(myReader["CourseID"].ToString());
-                    Section tempLecture=tempCourse.getLecture(myReader["LecID"].ToString());
-                    tempSemester.addLecture(tempLecture);
-                    tempLecture.setCourseSig(tempCourse.getSubject() + " " + tempCourse.getCode());
-
-                    if (!string.IsNullOrEmpty(myReader["TutID"].ToString()) && !myReader["TutID"].ToString().Equals("0"))
+                    if (!string.IsNullOrEmpty(myReader["LecID"].ToString()) && !myReader["LecID"].ToString().Equals("0"))
                     {
-                        Section tempTut = tempLecture.getTut(myReader["TutID"].ToString());
-                        tempSemester.addTutorials(tempTut);
-                        tempTut.setCourseSig(tempCourse.getSubject() + " " + tempCourse.getCode());
+                        tempSemester.addOnlineCourse(tempCourse);
                     }
-                    if (!string.IsNullOrEmpty(myReader["LabID"].ToString()) && !myReader["LabID"].ToString().Equals("0"))
+                    else
                     {
-                        Section tempLab = tempLecture.getLab(myReader["LabID"].ToString());
-                        tempLab.setCourseSig(tempCourse.getSubject() + " " + tempCourse.getCode());
-                        tempSemester.addLabs(tempLab);
+                        Section tempLecture = tempCourse.getLecture(myReader["LecID"].ToString());
+                        tempSemester.addLecture(tempLecture);
+                        tempLecture.setCourseSig(tempCourse.getSubject() + " " + tempCourse.getCode());
+
+                        if (!string.IsNullOrEmpty(myReader["TutID"].ToString()) && !myReader["TutID"].ToString().Equals("0"))
+                        {
+                            Section tempTut = tempLecture.getTut(myReader["TutID"].ToString());
+                            tempSemester.addTutorials(tempTut);
+                            tempTut.setCourseSig(tempCourse.getSubject() + " " + tempCourse.getCode());
+                        }
+                        if (!string.IsNullOrEmpty(myReader["LabID"].ToString()) && !myReader["LabID"].ToString().Equals("0"))
+                        {
+                            Section tempLab = tempLecture.getLab(myReader["LabID"].ToString());
+                            tempLab.setCourseSig(tempCourse.getSubject() + " " + tempCourse.getCode());
+                            tempSemester.addLabs(tempLab);
+                        }
                     }
                     if(!schedule.Contains(tempSemester))
                         schedule.Add(tempSemester);
@@ -526,6 +533,27 @@ namespace SOEN341_nobean.Class
                     com.Parameters.AddWithValue("@year", sem.getYear());
                     com.Parameters.AddWithValue("@CourseID", lecture.getCourseID());
                     com.Parameters.AddWithValue("@LecID", lecture.getID());
+                    com.Parameters.AddWithValue("@TutID", TutID);
+                    com.Parameters.AddWithValue("@LabID", LabID);
+
+
+                    com.ExecuteNonQuery();
+                }
+                foreach(Course crs in sem.getOnlineCourses())
+                {
+                    String TutID = "";
+                    String LabID = "";
+                    String LecID = "";
+
+                    String insertQuery = "insert into [dbo].[CourseSchedule] (UserID, Section, year, CourseID, LecID, TutID, LabID) values (@UserID, @Section, @year, @CourseID, @LecID, @TutID, @LabID)";
+
+                    SqlCommand com = new SqlCommand(insertQuery, Global.myConnection);
+
+                    com.Parameters.AddWithValue("@UserID", Global.MainUser.getUserID());
+                    com.Parameters.AddWithValue("@Section", sem.getSection());
+                    com.Parameters.AddWithValue("@year", sem.getYear());
+                    com.Parameters.AddWithValue("@CourseID", crs.getCourseID());
+                    com.Parameters.AddWithValue("@LecID", LecID);
                     com.Parameters.AddWithValue("@TutID", TutID);
                     com.Parameters.AddWithValue("@LabID", LabID);
 

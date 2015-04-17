@@ -15,7 +15,7 @@ namespace SOEN341_nobean.Class
             List<semester> semesters = new List<semester>();
 
             Random rnd = new Random();
-
+             
             while (priorityCourse.Count() > 0)
             {
                 if (priorityCourse.Count() > 5)

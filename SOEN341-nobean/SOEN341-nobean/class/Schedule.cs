@@ -10,7 +10,7 @@ namespace SOEN341_nobean.Class
     {
         private int credits;
         private List<semester> semesters;
-
+        
         public Schedule()
         {
             this.semesters = new List<semester>();
