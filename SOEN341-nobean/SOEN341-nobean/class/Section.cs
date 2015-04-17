@@ -13,7 +13,9 @@ namespace SOEN341_nobean.Class
         String sectionName;
         String day;
         String startTime;
-        String endTime; 
+        String endTime;
+        DateTime start;
+        DateTime end;
         List<Section> tutorial = new List<Section>();
         List<Section> lab = new List<Section>();
         //for internal use
@@ -30,6 +32,10 @@ namespace SOEN341_nobean.Class
         {
         }
 
+        public DateTime getStartDateTime() { return start; }
+        public DateTime getEndDateTime() { return end; }
+        public void setStartDateTime(DateTime START) { start = START; }
+        public void setEndDateTime(DateTime END) { end = END; }
 
         public void setSemester(int semester)
         {
@@ -43,10 +49,12 @@ namespace SOEN341_nobean.Class
         {
             this.day = day;
         }
-        public void setTime(String start, String end)
+        public void setTime(String START, String END)
         {
-            this.startTime = start;
-            this.endTime = end;
+            this.startTime = START;
+            this.start = Convert.ToDateTime(START);
+            this.endTime = END;
+            this.end = Convert.ToDateTime(END);
         }
         public void addTut(Section tut)
         {
