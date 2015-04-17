@@ -45,10 +45,13 @@ namespace SOEN341_nobean.Class
                             int random = rnd.Next(one_semester_courses.Count());
                             Course tempCourse = one_semester_courses[random];
                             one_semester_courses.RemoveAt(random);
-
+                            one_semester_courses.Add(priorityCourse.Values[1]);
+                            priorityCourse.RemoveAt(1);
+                            priorityCourse.Add(tempCourse.getPriority(), tempCourse);
+                            //Console.WriteLine("semester returned null");
                             //one_semester_courses.Add(priorityCourse.Values[0]);
                             //priorityCourse.RemoveAt(0);
-                            priorityCourse.Add(tempCourse.getPriority(), tempCourse);
+                            //priorityCourse.Add(tempCourse.getPriority(), tempCourse);
                           //  Console.WriteLine("semester returned null");
 
                         }
