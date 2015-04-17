@@ -91,7 +91,7 @@ namespace SOEN341_nobean
 
 
 
-            ScheduleGenerator.generate(priorityCourse, prefBool[0], prefBool[1], prefBool[2], prefBool[3], prefBool[4], prefBool[5], prefBool[6]);
+            DBHandler.insertCourseSchedule(ScheduleGenerator.generate(priorityCourse, prefBool[0], prefBool[1], prefBool[2], prefBool[3], prefBool[4], prefBool[5], prefBool[6]));
 
             Response.Redirect("Schedule.aspx");
 
