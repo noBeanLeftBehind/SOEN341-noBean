@@ -467,7 +467,7 @@ namespace SOEN341_nobean.Class
                             tempSemester = sem;
                     }
                     Course tempCourse = Global.CourseDirectory.getCourse(myReader["CourseID"].ToString());
-                    if (!string.IsNullOrEmpty(myReader["LecID"].ToString()) && !myReader["LecID"].ToString().Equals("0"))
+                    if (string.IsNullOrEmpty(myReader["LecID"].ToString()) || myReader["LecID"].ToString().Equals("0"))
                     {
                         tempSemester.addOnlineCourse(tempCourse);
                     }

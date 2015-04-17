@@ -34,7 +34,7 @@ namespace SOEN341_nobean
             foreach(semester sem in semesters)
             {
                 counter++;
-                sliderID.Controls.Add(new LiteralControl("<div style='text-align:center;'><p>" + (sem.getSection() == 1 ? "Fall " : "Winter ") + sem.getYear() + "</p>"));
+                sliderID.Controls.Add(new LiteralControl("<div style='text-align:center;'><p>" + (sem.getSection() == 2 ? "Fall " : "Winter ") + sem.getYear() + "</p>"));
                 DayPilotCalendar calendar=new DayPilotCalendar();
                 calendar.ID = "DayPilotCalendar" + counter;
                 calendar.Attributes.Add("TimeHeaderCellDuration", "15");

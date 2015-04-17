@@ -96,7 +96,22 @@ namespace SOEN341_nobean.Class
                     }
                 }
             }
-
+            int year = 2015;
+            int section = 2;
+             foreach(semester sem in semesters)
+             {
+                 sem.setSection(section);
+                 sem.setYear(year);
+                 if(section==2)
+                 {
+                     section += 2;
+                     year++;
+                 }
+                 else
+                 {
+                     section -= 2;
+                 }
+             }
             Schedule sched = new Schedule();
             sched.setSemester(semesters);
 
