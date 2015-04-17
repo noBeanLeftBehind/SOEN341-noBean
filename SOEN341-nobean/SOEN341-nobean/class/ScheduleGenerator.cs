@@ -36,8 +36,8 @@ namespace SOEN341_nobean.Class
                         if (bestSemester != null)
                         {
                             semesters.Add(bestSemester);
-                            Console.WriteLine("semester added");
-                            Console.ReadLine();
+                          //  Console.WriteLine("semester added");
+                           // Console.ReadLine();
                             foundSemester = true;
                         }
                         else
@@ -49,14 +49,14 @@ namespace SOEN341_nobean.Class
                             //one_semester_courses.Add(priorityCourse.Values[0]);
                             //priorityCourse.RemoveAt(0);
                             priorityCourse.Add(tempCourse.getPriority(), tempCourse);
-                            Console.WriteLine("semester returned null");
+                          //  Console.WriteLine("semester returned null");
 
                         }
                     }
                 }
                 else
                 {
-                    Console.WriteLine("else is called");
+                   // Console.WriteLine("else is called");
                     List<Course> one_semester_courses = new List<Course>();
                     //add 5 courses to be scheduled and returns one semester
                     int num = priorityCourse.Count();
@@ -64,7 +64,7 @@ namespace SOEN341_nobean.Class
                     {
                         int k = i;
                         one_semester_courses.Add(priorityCourse.Values[0]);
-                        Console.WriteLine(priorityCourse.Values[0].getCourseName());
+                       // Console.WriteLine(priorityCourse.Values[0].getCourseName());
                         priorityCourse.RemoveAt(0);
                     }
 
@@ -77,8 +77,8 @@ namespace SOEN341_nobean.Class
                         if (bestSemester != null)
                         {
                             semesters.Add(bestSemester);
-                            Console.WriteLine("semester added");
-                            Console.ReadLine();
+                           // Console.WriteLine("semester added");
+                           // Console.ReadLine();
                             foundSemester = true;
                         }
                         else
@@ -90,7 +90,7 @@ namespace SOEN341_nobean.Class
                             //one_semester_courses.Add(priorityCourse.Values[0]);
                             //priorityCourse.RemoveAt(0);
                             priorityCourse.Add(tempCourse.getPriority(), tempCourse);
-                            Console.WriteLine("semester returned null");
+                           // Console.WriteLine("semester returned null");
 
                         }
                     }

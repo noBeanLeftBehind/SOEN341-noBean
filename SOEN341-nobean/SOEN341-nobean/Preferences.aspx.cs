@@ -41,6 +41,61 @@ namespace SOEN341_nobean
             }
                 
         }
+        public void generate(object sender, EventArgs e)
+        {
+            SortedList<int, Course> priorityCourse = new SortedList<int, Course>(new DuplicateKeyComparer<int>()); ;
+            //add all courses wanna be scheduled into the priority list 
+            //right now im adding all core courses from directory
+            List<Course> courses = Global.CourseDirectory.getAllCourses();
+            foreach (Course temp in courses)
+                priorityCourse.Add(temp.getPriority(), temp);
+           
+
+            List<string> selectedValuesGeneral = ChkLstGeneral.Items.Cast<ListItem>()
+                .Where(li => li.Selected)
+                .Select(li => li.Value)
+                .ToList();
+            List<string> selectedValuesTechnical = ChkLstTechnical.Items.Cast<ListItem>()
+               .Where(li => li.Selected)
+               .Select(li => li.Value)
+               .ToList();
+            List<string> selectedValuesScience = ChkLstScience.Items.Cast<ListItem>()
+                           .Where(li => li.Selected)
+                           .Select(li => li.Value)
+                           .ToList();
+
+
+            priorityCourse.Add(DBHandler.getCourse(selectedValuesScience[0]).getPriority(), DBHandler.getCourse(selectedValuesScience[0]));
+            priorityCourse.Add(DBHandler.getCourse(selectedValuesScience[1]).getPriority(), DBHandler.getCourse(selectedValuesScience[1]));
+
+            priorityCourse.Add(DBHandler.getCourse(selectedValuesGeneral[0]).getPriority(), DBHandler.getCourse(selectedValuesGeneral[0]));
+
+            priorityCourse.Add(DBHandler.getCourse(selectedValuesTechnical[0]).getPriority(), DBHandler.getCourse(selectedValuesTechnical[0]));
+            priorityCourse.Add(DBHandler.getCourse(selectedValuesTechnical[1]).getPriority(), DBHandler.getCourse(selectedValuesTechnical[1]));
+            priorityCourse.Add(DBHandler.getCourse(selectedValuesTechnical[2]).getPriority(), DBHandler.getCourse(selectedValuesTechnical[2]));
+            priorityCourse.Add(DBHandler.getCourse(selectedValuesTechnical[3]).getPriority(), DBHandler.getCourse(selectedValuesTechnical[3]));
+            priorityCourse.Add(DBHandler.getCourse(selectedValuesTechnical[4]).getPriority(), DBHandler.getCourse(selectedValuesTechnical[4]));
+
+
+            List<Boolean> prefBool = new List<Boolean>();
+
+            foreach (ListItem item in prefCheckbox.Items)
+            {
+                if (item.Selected)
+                {
+                    prefBool.Add(true);
+                }else{
+                    prefBool.Add(false);
+                }
+            }
+
+
+
+            DBHandler.insertCourseSchedule(ScheduleGenerator.generate(priorityCourse, prefBool[0], prefBool[1], prefBool[2], prefBool[3], prefBool[4], prefBool[5], prefBool[6]));
+
+            Response.Redirect("Schedule.aspx");
+
+        }
         public void editPreferences(object sender, EventArgs e)
         {
             //switch buttons and allow checkboxes to be edited

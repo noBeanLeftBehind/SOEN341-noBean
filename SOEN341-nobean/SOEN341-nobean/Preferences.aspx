@@ -10,8 +10,17 @@
     <h2>Preferences</h2>
     <asp:Button runat="server" Text="Edit" ID="editPreferencesBtnTop" OnClick="editPreferences" CssClass="buttonSaveEdit"/>
     <asp:Button runat="server" Text="Save" ID="savePreferencesBtnTop" OnClientClick="if (!validateSave()) {return false;}" OnClick="savePreferences"  Visible="false" CssClass="buttonSaveEdit"/>
-    <asp:Button runat="server" Text="Generate Schedule" ID="generateBtnTop" CssClass="buttonGenerate" />
+    <asp:Button runat="server" Text="Generate Schedule" ID="generateBtnTop" OnClientClick="if (!validateSave()) {return false;}" OnClick="generate" CssClass="buttonGenerate" />
     <br />
+    <asp:CheckBoxList runat="server" ID="prefCheckbox">
+        <asp:ListItem>Morning Classes</asp:ListItem>
+        <asp:ListItem>Night Classes</asp:ListItem>
+        <asp:ListItem>Monday</asp:ListItem>
+        <asp:ListItem>Tuesday</asp:ListItem>
+        <asp:ListItem>Wednesday</asp:ListItem>
+        <asp:ListItem>Thursday</asp:ListItem>
+        <asp:ListItem>Friday</asp:ListItem>
+    </asp:CheckBoxList>
 <div id="allprefs">
     <h3>General Electives</h3>
     <div>
@@ -31,7 +40,7 @@
 </div>
     <asp:Button runat="server" style="margin-top:10px" Text="Edit" ID="editPreferencesBtnBottom" OnClick="editPreferences" CssClass="buttonSaveEdit"/>
     <asp:Button runat="server" Text="Save" ID="savePreferencesBtnBottom" OnClientClick="if (!validateSave()) {return false;}" OnClick="savePreferences"  Visible="false" CssClass="buttonSaveEdit"/>
-    <asp:Button runat="server" Text="Generate Schedule" ID="generateBtnBotton" CssClass="buttonGenerate" />
+    <asp:Button runat="server" Text="Generate Schedule" ID="generateBtnBotton" OnClientClick="if (!validateSave()) {return false;}" OnClick="generate" CssClass="buttonGenerate" />
 
     <asp:Label runat="server" ID="testLabel" ></asp:Label>
     
