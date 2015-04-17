@@ -509,35 +509,38 @@ namespace SOEN341_nobean.Class
             {
                 foreach(Section lecture in sem.getLectures())
                 {
-                    String TutID = "";
-                    String LabID = "";
-
-                    foreach(Section tut in sem.getTuts())
+                    if (lecture != null)
                     {
-                        if (lecture.getTutorials().Contains(tut))
-                            TutID = tut.getID();
+                        String TutID = "";
+                        String LabID = "";
+
+                        foreach (Section tut in sem.getTuts())
+                        {
+                            if (tut != null && lecture.getTutorials().Contains(tut))
+                                TutID = tut.getID();
+                        }
+
+                        foreach (Section lab in sem.getLabs())
+                        {
+                            if (lab != null && lecture.getLabs().Contains(lab))
+                                LabID = lab.getID();
+                        }
+
+                        string insertQuery = "insert into [dbo].[CourseSchedule] (UserID, Section, year, CourseID, LecID, TutID, LabID) values (@UserID, @Section, @year, @CourseID, @LecID, @TutID, @LabID)";
+
+                        SqlCommand com = new SqlCommand(insertQuery, Global.myConnection);
+
+                        com.Parameters.AddWithValue("@UserID", Global.MainUser.getUserID());
+                        com.Parameters.AddWithValue("@Section", sem.getSection());
+                        com.Parameters.AddWithValue("@year", sem.getYear());
+                        com.Parameters.AddWithValue("@CourseID", lecture.getCourseID());
+                        com.Parameters.AddWithValue("@LecID", lecture.getID());
+                        com.Parameters.AddWithValue("@TutID", TutID);
+                        com.Parameters.AddWithValue("@LabID", LabID);
+
+
+                        com.ExecuteNonQuery();
                     }
-
-                    foreach (Section lab in sem.getLabs())
-                    {
-                        if (lecture.getLabs().Contains(lab))
-                            LabID = lab.getID();
-                    }
-
-                    string insertQuery = "insert into [dbo].[CourseSchedule] (UserID, Section, year, CourseID, LecID, TutID, LabID) values (@UserID, @Section, @year, @CourseID, @LecID, @TutID, @LabID)";
-
-                    SqlCommand com = new SqlCommand(insertQuery, Global.myConnection);
-
-                    com.Parameters.AddWithValue("@UserID", Global.MainUser.getUserID());
-                    com.Parameters.AddWithValue("@Section", sem.getSection());
-                    com.Parameters.AddWithValue("@year", sem.getYear());
-                    com.Parameters.AddWithValue("@CourseID", lecture.getCourseID());
-                    com.Parameters.AddWithValue("@LecID", lecture.getID());
-                    com.Parameters.AddWithValue("@TutID", TutID);
-                    com.Parameters.AddWithValue("@LabID", LabID);
-
-
-                    com.ExecuteNonQuery();
                 }
                 foreach(Course crs in sem.getOnlineCourses())
                 {
