@@ -46,6 +46,11 @@ namespace SOEN341_nobean
                 calendar.DataSource = makeTestDB(sem);
                 configureCalendar(calendar);
                 sliderID.Controls.Add(calendar);
+                foreach(Course crs in sem.getOnlineCourses())
+                {
+                    sliderID.Controls.Add(new LiteralControl("<div style='text-align:center;'><p>Online Class: "+crs.getSubject() + " " + crs.getCode()+" --- "+crs.getCourseName()+"</p></div>"));
+
+                }
                 sliderID.Controls.Add(new LiteralControl("</div>"));
             }
          
